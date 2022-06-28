@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josué Amaral</title>
+    <link rel="stylesheet" href="styleMorphingMenu.css">
+</head>
+<body>
+    <header class="header-wrapper">
+        <div id="home" class="header">
+            <div class="checkbox-container">
+                <input type="checkbox" id="toggle" onclick="verifyCheckbox()">
+                <label class="checkbox" for="toggle">
+                    <div class="trace"></div>
+                    <div class="trace"></div>
+                    <div class="trace"></div>
+                </label>
+                <div class="menu"></div>
+                <nav id="navig" class="menu-items">
+                    <ul>
+                        <li><a onclick="closeMenu()" href="#home">Home</a></li>
+                        <li><a onclick="closeMenu()" href="#main-container">Sobre</a></li>
+                        <li><a onclick="closeMenu()" href="#main-container">Projetos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <h1>Josué Amaral</h1>
+        <h2>Front-end Developer</h2>
+        <div class="social-media">
+            <a href="https://www.linkedin.com/in/josueamaral25/">LinkedIn</a>
+            <a href="https://github.com/JosueAmaral15">Github</a>
+        </div>
+    </header>
+    <section class="curriculo">
+        <div id="parte1">
+            <div class="introducao">
+                <h2>Josué Amaral</h2>
+                <p>Programador web front-end</p>
+            </div>
+            <div id="informacoes-pessoais">
+                <h3>Informações pessoais</h3>
+                <div id="email">
+                    <h4>E-mail</h4>
+                    <p>josueamaral15@gmail.com</p>
+                </div>
+                <div id="telefone">
+                    <h4>Telefone</h4>
+                    <p>(21)&nbsp99875-0924</p>
+                </div>
+            </div>
+            <div id="habilidades">
+                <h3>Habilidades</h3>
+                <p>Programação web</p>
+                <p>Lógica de programação avançada</p>
+                <p>Inglês básico para escrita e conversação</p>
+                <!-- <p>Curso técnico de montagem e manutenção - FAETEC</p>
+                <p>Curso técnico de redes e cabeamento - FAETEC</p> -->
+                <p>Windows e Linux</p>
+                <p>Matemática computacional</p>
+                
+                
+            </div>
+        </div>
+        <div id="parte2">
+            <div id="descricao">
+                <p>Conhecimento das linguagens de programação HTML5, CSS3, Javascript, Python e SQL Server; Windows (Batch e terminal) e Linux (Debian e Ubuntu);</p>
+                <p>Conhecimento avançado de lógica de programação;</p>
+                <p>Experiências com criação de fórmulas matemáticas para a área de programação</p>
+                <p>Extrema facilidade para adquirir novos aprendizados sobre programação de acordo com as necessidades da empresa; </p>
+            </div>
+            <div id="experiencia-laboral">
+                <div id="titulo-trabalho">
+                    <hr><h3>Experiência Laboral</h3><hr>
+                </div>
+                
+                <div id="linha-trabalho">
+                    <div id="data-trabalho">2013-09<br>2014-07</div>
+                    <div id="descricao-trabalho">
+                        <h3>Auxiliar administrativo</h3>
+                        <p>IAET - Instituto Adventista de Educação Tecnológica, Rio de Janeiro</p>
+                        <ul>
+                            <li><p>Atendimento de clientes por telefone, e-mail ou pessoalmente, fornecendo informações relevantes e encaminhando-os aos setores corretos.</p></li>
+                            <li><p>Recebimento e encaminhamento da correspondência corporativa aos setores e funcionários adequados.</p></li>
+                            <li><p>Auxílio no controle de finanças, impressão de boletos e recibos.</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="formacao-academica">
+                <div id="titulo-formacao">
+                    <hr><h3>Formação acadêmica</h3><hr>
+                </div>
+                <div id="linha-formacao">
+                    <div id="data-formacao">2021-02<br>-&nbsp;Atualmente</div>
+                    <div id="descricao-formacao">
+                        <p>Tecnologia em Sistemas de Computação, Superior</p>
+                        <p>Universidade Federal Fluminense (UFF), Rio de Janeiro</p>
+                    </div>
+                </div>
+            </div>
+            <div id="certificados">
+                <div id="titulo-certificados"><hr><h3>Certificados</h3><hr></div>
+                <div id="todos-certificados">
+                    <div class="componente-certificado"><p>2008-09</p><p>Microsoft Excel e PowerPoint - FAETEC</p></div>
+                    <div class="componente-certificado"><p>2011-05</p><p>Montagem e Manutenção - FAETEC</p></div>
+                    <div class="componente-certificado"><p>2011-11</p><p>Redes e Cabeamento - FAETEC</p></div>
+                    <div class="componente-certificado"><p>2018-12</p><p>Python - Sololearn</p></div>
+                    <div class="componente-certificado"><p>2021-04</p><p>Javascript -  Sololearn</p></div>
+                    <div class="componente-certificado"><p>2019-05</p><p>SQL Server - Sololearn</p></div>
+                    <div class="componente-certificado"><p>2011-12</p><p>Inglês básico para leitura, escrita e conversação - FAETEC (540 hs)</p></div>
+                </div>
+            </div>
+        </div>
+        <div id="parte3"></div>
+    </section>
+    <main id="main-container" class="container">
+        <div class="card-container">
+            <div class="card-text">
+                Este é o meu portfólio. Atualmente estou estudando diariamente sobre o mundo da programação para aperfeiçoar, desenvolver e implementar novos projetos e trabalhos, e espero poder contribuir com tudo o que tenho de conhecimento com a comunidade do Github. Não faz muito tempo que estou colocando os meus trabalhos no Github, mas poder fazer isso é uma oportunidade para mostrar para as outras pessoas os meus trabalhos e o que eu tenho feito ultimamente.
+            </div>
+            <a href="https://github.com/JosueAmaral15">
+                <div class="card">
+                    <div class="card-wrapper">
+                        <h2>Github</h2>
+                        <p>Veja meus projetos</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="card-container">
+            <a href="https://www.linkedin.com/in/josueamaral25/">
+                <div class="card">
+                    <div class="card-wrapper">
+                        <h2>LinkedIn</h2>
+                        <p>Acompanhe minha carreira</p>
+                    </div>
+                </div>
+            </a>
+            <div class="card-text">
+                Meu maior sonho é ser reconhecido no mercado de trabalho como um profissional famoso, competente e responsável. Para isso, estou estudando todos os dias para alcançar em meus serviços a excelência necessária a fim de fornecer aos meus clientes serviços de qualidade. Eu sempre estou buscando estudos e aperfeiçoamento para que eu alcançe as minhas metas de ser um programador web front-end qualificado para o mercado de trabalho.
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card-text">
+                No Instagram é o espaço em que compartilho com os meus amigos os meus pensamentos, as minhas indagações sobre a realidade que nos cerca, os meus dons e talentos de desenho e pintura e toda e qualquer informação que seja relevante. Por curiosidade lá tem uns quadros de pintura realísticos que eu acabei fazendo para demonstrar o quanto eu gosto de desenhar pessoas. Não sou fotogênico, e minhas fotos expressam uma pessoa simples que busca viver a vida com sentido.
+            </div>
+            <a href="https://www.instagram.com/josueamaral25/">
+                <div class="card">
+                    <div class="card-wrapper">
+                        <h2>Instagram</h2>
+                        <p>Ou mais do meu dia-a-dia</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+    <footer class="footer">
+        Feito por Josué amaral
+    </footer>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="scriptmorphingMenu.js"></script>
+</body>
+</html>
