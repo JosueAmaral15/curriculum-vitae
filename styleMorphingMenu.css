@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
 
-
-
 :root {
     --primary-color: #2e1c20;
     --dark-brown-for-h3: hsl(0, 29%, 13%);
@@ -34,6 +32,11 @@ html {
     justify-content:center;
     position:relative;
     animation: backgroundTransition 8s ease-in-out infinite;
+    color:white;
+}
+
+.header-wrapper h2 {
+    color:orange;
 }
 
 h1 {
@@ -336,46 +339,6 @@ body.menu-expanded {
     letter-spacing:3px;
 }
 
-/* Responsivo */
-
-@media(max-width:800px) {
-    .social-media {
-        display:flex;
-        flex-direction:column;
-    }
-
-    .container{
-        margin-top:0;
-    }
-
-    .card-container {
-        flex-direction:column;
-    }
-
-    .container .card-container:nth-child(1),
-    .container .card-container:nth-child(3) {
-        flex-direction:column-reverse;
-
-    }
-
-    .card {
-        height:250px;
-        width:250px;
-    }
-
-    .card-text{
-        width:90%;
-        margin-top:2rem;
-        text-align:center;
-    }
-
-    .card:hover > card-wrapper::before{
-        height:190px;
-        width:190px;
-    }
-}
-
-
 /* Currículo */
 
 .curriculo {
@@ -383,7 +346,7 @@ body.menu-expanded {
     flex-direction:row;
     align-items:flex-start;
     font-weight:bold;
-    height:55rem;
+    /* height:55rem; */
 }
 
 #parte1{
@@ -395,7 +358,9 @@ body.menu-expanded {
     gap:1.5rem;
     letter-spacing:1.2px;
     padding-inline:2rem;
-    height:100%;
+    height:inherit;
+    max-width: 18rem;
+    align-self:stretch;
 }
 
 #informacoes-pessoais {
@@ -417,6 +382,8 @@ body.menu-expanded {
 
 #parte2{
     padding:2rem;
+    height:100%;
+    /* overflow: auto; */
 }
 
 #descricao {
@@ -485,6 +452,62 @@ body.menu-expanded {
 
 #parte3 {
     width:11.2rem;
-    height:100%;
+    height:inherit;
     background-color:var(--primary-color);
+    align-self:stretch;
 }
+
+
+/* Responsivo */
+
+@media(max-width:800px) {
+    .social-media {
+        display:flex;
+        flex-direction:column;
+    }
+
+    .container{
+        margin-top:0;
+    }
+
+    .card-container {
+        flex-direction:column;
+    }
+
+    .container .card-container:nth-child(1),
+    .container .card-container:nth-child(3) {
+        flex-direction:column-reverse;
+
+    }
+
+    .card {
+        height:250px;
+        width:250px;
+    }
+
+    .card-text{
+        width:90%;
+        margin-top:2rem;
+        text-align:center;
+    }
+
+    .card:hover > card-wrapper::before{
+        height:190px;
+        width:190px;
+    }
+
+    /* Currículo */
+    .curriculo {
+        min-height:55rem;
+        display:flex;
+        align-items: stretch;
+    }
+    
+    #linha-trabalho, #linha-formacao,
+    .componente-certificado {
+        display:flex;
+        flex-direction:column-reverse;
+        align-items:center;
+    }
+}
+
