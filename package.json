@@ -2,6 +2,7 @@
   "name": "josue-amaral-portfolio",
   "version": "2.0.0",
   "private": true,
+  "type": "module",
   "description": "Professional portfolio for Josue Amaral, full-stack and DevOps engineer.",
   "scripts": {
     "dev": "next dev",

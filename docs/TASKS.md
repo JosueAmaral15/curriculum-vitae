@@ -4,8 +4,8 @@
 
 - [x] #1 Establish the Next.js, React and TypeScript portfolio foundation.
 - [x] #2 Implement the recruiter-focused portfolio UI using the supplied curriculum as the source of truth.
-- [ ] #3 Add automated validation, security records and deployment/rollback documentation.
-  - Source, lockfile and workflows are in place. `git diff --check` passes; `next build` is blocked by a system-wide segmentation fault affecting multiple applications on this workstation.
+- [x] #3 Add automated validation, security records and deployment/rollback documentation.
+  - `npm run lint`, `npm run test`, `npm run build` and `npm run test:e2e` pass locally; evidence is in `docs/TESTING-STATUS.md`.
 
 ## Done
 
