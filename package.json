@@ -26,6 +26,8 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@emnapi/core": "1.11.3",
+    "@emnapi/runtime": "1.11.3",
     "@playwright/test": "latest",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
@@ -41,6 +43,7 @@
     "vitest": "latest"
   },
   "engines": {
-    "node": ">=20.9.0"
-  }
+    "node": "22.x"
+  },
+  "packageManager": "npm@11.6.2"
 }
