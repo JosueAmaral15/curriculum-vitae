@@ -17,7 +17,7 @@ The repository currently contains a 2022-style static HTML/CSS/JavaScript curric
 | --- | --- | --- |
 | Framework | Next.js App Router + React + TypeScript | The Simplicidade 3 web baseline recommends Next.js, React and TypeScript; the current official Next.js documentation recommends App Router. |
 | Styling | CSS Modules + global design tokens | Keeps the visual system explicit, component-scoped and dependency-light. |
-| Deployment | Vercel | Static portfolio hosting with preview deployments and no server maintenance. |
+| Deployment | Vercel primary + GitHub Pages mirror | Vercel provides previews and domain controls; Pages proves portable static hosting from the public repository. |
 | Quality | ESLint, Vitest, Playwright, GitHub Actions | Covers source quality, content logic, production build and browser behavior. |
 | Data | Typed local content modules | A personal portfolio has stable content and does not justify a database or user-data collection. |
 | Legacy files | Preserve under `legacy/` | Keeps the original implementation available for reference without mixing it with the application. |

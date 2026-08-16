@@ -22,6 +22,19 @@
 
 Playwright now serves the current production build on port 3001 for E2E checks. This avoids reusing a developer's `next dev` instance on port 3000.
 
+## 2026-08-16 — Dual static-hosting release preparation
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Focused lint | Passed | ESLint completed without findings for the changed Next.js, metadata and Playwright TypeScript files. |
+| TypeScript | Passed | `npx tsc --noEmit` completed successfully. |
+| Static export | Passed | `npm run build` created the static `out/` directory. |
+| GitHub Pages build | Passed | Build with `NEXT_PUBLIC_BASE_PATH=/curriculum-vitae` completed and emitted the correct canonical social-image URL. |
+| Unit and browser tests | Passed | `npm run test` passed 3 tests; `npm run test:e2e` passed the English/Portuguese and reduced-motion browser checks. |
+| Whitespace | Passed | `git diff --check` produced no errors. |
+
+The broad `npm run lint` command can intermittently stall on this workstation without emitting a code diagnostic. Focused ESLint and the full TypeScript, static-build and browser checks above provide the recorded release evidence.
+
 ## Local setup note
 
 The Playwright Chromium browser was installed in the user cache with `npx playwright install chromium`. It is not committed to the repository; CI installs it independently.

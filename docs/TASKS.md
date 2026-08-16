@@ -2,6 +2,8 @@
 
 ## In progress
 
+- [x] #5 Prepare dual static publication for Vercel and GitHub Pages, including social metadata and responsive release checks.
+  - Static export, Pages workflow, Vercel headers, social metadata and release checks are recorded in `docs/DEPLOYMENT.md` and `docs/TESTING-STATUS.md`.
 - [x] #4 Add a licensed local programming video, English-default Portuguese i18n, and high-end scroll motion.
   - Verified by focused ESLint, `npm run test`, `npm run build`, `npm run test:e2e` and `git diff --check`; details are in `docs/TESTING-STATUS.md`.
 - [x] #1 Establish the Next.js, React and TypeScript portfolio foundation.
@@ -19,4 +21,4 @@
 ## Deferred
 
 - [ ] Add case-study pages once project-specific evidence and screenshots are selected.
-- [ ] Connect a custom domain and deploy after explicit authorization.
+- [ ] Connect a custom domain after selecting and purchasing one.

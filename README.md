@@ -1,6 +1,6 @@
 # Josué Amaral — Professional Portfolio
 
-A recruiter-focused portfolio for a Python full-stack developer, DevOps engineer and algorithm researcher. It is built as a static, accessible Next.js application and is designed for deployment on Vercel.
+A recruiter-focused portfolio for a Python full-stack developer, DevOps engineer and algorithm researcher. It is built as a static, accessible Next.js application and supports Vercel and GitHub Pages deployment.
 
 ## Stack
 
@@ -41,9 +41,9 @@ legacy/         preserved original static implementation
 
 ## Deployment
 
-Import the GitHub repository in Vercel. The platform detects Next.js and runs the production build. Do not add secrets: the application has no server-side credentials or environment variables.
+Use Vercel as the primary site for branch previews, production deployment and custom domains. GitHub Pages is configured as a static mirror through GitHub Actions after it is enabled in repository settings. The build has no server-side credentials.
 
-See [docs/PLAN.md](docs/PLAN.md), [docs/security/OWASP-checklist.md](docs/security/OWASP-checklist.md) and [docs/rollback/ROLLBACK.md](docs/rollback/ROLLBACK.md) before extending or deploying the project.
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md), [docs/PLAN.md](docs/PLAN.md), [docs/security/OWASP-checklist.md](docs/security/OWASP-checklist.md) and [docs/rollback/ROLLBACK.md](docs/rollback/ROLLBACK.md) before extending or deploying the project.
 
 ## Contact
 

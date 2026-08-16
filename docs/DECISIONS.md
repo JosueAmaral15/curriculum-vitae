@@ -30,3 +30,11 @@
 **Decision:** use a local, muted looping Pexels programming clip as a visual hero layer and retain CSS-only visual fallback and reduced-motion support.
 
 **Why:** the moving code adds a relevant professional atmosphere without blocking content, requesting media permissions, or introducing a runtime third-party dependency. Motion remains decorative; `prefers-reduced-motion` hides the video layer and disables nonessential transitions.
+
+## 2026-08-16 — Dual static hosting
+
+**Decision:** export the Next.js application as static files and support both Vercel and GitHub Pages from a single build configuration.
+
+**Why:** Vercel provides the primary experience—preview deployments, custom-domain management and response headers—while GitHub Pages gives a durable public mirror associated with the source repository. A build-time public base path makes the same assets work at a GitHub project-site URL.
+
+**Trade-off:** static export cannot apply Next.js `headers()` or any server-side features. Vercel headers are therefore expressed in `vercel.json`; GitHub Pages serves the static artifact without project-controlled response headers.

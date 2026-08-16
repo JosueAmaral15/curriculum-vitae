@@ -12,6 +12,8 @@ import styles from "./page.module.css";
 
 function Eyebrow({ children }: { children: ReactNode }) { return <p className={styles.eyebrow}>{children}</p>; }
 
+const assetBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
   const text = copy[language];
@@ -37,7 +39,7 @@ export default function Home() {
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.videoLayer} aria-hidden="true">
           <video autoPlay muted loop playsInline preload="metadata">
-            <source src="/media/python-coding-pexels-5473798.mp4" type="video/mp4" />
+            <source src={`${assetBasePath}/media/python-coding-pexels-5473798-optimized.mp4`} type="video/mp4" />
           </video>
         </div>
         <div className={styles.heroGrid} aria-hidden="true" />
