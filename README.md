@@ -49,4 +49,5 @@ See [docs/PLAN.md](docs/PLAN.md), [docs/security/OWASP-checklist.md](docs/securi
 
 - [LinkedIn](https://www.linkedin.com/in/josueamaral25/)
 - [GitHub](https://github.com/JosueAmaral15)
+- [WhatsApp](https://wa.me/5521999526162)
 - josueamaral15@gmail.com

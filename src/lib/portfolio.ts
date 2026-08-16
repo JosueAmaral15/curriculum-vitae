@@ -13,6 +13,7 @@ export const portfolio = {
   links: {
     github: "https://github.com/JosueAmaral15",
     linkedin: "https://www.linkedin.com/in/josueamaral25/",
+    whatsapp: "https://wa.me/5521999526162",
     lattes: "http://lattes.cnpq.br/6814784579109841",
     geogebra: "https://www.geogebra.org/u/josueamaral15",
   },

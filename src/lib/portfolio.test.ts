@@ -6,6 +6,7 @@ describe("portfolio content", () => {
     expect(portfolio.email).toMatch(/^[^@\s]+@[^@\s]+\.[^@\s]+$/);
     expect(portfolio.links.github).toMatch(/^https:\/\//);
     expect(portfolio.links.linkedin).toMatch(/^https:\/\//);
+    expect(portfolio.links.whatsapp).toBe("https://wa.me/5521999526162");
   });
 
   it("contains an experience and a project for recruiters to review", () => {

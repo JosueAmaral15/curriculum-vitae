@@ -18,3 +18,15 @@
 - Add a backend or database: there is no user data or dynamic domain requirement, so it would create unnecessary attack surface and maintenance work.
 
 **Rollback:** `git revert <migration-commit>` restores the previous implementation; see `docs/rollback/ROLLBACK.md`.
+
+## 2026-08-16 — Client-side bilingual content
+
+**Decision:** render English and Brazilian Portuguese from a typed local content module. English is the initial language and an explicit visitor choice is saved in browser local storage.
+
+**Why:** the portfolio remains static, fast and dependency-light while a recruiter can read it immediately in English and a Brazilian visitor can switch context without an external translation service or duplicated pages.
+
+## 2026-08-16 — Hero video and motion
+
+**Decision:** use a local, muted looping Pexels programming clip as a visual hero layer and retain CSS-only visual fallback and reduced-motion support.
+
+**Why:** the moving code adds a relevant professional atmosphere without blocking content, requesting media permissions, or introducing a runtime third-party dependency. Motion remains decorative; `prefers-reduced-motion` hides the video layer and disables nonessential transitions.

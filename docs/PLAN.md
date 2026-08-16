@@ -44,6 +44,24 @@ The repository currently contains a 2022-style static HTML/CSS/JavaScript curric
 3. Add unit/browser checks and GitHub Actions; complete security and rollback evidence.
 4. Run local validation and inspect the actual rendered site before handoff.
 
+## Enhancement phase — Video, i18n and premium motion
+
+### Scope
+
+1. Add a muted, looping local programming-video backdrop to the hero, with an accessible still/gradient fallback.
+2. Add client-side English and Portuguese translations. English is the default; the selected language persists only in the browser.
+3. Elevate scroll behavior with progressive reveal, section transitions, parallax-like visual layers and a reading-progress indicator. All motion must honor `prefers-reduced-motion`.
+
+### Asset decision
+
+Use only a stock video whose page explicitly permits free reuse and has no visible third-party logo, proprietary code, or identifiable person requiring additional consent. The intended candidate is Pexels' "Focused Shot of Coding" (ID 5473798), described as a free Python-code clip. If its direct download cannot be retrieved or its visible content is unsuitable, keep the same local path and replace it with a user-recorded MP4.
+
+### Validation
+
+- Verify the video is local, muted, looped, `playsInline`, and has a fallback.
+- Verify English is rendered initially and the selector changes all displayed portfolio content to Portuguese.
+- Run unit tests, browser smoke tests, production build and a reduced-motion inspection.
+
 ## Risks and mitigations
 
 | Risk | Mitigation |
