@@ -3,7 +3,9 @@ node_modules/
 .node_modules-interrupted-install/
 .package-lock-interrupted-install.json
 .next/
+/.next-*/
 out/
+*.tsbuildinfo
 
 # local environment files
 .env*

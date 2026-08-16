@@ -70,6 +70,7 @@ Use only a stock video whose page explicitly permits free reuse and has no visib
 | Content drift from the CV | All recruiter-facing claims are represented in one typed content source and tests check critical links and claims. |
 | Framework update failure | Lock dependencies with `package-lock.json`; `npm run build` is a required check. |
 | Regression after deployment | Vercel creates immutable deployments; revert the offending Git commit and redeploy. |
+| Heavy or inaccessible 3D interaction | Keep the 3D assembly optional, client-only, viewport-paused, and reduced-motion safe; retain the CAD/SVG fallback. |
 
 ## Validation checkpoints
 

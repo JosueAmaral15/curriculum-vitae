@@ -41,6 +41,23 @@ The Playwright Chromium browser was installed in the user cache with `npx playwr
 
 The workstation has shown intermittent native-process failures. The checks above were rerun individually; the unit-test runner is intentionally configured with one thread to avoid unnecessary child-process forks for this small suite.
 
+## 2026-08-16 — Licensed camera assembly integration
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Source and licence | Passed | The downloaded GLB embeds the ArtOfSylr source and CC BY 4.0 attribution; model inventory found 28 meshes and about 39,500 triangles. |
+| Unit tests | Passed | `npm run test`: 2 files, 4 tests passed. |
+| TypeScript | Passed | `node --max-old-space-size=4096 ./node_modules/typescript/bin/tsc --noEmit --pretty false` completed without diagnostics. |
+| Vercel-style static build | Passed | Isolated `next build` compiled, type-checked and exported the portfolio. |
+| GitHub Pages-path build | Passed | The same build with `NEXT_PUBLIC_BASE_PATH=/curriculum-vitae` emitted `out/models/axis-q6010-e-surveillance-camera.glb`. |
+| Browser smoke check | Passed | A headless Chromium session loaded the static export, loaded the GLB and rendered the exploded/assembled states with no page or console errors. |
+| Whitespace | Passed | `git diff --check` completed without errors. |
+
+On this workstation the standalone TypeScript process and Next build require a
+4 GiB Node old-space limit when the Three.js declarations are loaded. Isolated
+build directories avoid interfering with the active `next dev` process. This is
+a local validation constraint, not a published application setting.
+
 ## Remaining external validation
 
 GitHub Actions has not yet reported on this branch. Review its checks after opening or updating the pull request.

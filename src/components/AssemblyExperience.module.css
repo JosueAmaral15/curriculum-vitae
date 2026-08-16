@@ -1,0 +1,16 @@
+.section { background: linear-gradient(135deg, #071321, #0a2030 52%, #141a29); color: #fff; isolation: isolate; min-height: 100svh; overflow: hidden; position: relative; }
+.canvas { height: 100%; inset: 0; position: absolute; width: 100%; z-index: 1; }
+.fallback { background: radial-gradient(circle at 70% 48%, rgba(99, 224, 255, .18), transparent 21rem), repeating-linear-gradient(0deg, rgba(159, 232, 255, .06) 0 1px, transparent 1px 3.6rem), repeating-linear-gradient(90deg, rgba(159, 232, 255, .06) 0 1px, transparent 1px 3.6rem); inset: 0; opacity: .76; position: absolute; }
+.fallback::after { background: linear-gradient(90deg, #071321 1%, rgba(7, 19, 33, .82) 40%, rgba(7, 19, 33, .18) 100%); content: ""; inset: 0; position: absolute; }
+.copy { bottom: clamp(2.5rem, 9vh, 7rem); left: max(1.5rem, calc((100% - 76rem) / 2 + 1.5rem)); max-width: min(31rem, calc(100% - 3rem)); position: absolute; z-index: 2; }
+.eyebrow { color: #ffb49f; font-family: var(--mono); font-size: .74rem; font-weight: 600; letter-spacing: .09em; margin: 0 0 1.25rem; text-transform: uppercase; }
+.copy h2 { font-size: clamp(2.45rem, 4.9vw, 5.25rem); letter-spacing: -.067em; line-height: .95; margin: 0; }
+.copy > p:not(.eyebrow):not(.credit) { color: #cbd8e4; font-size: clamp(1rem, 1.45vw, 1.2rem); line-height: 1.65; margin: 1.6rem 0 0; }
+.status { align-items: center; color: #8fe6ff; display: inline-flex; font-family: var(--mono); font-size: .73rem; gap: .55rem; letter-spacing: .06em; margin-top: 2rem; text-transform: uppercase; }
+.status i { background: #ff966e; border-radius: 99px; box-shadow: 0 0 1rem #ff966e; height: .46rem; width: .46rem; }
+.credit { color: #a9c2d4; font-size: .72rem; line-height: 1.55; margin: 1.25rem 0 0; }
+.credit a { color: #d7f7ff; text-decoration-color: rgba(215, 247, 255, .45); text-underline-offset: .18rem; }
+.credit a:hover { color: #ffb49f; }
+.ready .fallback { opacity: .46; }
+@media (max-width: 44rem) { .copy { bottom: 3.25rem; }.fallback::after { background: linear-gradient(0deg, #071321 4%, rgba(7, 19, 33, .76) 46%, rgba(7, 19, 33, .12) 100%); }.copy h2 { max-width: 18rem; } }
+@media (prefers-reduced-motion: reduce) { .canvas { display: none; }.fallback { opacity: .72; } }

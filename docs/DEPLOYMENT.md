@@ -10,6 +10,16 @@ The portfolio is a static Next.js export and supports both Vercel and GitHub Pag
 
 The default Pages address is `https://josueamaral15.github.io/curriculum-vitae/`.
 
+### Current external status (2026-08-16)
+
+The repository contains the Pages workflow, its static Pages build passes
+locally, and **GitHub Actions** is selected as the Pages source (confirmed in
+the repository settings). The public Pages address currently returns HTTP 404
+because the latest Pages workflow build failed before deployment. The remaining
+account-side task is to open that failed run, resolve its reported cause and
+rerun it. This cannot be fixed by committing a manual `index.html` or by adding
+the generic `nextjs.yml` workflow suggested by the GitHub interface.
+
 ## Vercel (primary site)
 
 1. Create a Vercel project by importing `JosueAmaral15/curriculum-vitae`.
@@ -30,6 +40,11 @@ NEXT_PUBLIC_SITE_URL=https://josueamaral15.github.io/curriculum-vitae
 ```
 
 Do not set those values in a repository-tracked `.env` file. The workflow supplies them only for the GitHub Pages build.
+
+Keep GitHub Pages as a secondary static mirror once it is activated. Vercel
+remains the primary public URL because it has preview deployments and more
+deployment controls; the Pages URL gives visitors a durable, repository-linked
+fallback without requiring a separate codebase.
 
 ## Publication checklist
 

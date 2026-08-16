@@ -1,0 +1,7 @@
+This work is based on "AXIS-Q6010-E Surveillance Camera"
+(https://sketchfab.com/3d-models/axis-q6010-e-surveillance-camera-143e552bde554ea2aaa72664efab003e)
+by ArtOfSylr (https://sketchfab.com/artofsylr), licensed under CC-BY-4.0
+(https://creativecommons.org/licenses/by/4.0/).
+
+The portfolio preserves the supplied model geometry and animates only the
+existing object transforms for an interactive exploded-view sequence.

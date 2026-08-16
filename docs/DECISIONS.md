@@ -38,3 +38,19 @@
 **Why:** Vercel provides the primary experience—preview deployments, custom-domain management and response headers—while GitHub Pages gives a durable public mirror associated with the source repository. A build-time public base path makes the same assets work at a GitHub project-site URL.
 
 **Trade-off:** static export cannot apply Next.js `headers()` or any server-side features. Vercel headers are therefore expressed in `vercel.json`; GitHub Pages serves the static artifact without project-controlled response headers.
+
+## 2026-08-16 — Licensed reusable 3D assembly experience
+
+**Decision:** the 3D experience must use a licensed externally sourced model
+with recognisable separate components. Procedural primitives and self-created
+3D stand-ins are rejected for this portfolio.
+
+**Why:** a real camera, processor or comparable mechanical object makes the
+scroll interaction credible and more memorable to recruiters. It also gives
+the work a traceable source, author and licence rather than implying that a
+collection of primitive shapes is an engineered product.
+
+**Constraints:** favour CC0/CC BY assets that permit public redistribution;
+record attribution and optimisation; do not use franchise artwork or unverified
+marketplace terms; preserve reduced-motion and no-WebGL fallbacks. See
+`docs/3D-SCROLL-EXPERIENCE.md`.

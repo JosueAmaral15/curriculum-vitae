@@ -2,6 +2,12 @@
 
 ## In progress
 
+- [ ] #6 Add a licensed, externally sourced scroll-controlled 3D assembly experience.
+  - The required licensing, acquisition, optimisation, attribution and release
+    process is documented in `docs/3D-SCROLL-EXPERIENCE.md`.
+  - The camera asset was downloaded from the authenticated Sketchfab account,
+    inspected, licensed and prepared for integration. No procedural or
+    self-created 3D stand-in will be published.
 - [x] #5 Prepare dual static publication for Vercel and GitHub Pages, including social metadata and responsive release checks.
   - Static export, Pages workflow, Vercel headers, social metadata and release checks are recorded in `docs/DEPLOYMENT.md` and `docs/TESTING-STATUS.md`.
 - [x] #4 Add a licensed local programming video, English-default Portuguese i18n, and high-end scroll motion.

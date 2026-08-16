@@ -7,6 +7,8 @@ describe("portfolio translations", () => {
     expect(copy["pt-BR"].nav).toHaveLength(4);
     expect(copy.en.experiences).toHaveLength(copy["pt-BR"].experiences.length);
     expect(copy.en.projectItems).toHaveLength(copy["pt-BR"].projectItems.length);
+    expect(copy.en.assembly.title).toBeTruthy();
+    expect(copy["pt-BR"].assembly.title).toBeTruthy();
   });
 
   it("keeps private work unlinked and gives public work a specific destination", () => {
