@@ -1,0 +1,8 @@
+.button { align-items: center; background: #25d366; border-radius: 999px; bottom: 1.5rem; box-shadow: 0 .8rem 2.2rem rgba(14, 91, 45, .3); color: #07391c; display: inline-flex; font-size: .82rem; font-weight: 800; gap: .5rem; padding: .85rem 1rem; position: fixed; right: 1.5rem; text-decoration: none; transition: box-shadow .25s ease, transform .25s ease; z-index: 15; }
+.button:hover { box-shadow: 0 1rem 2.7rem rgba(14, 91, 45, .38); transform: translateY(-.25rem); }
+.button svg, .label { position: relative; z-index: 1; }
+.pulse { animation: pulse 2.4s ease-out infinite; background: rgba(37, 211, 102, .45); border-radius: inherit; inset: 0; position: absolute; }
+.button:focus-visible { outline: 3px solid #10263f; outline-offset: 4px; }
+@keyframes pulse { 0%, 35% { opacity: .8; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.35); } }
+@media (max-width: 34rem) { .button { bottom: 1rem; padding: .85rem; right: 1rem; }.label { display: none; } }
+@media (prefers-reduced-motion: reduce) { .button, .pulse { animation: none; transition: none; } }

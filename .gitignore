@@ -1,0 +1,21 @@
+# dependencies and framework output
+node_modules/
+.node_modules-interrupted-install/
+.package-lock-interrupted-install.json
+.next/
+out/
+
+# local environment files
+.env*
+!.env.example
+
+# test artifacts
+coverage/
+playwright-report/
+test-results/
+
+# operating system and editor files
+.DS_Store
+*.log
+.idea/
+.vscode/

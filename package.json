@@ -1,0 +1,46 @@
+{
+  "name": "josue-amaral-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Professional portfolio for Josue Amaral, full-stack and DevOps engineer.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "serve out",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "check": "npm run lint && npm run test && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosueAmaral15/curriculum-vitae.git"
+  },
+  "author": "Josue Amaral",
+  "license": "MIT",
+  "dependencies": {
+    "next": "16.3.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "16.3.1",
+    "jsdom": "latest",
+    "playwright": "latest",
+    "serve": "^14.2.6",
+    "typescript": "latest",
+    "vitest": "latest"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

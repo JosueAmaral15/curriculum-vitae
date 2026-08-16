@@ -1,0 +1,9 @@
+.header { align-items: center; display: flex; height: 4.75rem; justify-content: space-between; margin: 0 auto; max-width: 76rem; padding: 0 1.5rem; position: relative; z-index: 2; }
+.brand { color: #fff; font-family: var(--display); font-size: 1.45rem; font-weight: 800; letter-spacing: -.08em; text-decoration: none; }
+.brand span { color: var(--accent); }
+.navigation { align-items: center; display: flex; gap: 1.8rem; }
+.navigation a { color: rgba(255,255,255,.82); font-size: .85rem; font-weight: 600; letter-spacing: .02em; text-decoration: none; transition: color .2s; }
+.navigation a:hover, .navigation a:focus-visible { color: var(--accent); }
+.languageSwitch { align-items: center; color: rgba(255,255,255,.45); display: flex; font-family: var(--mono); font-size: .72rem; gap: .25rem; }.languageSwitch button { background: transparent; border: 0; color: rgba(255,255,255,.75); cursor: pointer; font: inherit; padding: .25rem; }.languageSwitch .activeLanguage { color: #ff9c83; font-weight: 800; }
+.menuButton { background: transparent; border: 0; color: #fff; cursor: pointer; display: none; padding: .5rem; }
+@media (max-width: 42rem) { .header { padding: 0 1.25rem; } .menuButton { display: grid; place-items: center; } .navigation { background: var(--surface); box-shadow: 0 1rem 2.5rem rgba(10, 25, 47, .12); display: none; flex-direction: column; gap: 1.25rem; left: 1rem; padding: 1.5rem; position: absolute; right: 1rem; text-align: center; top: 4rem; z-index: 3; } .navigation a, .languageSwitch button { color: var(--muted); } .languageSwitch { color: var(--line); } .languageSwitch .activeLanguage { color: var(--accent); } .navigation.open { display: flex; } }

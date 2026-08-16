@@ -1,0 +1,7 @@
+:root { --ink: #10263f; --muted: #5f7080; --accent: #e85d3f; --line: #d9e0e6; --surface: #fffdf9; --soft: #f2f5f7; --display: var(--font-manrope), Arial, sans-serif; --mono: var(--font-mono), monospace; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--surface); color: var(--ink); font-family: var(--display); margin: 0; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible { outline: 3px solid #f8b5a4; outline-offset: 3px; }
+::selection { background: #ffcfc2; color: var(--ink); }
