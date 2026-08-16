@@ -74,7 +74,10 @@ export default function Home() {
 
       <section className={`${styles.section} ${styles.projectsSection}`} id="projetos" aria-labelledby="projects-title">
         <ScrollReveal className={styles.sectionIntro}><Eyebrow>03 / {text.projects}</Eyebrow><h2 id="projects-title">{text.projectsTitle}</h2></ScrollReveal>
-        <div className={styles.projects}>{text.projectItems.map((project, index) => <ScrollReveal key={project.name} delay={index * 110}><a className={styles.project} href={portfolio.links.github} target="_blank" rel="noreferrer"><span>{text.projectPrefix} / 0{index + 1}</span><div><h3>{project.name}</h3><p>{project.label}</p></div><p>{project.description}</p><Icon name="external" /></a></ScrollReveal>)}</div>
+        <div className={styles.projects}>{text.projectItems.map((project, index) => {
+          const content = <><span>{text.projectPrefix} / 0{index + 1}</span><div><h3>{project.name}</h3><p>{project.label}</p></div><p>{project.description}</p>{project.href ? <Icon name="external" /> : <span className={styles.privateMark}>Private</span>}</>;
+          return <ScrollReveal key={project.name} delay={index * 110}>{project.href ? <a className={styles.project} href={project.href} target="_blank" rel="noreferrer">{content}</a> : <article className={`${styles.project} ${styles.privateProject}`}>{content}</article>}</ScrollReveal>;
+        })}</div>
       </section>
 
       <section className={`${styles.section} ${styles.detailsSection}`} aria-label="Education and technologies"><ScrollReveal className={styles.details}>

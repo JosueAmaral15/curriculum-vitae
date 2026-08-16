@@ -47,15 +47,15 @@ export const portfolio = {
   projects: [
     {
       name: "Clarify",
-      label: "System Management JSON Files",
-      description: "Gestão de arquivos JSON complexos, com arquitetura robusta e manipulação eficiente de dados estruturados.",
-      href: "https://github.com/JosueAmaral15",
+      label: "Private software project",
+      description: "A private desktop application for structured text and JSON workflows. Technical details are available on request.",
+      href: undefined,
     },
     {
       name: "Protocolo Simplicidade",
       label: "Governança de desenvolvimento",
       description: "Framework próprio para práticas de segurança, qualidade, documentação e rollback em projetos solo e de produção.",
-      href: "https://github.com/JosueAmaral15",
+      href: "https://github.com/JosueAmaral15/protocolos-simplicidade",
     },
   ],
   education: [
