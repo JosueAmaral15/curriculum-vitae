@@ -71,7 +71,7 @@ export default function Home() {
         <aside className={`${styles.heroNote} ${styles.heroNoteEnter}`} aria-label="Professional summary">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className={styles.portrait} src={`${assetBasePath}/images/josue-amaral-professional-portrait-2025.jpg`} alt={text.portraitAlt} width={382} height={379} />
-          <span className={styles.noteNumber}>01</span>
+          {/*<span className={styles.noteNumber}>01</span>*/}
           <p>{text.heroNote}</p>
           <div><span>{text.locationLabel}</span><strong>{portfolio.location}</strong></div>
         </aside>
