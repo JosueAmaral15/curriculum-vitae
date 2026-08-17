@@ -62,6 +62,32 @@ Use only a stock video whose page explicitly permits free reuse and has no visib
 - Verify English is rendered initially and the selector changes all displayed portfolio content to Portuguese.
 - Run unit tests, browser smoke tests, production build and a reduced-motion inspection.
 
+## Enhancement phase — Professional profile and responsive motion
+
+### Scope
+
+1. Publish the user-supplied professional portrait, with descriptive alternative
+   text in English and Portuguese and no generated or altered likeness.
+2. Publish the public destinations present in the current curriculum PDF:
+   portfolio, GitHub, LinkedIn, Lattes, published books, GeoGebra work, and
+   artistic Instagram; add the supplied YouTube channel and English/Portuguese
+   Google Drive curricula.
+3. Add the MindSIM Artificial Intelligence Engineer experience from March to
+   August 2026 in both languages, preserving its remote Brazil context and
+   avoiding unverified commercial, patent, or performance claims.
+4. Make mobile and tablet motion a release gate, following the detailed action
+   plan in `docs/MOBILE-MOTION-PLAN.md`.
+
+### Validation
+
+- Confirm every public destination has the expected URL and opens safely.
+- Confirm both curriculum links are available in the hero and resource section.
+- Confirm the portrait has meaningful alternative text and remains visible at
+  mobile, tablet, and desktop sizes.
+- Confirm the MindSIM experience appears in both language modes.
+- Execute the viewport and reduced-motion checks in
+  `docs/MOBILE-MOTION-PLAN.md` before declaring mobile animation complete.
+
 ## Risks and mitigations
 
 | Risk | Mitigation |

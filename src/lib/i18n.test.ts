@@ -9,6 +9,10 @@ describe("portfolio translations", () => {
     expect(copy.en.projectItems).toHaveLength(copy["pt-BR"].projectItems.length);
     expect(copy.en.assembly.title).toBeTruthy();
     expect(copy["pt-BR"].assembly.title).toBeTruthy();
+    expect(copy.en.experiences[0]?.title).toBe("Artificial Intelligence Engineer");
+    expect(copy["pt-BR"].experiences[0]?.company).toContain("MindSIM");
+    expect(copy.en.resumeEnglish).toBeTruthy();
+    expect(copy["pt-BR"].resumePortuguese).toBeTruthy();
   });
 
   it("keeps private work unlinked and gives public work a specific destination", () => {

@@ -61,3 +61,19 @@ a local validation constraint, not a published application setting.
 ## Remaining external validation
 
 GitHub Actions has not yet reported on this branch. Review its checks after opening or updating the pull request.
+
+## 2026-08-17 — Professional resources and MindSIM profile update
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Unit tests | Passed | `npm run test`: 2 files, 4 tests passed, including bilingual MindSIM and curriculum-label assertions. |
+| TypeScript | Passed | `node --max-old-space-size=4096 ./node_modules/typescript/bin/tsc --noEmit --pretty false` completed without diagnostics. |
+| Static export | Passed after one retry | An isolated Webpack export compiled, type-checked and statically generated the updated portfolio. The first attempt ended in the workstation's intermittent native `Segmentation fault`; the immediate isolated retry passed. |
+| Browser test | Passed | `PLAYWRIGHT_OUTPUT_DIR=.next-validation-profile-retry npm run test:e2e` passed both Chromium tests against the current isolated export. |
+| Responsive content smoke | Passed | Headless Chromium at 390×844 and 768×1024 found the portrait, both resume actions and the professional-resources section with no page or console errors. |
+| Whitespace | Passed | `git diff --check` completed without errors. |
+
+The mobile and tablet **motion** work remains open: the acceptance criteria and
+performance checks are in `docs/MOBILE-MOTION-PLAN.md`. The viewport smoke
+check above confirms only the newly added content layout, not a complete
+physical-device animation release.

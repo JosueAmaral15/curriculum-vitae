@@ -1,5 +1,15 @@
 # Third-party Assets
 
+## Professional portrait
+
+- File: `public/images/josue-amaral-professional-portrait-2025.jpg`.
+- Source: user-supplied original at
+  `/home/josue/Pictures/My Selfies (Josué Amaral)/My selfies 2025/Screenshot_20251101_093147_Perplexity.jpg`.
+- Use: small professional portrait in the portfolio hero, with translated
+  alternative text.
+- Treatment: copied without visual alteration; the source remains outside the
+  repository.
+
 ## Hero programming video
 
 - File: `public/media/python-coding-pexels-5473798-optimized.mp4`

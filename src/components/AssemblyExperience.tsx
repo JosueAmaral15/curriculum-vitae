@@ -78,6 +78,7 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
     let animation: gsap.core.Tween | undefined;
     let observer: IntersectionObserver | undefined;
     const state = { progress: 0 };
+    const timer = new THREE.Timer();
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
     camera.position.set(0, 0.2, 10.6);
@@ -155,6 +156,8 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
         part.object.position.lerpVectors(part.explodedPosition, part.assembledPosition, progress);
         part.object.quaternion.slerpQuaternions(part.explodedQuaternion, part.assembledQuaternion, progress);
       }
+      timer.update();
+      if (model) model.rotation.y = 0.15 + timer.getElapsed() * 0.18;
       renderer.render(scene, camera);
     };
     renderer.setAnimationLoop(render);
@@ -165,6 +168,7 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
       animation?.scrollTrigger?.kill();
       animation?.kill();
       renderer.setAnimationLoop(null);
+      timer.dispose();
       window.removeEventListener("resize", resize);
       model?.traverse((object) => {
         if (!(object instanceof THREE.Mesh)) return;

@@ -2,6 +2,14 @@
 
 ## In progress
 
+- [ ] #7 Expand the public professional profile and make motion release-ready for mobile and tablet.
+  - Add the professional portrait, the two Google Drive curriculum links, Lattes,
+    YouTube, GitHub, LinkedIn, Uiclap, GeoGebra, Instagram, and the portfolio
+    URL supplied by the current curriculum PDF.
+  - Add the MindSIM Artificial Intelligence Engineer experience in English and
+    Portuguese without inventing metrics, clients, patents, or private details.
+  - Execute the responsive animation plan in `docs/MOBILE-MOTION-PLAN.md` and
+    record browser and physical-device evidence before marking this task done.
 - [ ] #6 Add a licensed, externally sourced scroll-controlled 3D assembly experience.
   - The required licensing, acquisition, optimisation, attribution and release
     process is documented in `docs/3D-SCROLL-EXPERIENCE.md`.
@@ -23,6 +31,7 @@
 - [x] Inspect the complete legacy source and Git history.
 - [x] Define the architecture and execution plan in `docs/PLAN.md`.
 - [x] Add email, LinkedIn and WhatsApp as primary contact paths, including an accessible floating WhatsApp action.
+- [x] Extract the public links from the current three-page professional curriculum PDF and define the public destination set.
 
 ## Deferred
 
