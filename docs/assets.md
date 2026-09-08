@@ -17,7 +17,7 @@
 - Source description: free download; Python code displayed on a computer screen.
 - Download date: 2026-08-16
 - Use: muted, looping visual backdrop in the portfolio hero only; no audio is used.
-- Web optimization: a 10-second, fast-start MP4 segment (7.8 MB) replaces the original 30-second, 23 MB download. The loop avoids a heavy first visit while preserving the intended visual effect.
+- Web optimization: a 10-second, 1920-pixel-wide fast-start MP4 segment replaces the original 30-second, 23 MB download. The reduced decode cost keeps the backdrop fluid on ordinary laptop and mobile graphics hardware while preserving the intended visual effect.
 
 Review the source page and applicable Pexels license before any separate redistribution of this asset. Replace the file with an original recording if its content or licence is no longer appropriate.
 

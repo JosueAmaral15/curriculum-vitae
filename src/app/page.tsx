@@ -51,7 +51,7 @@ export default function Home() {
       <Navigation language={language} labels={text.nav} onLanguageChange={selectLanguage} homeAria={text.homeAria} navigationAria={text.navigationAria} languageAria={text.language} openNavigation={text.openNavigation} closeNavigation={text.closeNavigation} />
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.videoLayer} aria-hidden="true">
-          <video autoPlay muted loop playsInline preload="metadata">
+          <video autoPlay muted loop playsInline preload="auto">
             <source src={`${assetBasePath}/media/python-coding-pexels-5473798-optimized.mp4`} type="video/mp4" />
           </video>
         </div>

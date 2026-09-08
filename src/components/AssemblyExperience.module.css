@@ -12,5 +12,5 @@
 .credit a { color: #d7f7ff; text-decoration-color: rgba(215, 247, 255, .45); text-underline-offset: .18rem; }
 .credit a:hover { color: #ffb49f; }
 .ready .fallback { opacity: .46; }
-@media (max-width: 44rem) { .section { min-height: 100svh; padding: 6.5rem 1.5rem 3.25rem; }.fallback::after { background: linear-gradient(0deg, #071321 4%, rgba(7, 19, 33, .76) 46%, rgba(7, 19, 33, .12) 100%); }.copy h2 { max-width: 18rem; } }
+@media (max-width: 44rem) { .section { min-height: 100svh; padding: 6.5rem 1.5rem 3.25rem; }.canvas { clip-path: inset(64% 0 0); }.fallback::after { background: linear-gradient(0deg, #071321 4%, rgba(7, 19, 33, .76) 46%, rgba(7, 19, 33, .12) 100%); }.copy h2 { max-width: 18rem; } }
 @media (prefers-reduced-motion: reduce) { .canvas { display: none; }.fallback { opacity: .72; } }

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("shows English by default, has contact paths, and can switch to Portuguese", async ({ page }) => {
+test("shows English by default, has contact paths, and can switch to Portuguese", async ({ page }, testInfo) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /clear systems/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /signals searching for meaning/i })).toBeVisible();
@@ -12,6 +12,7 @@ test("shows English by default, has contact paths, and can switch to Portuguese"
   await expect(page.getByAltText("Portrait of Josué Amaral")).toBeVisible();
   await expect(page.getByText("MindSIM · Brazil · Remote")).toBeVisible();
   await expect(page.getByRole("link", { name: /start a conversation on whatsapp/i })).toHaveAttribute("href", "https://wa.me/5521999526162");
+  if (testInfo.project.name === "mobile") await page.getByRole("button", { name: "Open navigation" }).click();
   await page.getByRole("button", { name: "PT" }).click();
   await expect(page.getByRole("heading", { name: /sistemas claros/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /sinais procurando sentido/i })).toBeVisible();

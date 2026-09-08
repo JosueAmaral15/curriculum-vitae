@@ -8,8 +8,12 @@
     URL supplied by the current curriculum PDF.
   - Add the MindSIM Artificial Intelligence Engineer experience in English and
     Portuguese without inventing metrics, clients, patents, or private details.
-  - Execute the responsive animation plan in `docs/MOBILE-MOTION-PLAN.md` and
-    record browser and physical-device evidence before marking this task done.
+  - [x] Implement and automate the browser-responsive portion of
+    `docs/MOBILE-MOTION-PLAN.md`: capped 3D pixel ratio, shorter touch scroll
+    range, touch-size checks, mobile menu language switching, and
+    reduced-motion fallback checks.
+  - [ ] Record a physical Android-phone and tablet performance check before
+    marking this task done.
 - [ ] #6 Add a licensed, externally sourced scroll-controlled 3D assembly experience.
   - The required licensing, acquisition, optimisation, attribution and release
     process is documented in `docs/3D-SCROLL-EXPERIENCE.md`.

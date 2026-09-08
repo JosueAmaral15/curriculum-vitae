@@ -8,5 +8,9 @@ export default defineConfig({
   workers: 1,
   use: { baseURL: "http://127.0.0.1:3001", trace: "on-first-retry" },
   webServer: { command: `npx serve ${staticOutputDirectory} --listen 3001`, url: "http://127.0.0.1:3001", reuseExistingServer: true },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [
+    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    { name: "mobile", use: { ...devices["iPhone 13"], browserName: "chromium" } },
+    { name: "tablet", use: { ...devices["iPad Pro 11"], browserName: "chromium" } },
+  ],
 });

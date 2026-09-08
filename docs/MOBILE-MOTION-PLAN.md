@@ -17,7 +17,10 @@ WhatsApp action, and the optional WebGL camera assembly.
 2. **Preserve readable motion.** Keep `prefers-reduced-motion` as a hard
    override: remove decorative video and WebGL motion, show the static visual
    fallback, retain all links and text, and avoid auto-scrolling or pinned
-   content that blocks reading.
+   content that blocks reading. For visitors who permit motion, every content
+   reveal must be reversible: it enters when at least 12% is visible and fades
+   back to its resting state after it leaves the viewport, so a return scroll
+   replays the same short transition rather than showing a one-time effect.
 3. **Tune the 3D scene for touch hardware.** Cap device pixel ratio at 1.25 on
    phones and 1.5 on tablets; pause rendering outside the viewport; use a
    shorter scroll range on narrow screens; and verify that the camera never
@@ -47,3 +50,18 @@ WhatsApp action, and the optional WebGL camera assembly.
   (`rel="noreferrer"` is already used).
 - Mobile and tablet screenshots, browser tests, and one physical-device check
   are recorded in `docs/TESTING-STATUS.md` before a release is marked complete.
+
+## Implemented browser baseline — 2026-09-08
+
+- Phone rendering is capped at device-pixel ratio 1.25 and tablet/desktop
+  rendering at 1.5. The WebGL renderer remains paused outside the viewport.
+- The camera assembly uses a 1,100-pixel touch scroll range on phones, a
+  1,300-pixel range on tablets, and retains the 1,600-pixel desktop sequence.
+- On phone-width screens the WebGL canvas is visually constrained to the lower
+  36% of the assembly section. The animation remains available without placing
+  exploded camera parts over the title, description, status, or attribution.
+- Playwright emulates iPhone 13 and iPad Pro 11 dimensions in Chromium. It
+  verifies the collapsed mobile-language menu, 44-pixel curriculum/link targets,
+  professional-resource visibility, and the reduced-motion camera fallback.
+- This is browser-emulated evidence, not a substitute for the remaining
+  physical Android and tablet performance check.

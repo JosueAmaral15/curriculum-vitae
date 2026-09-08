@@ -77,3 +77,19 @@ The mobile and tablet **motion** work remains open: the acceptance criteria and
 performance checks are in `docs/MOBILE-MOTION-PLAN.md`. The viewport smoke
 check above confirms only the newly added content layout, not a complete
 physical-device animation release.
+
+## 2026-09-08 — Responsive motion browser baseline
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Unit tests | Passed | `npm run test`: 2 files and 4 tests passed. |
+| TypeScript | Passed | `node --max-old-space-size=4096 ./node_modules/typescript/bin/tsc --noEmit --pretty false` completed without diagnostics. |
+| Static export | Passed | Isolated Webpack static export completed with `NEXT_DIST_DIR=.next-validation-responsive`. |
+| Desktop, phone and tablet E2E | Passed | `PLAYWRIGHT_OUTPUT_DIR=.next-validation-responsive npm run test:e2e`: 11 Chromium checks passed and 1 desktop-only touch test was intentionally skipped. |
+| Responsive behavior | Passed in browser emulation | iPhone 13 and iPad Pro 11 Chromium profiles verified the collapsed language menu, 44-pixel public-link actions, portrait, MindSIM content, and reduced-motion camera fallback. |
+| Phone visual review | Passed | A 390×844 Chromium screenshot of the hero, assembly section, and professional resources confirmed that the camera canvas stays below readable assembly copy. |
+| Whitespace | Passed | `git diff --check` completed without errors. |
+
+The remaining physical-device check is tracked as task #7. Browser emulation
+does not establish battery, GPU, thermal, or frame-rate behavior on actual
+Android and tablet hardware.

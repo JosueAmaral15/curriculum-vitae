@@ -10,8 +10,9 @@ type ScrollRevealProps = {
 };
 
 /**
- * Native replacement for ScrollReveal: no extra dependency, but still respects
- * reduced-motion preferences and reveals each block only once.
+ * Native replacement for ScrollReveal: no extra dependency, respects
+ * reduced-motion preferences, and reverses the reveal when a block leaves the
+ * viewport so that re-entering it plays the transition again.
  */
 export function ScrollReveal({ children, className = "", delay = 0 }: ScrollRevealProps) {
   const element = useRef<HTMLDivElement>(null);
@@ -28,10 +29,7 @@ export function ScrollReveal({ children, className = "", delay = 0 }: ScrollReve
     }
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setVisible(true);
-        observer.unobserve(entry.target);
-      }
+      setVisible(entry.isIntersecting);
     }, { threshold: 0.12, rootMargin: "0px 0px -6%" });
 
     observer.observe(target);

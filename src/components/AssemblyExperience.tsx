@@ -83,7 +83,6 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
     const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
     camera.position.set(0, 0.2, 10.6);
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setClearColor(0x000000, 0);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.1;
@@ -98,9 +97,11 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
 
     const resize = () => {
       const { width, height } = section.getBoundingClientRect();
+      const isPhone = width < 640;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, isPhone ? 1.25 : 1.5));
       renderer.setSize(width, height, false);
       camera.aspect = width / height;
-      camera.position.z = width < 640 ? 12.2 : 10.6;
+      camera.position.z = isPhone ? 12.2 : width < 1024 ? 11.4 : 10.6;
       camera.updateProjectionMatrix();
     };
     resize();
@@ -116,7 +117,9 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
       const center = bounds.getCenter(new THREE.Vector3());
       const largestDimension = Math.max(size.x, size.y, size.z);
       model.position.sub(center);
-      model.position.x += 2.15;
+      // Keep the subject beside the copy without losing the lens/body beyond
+      // the right edge on desktop and tablet viewports.
+      model.position.x += section.clientWidth < 640 ? 0.9 : section.clientWidth < 1024 ? 1.15 : 1.35;
       model.position.y -= size.y * 0.1;
       model.scale.setScalar(2.2 / largestDimension);
 
@@ -137,7 +140,17 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
       animation = gsap.to(state, {
         progress: 1,
         ease: "none",
-        scrollTrigger: { trigger: section, start: "top top", end: "+=1600", scrub: 1, pin: true, invalidateOnRefresh: true },
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => {
+            const width = section.getBoundingClientRect().width;
+            return `+=${width < 640 ? 1100 : width < 1024 ? 1300 : 1600}`;
+          },
+          scrub: 1,
+          pin: true,
+          invalidateOnRefresh: true,
+        },
       });
       setSceneReady(true);
     }, undefined, () => {
