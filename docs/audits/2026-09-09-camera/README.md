@@ -1,5 +1,19 @@
 # Auditoria da câmera 3D — 9 de setembro de 2026
 
+## Esclarecimento posterior de composição
+
+O usuário esclareceu que a composição original do desktop — câmera como fundo
+atrás do texto — estava correta. A separação posterior em duas áreas e o zoom
+da câmera montada ultrapassaram o escopo. A revisão local atual restaura o
+canvas sobre toda a seção, mantém o texto em uma camada superior, centraliza o
+conjunto e fixa a distância calculada no maior estado desmontado. A nova matriz
+também mede os vértices contra a tela visível, não somente contra o canvas.
+
+Essa revisão local passou em 11 dimensões, quatro fases e 16 ângulos por fase no
+Firefox, sempre com 28 meshes e nenhum vértice fora da tela. A suíte E2E teve
+16 aprovações e 4 skips intencionais. O Vercel ainda representa a composição
+anterior até haver autorização explícita para commit e push.
+
 ## Atualização corretiva
 
 Após a apuração abaixo, a implementação local foi corrigida sem remover ou

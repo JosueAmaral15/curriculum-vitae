@@ -119,13 +119,21 @@ the asset review.
 ## Acceptance criteria
 
 Status correction (2026-09-09): the [camera audit](audits/2026-09-09-camera/README.md)
-confirmed CSS clipping on the then-current Vercel deployment. The corrective
-implementation now uses an uncropped sticky stage and derives camera distance
-from the bounds of all 28 source meshes. Its isolated production export passed
+confirmed CSS clipping on the then-current Vercel deployment. The first
+corrective implementation used an uncropped sticky stage and derived camera
+distance from the bounds of all 28 source meshes. Its isolated export passed
 the Firefox responsive matrix and the cross-browser E2E suite. Vercel then
 deployed commit `2086499`, and the same audit passed directly against the
 public domain. Only the physical-device performance check under task #7
 remains open.
+
+Scope clarification (2026-09-09): the user confirmed that the camera is meant
+to remain a restrained background layer behind the section copy, as in the
+original desktop composition. The local follow-up restores the full-section
+overlay, centres the sourced assembly and fixes camera distance from the
+largest exploded bound. It does not use the later two-column/sticky-stage
+composition or zoom in as the camera assembles. Publication of this follow-up
+is pending explicit commit/push authorization.
 
 - A recognisable sourced object, never primitive stand-ins, appears in the
   3D section.

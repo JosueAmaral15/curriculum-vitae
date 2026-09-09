@@ -1,7 +1,9 @@
 # Plano de ação — câmera completa e publicação verificável
 
-Este plano decorre dos fatos em [README.md](README.md). Status atual: etapas
-1–6 concluídas no artefato local e no Vercel; conferência física pendente.
+Este plano decorre dos fatos em [README.md](README.md). As etapas 1–6 registram
+a primeira correção; a separação proposta na etapa 2 foi posteriormente
+rejeitada pelo usuário. A etapa 8 restaura a composição aprovada; publicação e
+conferência física permanecem pendentes.
 
 ## Ordem proposta
 
@@ -9,7 +11,7 @@ Este plano decorre dos fatos em [README.md](README.md). Status atual: etapas
    removendo o recorte de 64% e confirmando que o GLB continua com o mesmo hash
    e 28 meshes. A composição deve ser avaliada na versão que será commitada.
    Não basta modificar `localhost` e esperar que o Vercel já esteja atualizado.
-2. **Concluído — reservar espaço real para a câmera.** Em largura estreita, organizar texto
+2. **Substituído — reservar espaço separado para a câmera.** Em largura estreita, organizar texto
    e canvas em áreas de layout que não se sobreponham. O canvas não deve ocupar
    uma porcentagem absoluta da seção por trás do texto. Para telas baixas,
    avaliar texto em fluxo normal e uma área visual sticky independente, com
@@ -38,6 +40,12 @@ Este plano decorre dos fatos em [README.md](README.md). Status atual: etapas
    Registrar orientação, idioma, tamanho disponível, versão do navegador e
    evidência visual. Só então fechar #7, junto das verificações físicas de
    desempenho previstas no plano mobile.
+8. **Concluído localmente — restaurar a composição aprovada.** Manter a câmera
+   centralizada como fundo atrás do texto, sem coluna exclusiva nem zoom de
+   montagem. Preservar todas as peças e a camada do texto acima do canvas.
+9. **Pendente — publicar a correção de escopo.** Após autorização, fazer commit
+   e push, aguardar o Vercel e repetir a auditoria no domínio público antes do
+   teste físico.
 
 ## Matriz mínima de aprovação
 
