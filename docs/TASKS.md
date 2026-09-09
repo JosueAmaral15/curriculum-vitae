@@ -15,9 +15,9 @@
   - [ ] Record a physical Android-phone and tablet performance check before
     marking this task done. Use `docs/PHYSICAL-DEVICE-RELEASE-CHECK.md` and
     record the result in `docs/TESTING-STATUS.md`.
-  - [x] Resolve camera/copy overlap in short Portuguese layouts and clipping
-    in tablet viewports with a separate sticky stage and mesh-bound framing.
-- [x] #6 Add a licensed, externally sourced scroll-controlled 3D assembly experience.
+  - [x] Resolve short Portuguese and tablet clipping with a centred background
+    overlay, compact short-height copy and mesh-bound framing.
+- [ ] #6 Add a licensed, externally sourced scroll-controlled 3D assembly experience.
   - The camera is a CC BY 4.0 asset by ArtOfSylr, with public attribution,
     source and checksums recorded in `docs/assets.md`.
   - The release criteria and implementation evidence are in
@@ -31,6 +31,10 @@
     Vercel deployed commit `2086499`; the public Firefox audit passed desktop,
     phone, short Portuguese phone, 680px and tablet cases. Physical performance
     remains under task #7.
+  - [x] Restore the intended overlay composition locally: centred camera behind
+    readable copy, fixed exploded-state framing, all 28 parts preserved.
+  - [ ] Commit, publish and re-audit the restored overlay on Vercel after
+    explicit authorization. The public site still uses the preceding layout.
 - [x] #5 Prepare dual static publication for Vercel and GitHub Pages, including social metadata and responsive release checks.
   - Static export, Pages workflow, Vercel headers, social metadata and release checks are recorded in `docs/DEPLOYMENT.md` and `docs/TESTING-STATUS.md`.
 - [x] #4 Add a licensed local programming video, English-default Portuguese i18n, and high-end scroll motion.
@@ -48,8 +52,8 @@
 - [x] Add email, LinkedIn and WhatsApp as primary contact paths, including an accessible floating WhatsApp action.
 - [x] Extract the public links from the current three-page professional curriculum PDF and define the public destination set.
 - [x] Integrate the licensed camera asset and reduced-motion fallback.
-  Browser-level visual release acceptance is complete under #6; physical
-  performance remains open under #7.
+  The restored overlay is locally validated; renewed public acceptance remains
+  open under #6 and physical performance remains open under #7.
 
 ## Deferred
 

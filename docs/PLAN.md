@@ -115,6 +115,17 @@ representative Firefox viewports. The remaining checkpoint is the physical
 Motorola/tablet test; a successful browser audit cannot establish hardware
 performance.
 
+### Camera composition scope correction — 2026-09-09
+
+The user clarified that the original desktop overlay was intentional: the 3D
+camera belongs behind the assembly copy and should not receive its own visual
+column or increased emphasis. The local correction restores the full-section
+background canvas, centres the assembly, keeps all 28 parts, and fixes camera
+distance from the exploded state so the assembled object does not zoom toward
+the visitor. Short-height typography is compacted only enough to keep the
+pinned overlay inside the viewport. Validate before publication; the current
+Vercel deployment still reflects the preceding two-area composition.
+
 ### General checks
 
 - `npm run lint`
