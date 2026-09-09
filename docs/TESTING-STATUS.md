@@ -147,3 +147,26 @@ Evidence, screenshots, reproduction commands and the action plan:
   not treated as application source.
 - These results validate the source and exported artifact. The corrected Vercel
   deployment and physical Motorola G17/tablet remain separate release checks.
+
+## 2026-09-09 — Public Vercel verification
+
+- Commit `2086499f296c67e2db7296c033d292e4a00b4303` was pushed to `main`; Vercel
+  reported the production deployment successful at
+  <https://curriculum-vitae-virid.vercel.app/>.
+- The Firefox vertex audit was then executed against that public URL in five
+  representative cases: 1440×900 desktop, 390×844 phone, 390×650 Portuguese,
+  680×900 breakpoint and 834×1194 tablet.
+- All 20 sampled phases passed: 28 meshes, no projected vertex outside the
+  view, no CSS clip, no copy/canvas overlap, canvas fully inside the viewport,
+  no WebGL context loss and no runtime error. Each phase also passed its
+  16-angle rotation sweep.
+- Visual review of the public 390×844 assembled capture confirmed the complete
+  camera centred in its dedicated stage.
+- GitHub's Quality, Pages and CodeQL jobs did not execute any steps. Their API
+  annotations state: `The job was not started because your account is locked
+  due to a billing issue.` This is an account-level publication blocker, not a
+  failure produced by the repository build or tests. GitHub Pages therefore
+  remains unavailable until the account restriction is resolved and the runs
+  are retried.
+- The real Motorola G17 Android and tablet performance check remains open under
+  task #7 and `docs/PHYSICAL-DEVICE-RELEASE-CHECK.md`.

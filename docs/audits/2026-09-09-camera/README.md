@@ -13,9 +13,11 @@ fases da montagem e 16 ângulos por fase: 28 meshes, nenhum vértice projetado
 fora do quadro, `clip-path: none`, nenhuma sobreposição entre cópia e canvas e
 canvas contido na janela. A suíte E2E em Chromium desktop/mobile/tablet e
 Firefox estreito terminou com 16 testes aprovados e 4 skips intencionais por
-projeto. Esta atualização valida o artefato local; a seção **Conclusão** abaixo
-registra o estado da produção antes do novo commit, ainda pendente de
-verificação pública neste ponto do histórico.
+projeto. Em seguida, o Vercel implantou o commit `2086499`. A auditoria direta
+do domínio público passou em desktop, telefone, telefone baixo em português,
+680px e tablet, novamente com 28 meshes, nenhum vértice fora, nenhum recorte ou
+sobreposição e 16 ângulos aprovados por fase. A seção **Conclusão** abaixo
+preserva o diagnóstico da produção anterior ao conserto.
 
 ## Conclusão
 
@@ -189,8 +191,9 @@ testes). As três imagens acima e o resumo foram preservados junto deste documen
   com quatro capturas e revelou o corte descrito na tabela; tablet Chromium
   permanece sem validação completa nesta auditoria.
 - A conclusão anterior de que a câmera estava integralmente aprovada foi
-  prematura. As tarefas #6 e #7 continuam em aberto pelos critérios visuais,
-  além do teste físico no Motorola/tablet.
+  prematura. Naquele ponto da auditoria, as tarefas #6 e #7 foram reabertas;
+  a atualização no início deste documento registra o fechamento posterior de
+  #6. O teste físico no Motorola/tablet continua em #7.
 - O navegador do painel integrado foi aberto no endereço de produção; esse
   painel não equivale a testar o Firefox Android do Motorola.
 

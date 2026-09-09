@@ -110,8 +110,10 @@ The isolated production export passed the responsive Firefox matrix and the
 cross-browser E2E suite. Follow the evidence in
 [the camera audit](audits/2026-09-09-camera/README.md) and its
 [corrective action plan](audits/2026-09-09-camera/PLANO-DE-ACAO.md).
-The remaining checkpoints are verification of the deployed commit and the
-physical Motorola/tablet test; a successful build alone is insufficient.
+Vercel deployed commit `2086499`, and the public-domain audit passed in five
+representative Firefox viewports. The remaining checkpoint is the physical
+Motorola/tablet test; a successful browser audit cannot establish hardware
+performance.
 
 ### General checks
 

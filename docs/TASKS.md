@@ -17,7 +17,7 @@
     record the result in `docs/TESTING-STATUS.md`.
   - [x] Resolve camera/copy overlap in short Portuguese layouts and clipping
     in tablet viewports with a separate sticky stage and mesh-bound framing.
-- [ ] #6 Add a licensed, externally sourced scroll-controlled 3D assembly experience.
+- [x] #6 Add a licensed, externally sourced scroll-controlled 3D assembly experience.
   - The camera is a CC BY 4.0 asset by ArtOfSylr, with public attribution,
     source and checksums recorded in `docs/assets.md`.
   - The release criteria and implementation evidence are in
@@ -26,10 +26,11 @@
   - [x] Audit the deployed and local camera, including a Firefox reproduction,
     GLB integrity and viewport measurements. Evidence:
     `docs/audits/2026-09-09-camera/README.md`.
-  - [ ] Verify the corrective implementation on the actual Vercel deployment:
+  - [x] Verify the corrective implementation on the actual Vercel deployment:
     `docs/audits/2026-09-09-camera/PLANO-DE-ACAO.md`.
-    Local export validation is complete; deployment and physical-device
-    confirmation remain.
+    Vercel deployed commit `2086499`; the public Firefox audit passed desktop,
+    phone, short Portuguese phone, 680px and tablet cases. Physical performance
+    remains under task #7.
 - [x] #5 Prepare dual static publication for Vercel and GitHub Pages, including social metadata and responsive release checks.
   - Static export, Pages workflow, Vercel headers, social metadata and release checks are recorded in `docs/DEPLOYMENT.md` and `docs/TESTING-STATUS.md`.
 - [x] #4 Add a licensed local programming video, English-default Portuguese i18n, and high-end scroll motion.
@@ -47,7 +48,8 @@
 - [x] Add email, LinkedIn and WhatsApp as primary contact paths, including an accessible floating WhatsApp action.
 - [x] Extract the public links from the current three-page professional curriculum PDF and define the public destination set.
 - [x] Integrate the licensed camera asset and reduced-motion fallback.
-  Full visual release acceptance remains open under #6 and #7.
+  Browser-level visual release acceptance is complete under #6; physical
+  performance remains open under #7.
 
 ## Deferred
 

@@ -1,7 +1,7 @@
 # Plano de ação — câmera completa e publicação verificável
 
 Este plano decorre dos fatos em [README.md](README.md). Status atual: etapas
-1–5 concluídas no artefato local; deployment e conferência física pendentes.
+1–6 concluídas no artefato local e no Vercel; conferência física pendente.
 
 ## Ordem proposta
 
@@ -28,7 +28,7 @@ Este plano decorre dos fatos em [README.md](README.md). Status atual: etapas
    atual em Firefox e Chromium. Registrar os vértices fora do canvas, as caixas
    de texto/canvas e screenshots. A contagem de 28 meshes é necessária, mas não
    substitui a inspeção de corte e sobreposição.
-6. **Pendente — publicar a versão validada e conferir o domínio público.** Fazer commit
+6. **Concluído — publicar a versão validada e conferir o domínio público.** Fazer commit
    das correções revisadas; enviar a `main` e confirmar qual commit o Vercel
    implantou. Repetir a auditoria no domínio público. Conferir `clip-path: none`
    e o enquadramento novo no CSS/JS realmente entregue, usando sessão nova.
@@ -36,8 +36,8 @@ Este plano decorre dos fatos em [README.md](README.md). Status atual: etapas
 7. **Pendente — confirmar no dispositivo.** Josué verifica Firefox no Motorola G17 Android
    e a janela/painel no Dell Linux Mint, comparando com a exportação aprovada.
    Registrar orientação, idioma, tamanho disponível, versão do navegador e
-   evidência visual. Só então fechar #6 e #7, junto das verificações físicas
-   de desempenho previstas no plano mobile.
+   evidência visual. Só então fechar #7, junto das verificações físicas de
+   desempenho previstas no plano mobile.
 
 ## Matriz mínima de aprovação
 

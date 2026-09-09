@@ -122,8 +122,10 @@ Status correction (2026-09-09): the [camera audit](audits/2026-09-09-camera/READ
 confirmed CSS clipping on the then-current Vercel deployment. The corrective
 implementation now uses an uncropped sticky stage and derives camera distance
 from the bounds of all 28 source meshes. Its isolated production export passed
-the Firefox responsive matrix and the cross-browser E2E suite. Public-domain
-verification and the physical-device check remain open.
+the Firefox responsive matrix and the cross-browser E2E suite. Vercel then
+deployed commit `2086499`, and the same audit passed directly against the
+public domain. Only the physical-device performance check under task #7
+remains open.
 
 - A recognisable sourced object, never primitive stand-ins, appears in the
   3D section.
