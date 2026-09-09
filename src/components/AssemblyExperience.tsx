@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { assemblyRadius, fitAssemblyCamera } from "@/lib/assembly-framing";
 import styles from "./AssemblyExperience.module.css";
 
 type AssemblyCopy = {
@@ -56,13 +57,18 @@ const isAssemblyPart = (name: string) => /^(camera\.00\d|cameraBrackets|cameraSm
 export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; modelUrl: string }) {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const copyRef = useRef<HTMLDivElement>(null);
   const [sceneReady, setSceneReady] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
     const canvas = canvasRef.current;
+    const track = trackRef.current;
+    const stage = stageRef.current;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!section || !canvas || reduceMotion) return;
+    if (!section || !canvas || !track || !stage || reduceMotion) return;
 
     let renderer: THREE.WebGLRenderer;
     try {
@@ -74,14 +80,18 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
     let cancelled = false;
     let visible = true;
     let model: THREE.Group | undefined;
-    let parts: AnimatedPart[] = [];
+    const parts: AnimatedPart[] = [];
     let animation: gsap.core.Tween | undefined;
     let observer: IntersectionObserver | undefined;
     const state = { progress: 0 };
     const timer = new THREE.Timer();
     const scene = new THREE.Scene();
+    const assembly = new THREE.Group();
+    assembly.name = "CameraAssembly";
+    scene.add(assembly);
+    let framingRadius = 1;
+    let aspect = 1;
     const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
-    camera.position.set(0, 0.2, 10.6);
 
     renderer.setClearColor(0x000000, 0);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -96,32 +106,49 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
     scene.add(edgeLight);
 
     const resize = () => {
-      const { width, height } = section.getBoundingClientRect();
+      const { width, height } = canvas.getBoundingClientRect();
+      if (!width || !height) return;
       const isPhone = width < 640;
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, isPhone ? 1.25 : 1.5));
       renderer.setSize(width, height, false);
-      camera.aspect = width / height;
-      camera.position.z = isPhone ? 12.2 : width < 1024 ? 11.4 : 10.6;
-      camera.updateProjectionMatrix();
+      aspect = width / height;
+      fitAssemblyCamera(camera, framingRadius, aspect);
     };
     resize();
-    window.addEventListener("resize", resize);
+
+    let resizeFrame = 0;
+    const resizeObserver = new ResizeObserver(() => {
+      cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(() => {
+        resize();
+        animation?.scrollTrigger?.refresh();
+      });
+    });
+    resizeObserver.observe(stage);
+    resizeObserver.observe(track);
+    if (copyRef.current) resizeObserver.observe(copyRef.current);
+
+    const pose = (value: number) => {
+      for (const part of parts) {
+        const progress = THREE.MathUtils.smoothstep((value - part.start) / (part.end - part.start), 0, 1);
+        part.object.position.lerpVectors(part.explodedPosition, part.assembledPosition, progress);
+        part.object.quaternion.slerpQuaternions(part.explodedQuaternion, part.assembledQuaternion, progress);
+      }
+    };
 
     gsap.registerPlugin(ScrollTrigger);
     new GLTFLoader().load(modelUrl, (gltf) => {
       if (cancelled) return;
       model = gltf.scene;
-      model.rotation.set(-0.12, 0.15, 0.02);
       const bounds = new THREE.Box3().setFromObject(model);
       const size = bounds.getSize(new THREE.Vector3());
       const center = bounds.getCenter(new THREE.Vector3());
       const largestDimension = Math.max(size.x, size.y, size.z);
       model.position.sub(center);
-      // Keep the subject beside the copy without losing the lens/body beyond
-      // the right edge on desktop and tablet viewports.
-      model.position.x += section.clientWidth < 640 ? 0.9 : section.clientWidth < 1024 ? 1.15 : 1.35;
-      model.position.y -= size.y * 0.1;
-      model.scale.setScalar(2.2 / largestDimension);
+      // Rotate around the actual assembled centre, after centring the source.
+      assembly.add(model);
+      assembly.scale.setScalar(2.2 / largestDimension);
+      assembly.rotation.set(-0.12, 0.15, 0.02);
 
       let partIndex = 0;
       model.traverse((object) => {
@@ -136,41 +163,49 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
         partIndex += 1;
       });
 
-      scene.add(model);
+      pose(state.progress);
+      framingRadius = assemblyRadius(assembly);
+      resize();
       animation = gsap.to(state, {
         progress: 1,
         ease: "none",
         scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => {
-            const width = section.getBoundingClientRect().width;
-            return `+=${width < 640 ? 1100 : width < 1024 ? 1300 : 1600}`;
-          },
+          trigger: track,
+          start: () => `top top+=${parseFloat(getComputedStyle(stage).top) || 0}`,
+          end: () => `+=${Math.max(1, track.clientHeight - stage.clientHeight)}`,
           scrub: 1,
-          pin: true,
           invalidateOnRefresh: true,
         },
       });
       setSceneReady(true);
+      // The track is hidden until the model is ready. Measure and refresh only
+      // after React has revealed it, so production builds cannot retain the
+      // zero-sized geometry captured during initialisation.
+      resizeFrame = requestAnimationFrame(() => {
+        resize();
+        animation?.scrollTrigger?.refresh();
+      });
     }, undefined, () => {
       if (!cancelled) setSceneReady(false);
     });
 
     if ("IntersectionObserver" in window) {
       observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0 });
-      observer.observe(section);
+      observer.observe(stage);
     }
 
     const render = () => {
       if (!visible) return;
-      for (const part of parts) {
-        const progress = THREE.MathUtils.smoothstep((state.progress - part.start) / (part.end - part.start), 0, 1);
-        part.object.position.lerpVectors(part.explodedPosition, part.assembledPosition, progress);
-        part.object.quaternion.slerpQuaternions(part.explodedQuaternion, part.assembledQuaternion, progress);
-      }
+      pose(state.progress);
       timer.update();
-      if (model) model.rotation.y = 0.15 + timer.getElapsed() * 0.18;
+      assembly.rotation.y = 0.15 + timer.getElapsed() * 0.18;
+      if (model) {
+        const radius = assemblyRadius(assembly);
+        // Expand immediately to retain every part; approach smoothly as they
+        // assemble. A pivot-centred bound remains valid through the full turn.
+        framingRadius = radius > framingRadius ? radius : THREE.MathUtils.damp(framingRadius, radius, 5, timer.getDelta());
+        fitAssemblyCamera(camera, framingRadius, aspect);
+      }
       renderer.render(scene, camera);
     };
     renderer.setAnimationLoop(render);
@@ -182,7 +217,8 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
       animation?.kill();
       renderer.setAnimationLoop(null);
       timer.dispose();
-      window.removeEventListener("resize", resize);
+      resizeObserver.disconnect();
+      cancelAnimationFrame(resizeFrame);
       model?.traverse((object) => {
         if (!(object instanceof THREE.Mesh)) return;
         object.geometry.dispose();
@@ -194,14 +230,20 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
 
   return (
     <section ref={sectionRef} className={`${styles.section} ${sceneReady ? styles.ready : ""}`} aria-labelledby="assembly-title">
-      <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
       <div className={styles.fallback} aria-hidden="true" />
-      <div className={styles.copy}>
-        <p className={styles.eyebrow}>02 / {copy.eyebrow}</p>
-        <h2 id="assembly-title">{copy.title}</h2>
-        <p>{copy.description}</p>
-        <span className={styles.status}><i /> {copy.status}</span>
-        <p className={styles.credit}>{copy.creditPrefix}: <a href={sourceUrl} target="_blank" rel="noreferrer">AXIS-Q6010-E Surveillance Camera — ArtOfSylr, CC BY 4.0</a></p>
+      <div className={styles.layout}>
+        <div ref={copyRef} className={styles.copy}>
+          <p className={styles.eyebrow}>02 / {copy.eyebrow}</p>
+          <h2 id="assembly-title">{copy.title}</h2>
+          <p>{copy.description}</p>
+          <span className={styles.status}><i /> {copy.status}</span>
+          <p className={styles.credit}>{copy.creditPrefix}: <a href={sourceUrl} target="_blank" rel="noreferrer">AXIS-Q6010-E Surveillance Camera — ArtOfSylr, CC BY 4.0</a></p>
+        </div>
+        <div ref={trackRef} className={styles.track} data-assembly-track>
+          <div ref={stageRef} className={styles.stage} data-assembly-stage>
+            <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
+          </div>
+        </div>
       </div>
     </section>
   );

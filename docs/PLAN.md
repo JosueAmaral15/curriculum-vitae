@@ -100,6 +100,21 @@ Use only a stock video whose page explicitly permits free reuse and has no visib
 
 ## Validation checkpoints
 
+### Camera audit and corrective phase — 2026-09-09
+
+The audit found a 64% responsive CSS crop on the then-current production
+deployment, plus local short-screen overlap and tablet framing defects. The
+corrective implementation replaces the overlapping composition with a sticky
+stage and dynamically fits the camera to every transformed source mesh.
+The isolated production export passed the responsive Firefox matrix and the
+cross-browser E2E suite. Follow the evidence in
+[the camera audit](audits/2026-09-09-camera/README.md) and its
+[corrective action plan](audits/2026-09-09-camera/PLANO-DE-ACAO.md).
+The remaining checkpoints are verification of the deployed commit and the
+physical Motorola/tablet test; a successful build alone is insufficient.
+
+### General checks
+
 - `npm run lint`
 - `npm run test`
 - `npm run build`

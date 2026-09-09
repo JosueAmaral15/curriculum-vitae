@@ -53,13 +53,21 @@ WhatsApp action, and the optional WebGL camera assembly.
 
 ## Implemented browser baseline — 2026-09-08
 
+**Superseded visual claim:** the 64% canvas crop described below hid real
+camera parts. The 2026-09-09 audit reproduced it on production in Firefox.
+The corrective implementation removes that crop, separates the copy from a
+sticky visual stage and fits all source meshes from their transformed bounds.
+Its isolated production export passed the full Firefox viewport/rotation
+matrix and the cross-browser E2E suite. See
+[the audit and action plan](audits/2026-09-09-camera/README.md).
+
 - Phone rendering is capped at device-pixel ratio 1.25 and tablet/desktop
   rendering at 1.5. The WebGL renderer remains paused outside the viewport.
 - The camera assembly uses a 1,100-pixel touch scroll range on phones, a
   1,300-pixel range on tablets, and retains the 1,600-pixel desktop sequence.
-- On phone-width screens the WebGL canvas is visually constrained to the lower
-  36% of the assembly section. The animation remains available without placing
-  exploded camera parts over the title, description, status, or attribution.
+- On phone-width screens the published canvas is cropped to its lower 36%.
+  This was an inadequate workaround: it also hides camera parts and is not
+  part of the corrected implementation.
 - Playwright emulates iPhone 13 and iPad Pro 11 dimensions in Chromium. It
   verifies the collapsed mobile-language menu, 44-pixel curriculum/link targets,
   professional-resource visibility, and the reduced-motion camera fallback.

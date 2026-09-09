@@ -13,13 +13,23 @@
     range, touch-size checks, mobile menu language switching, and
     reduced-motion fallback checks.
   - [ ] Record a physical Android-phone and tablet performance check before
-    marking this task done.
+    marking this task done. Use `docs/PHYSICAL-DEVICE-RELEASE-CHECK.md` and
+    record the result in `docs/TESTING-STATUS.md`.
+  - [x] Resolve camera/copy overlap in short Portuguese layouts and clipping
+    in tablet viewports with a separate sticky stage and mesh-bound framing.
 - [ ] #6 Add a licensed, externally sourced scroll-controlled 3D assembly experience.
-  - The required licensing, acquisition, optimisation, attribution and release
-    process is documented in `docs/3D-SCROLL-EXPERIENCE.md`.
-  - The camera asset was downloaded from the authenticated Sketchfab account,
-    inspected, licensed and prepared for integration. No procedural or
-    self-created 3D stand-in will be published.
+  - The camera is a CC BY 4.0 asset by ArtOfSylr, with public attribution,
+    source and checksums recorded in `docs/assets.md`.
+  - The release criteria and implementation evidence are in
+    `docs/3D-SCROLL-EXPERIENCE.md`. The sequence moves only existing source
+    meshes; no procedural or self-created 3D stand-in is published.
+  - [x] Audit the deployed and local camera, including a Firefox reproduction,
+    GLB integrity and viewport measurements. Evidence:
+    `docs/audits/2026-09-09-camera/README.md`.
+  - [ ] Verify the corrective implementation on the actual Vercel deployment:
+    `docs/audits/2026-09-09-camera/PLANO-DE-ACAO.md`.
+    Local export validation is complete; deployment and physical-device
+    confirmation remain.
 - [x] #5 Prepare dual static publication for Vercel and GitHub Pages, including social metadata and responsive release checks.
   - Static export, Pages workflow, Vercel headers, social metadata and release checks are recorded in `docs/DEPLOYMENT.md` and `docs/TESTING-STATUS.md`.
 - [x] #4 Add a licensed local programming video, English-default Portuguese i18n, and high-end scroll motion.
@@ -36,6 +46,8 @@
 - [x] Define the architecture and execution plan in `docs/PLAN.md`.
 - [x] Add email, LinkedIn and WhatsApp as primary contact paths, including an accessible floating WhatsApp action.
 - [x] Extract the public links from the current three-page professional curriculum PDF and define the public destination set.
+- [x] Integrate the licensed camera asset and reduced-motion fallback.
+  Full visual release acceptance remains open under #6 and #7.
 
 ## Deferred
 

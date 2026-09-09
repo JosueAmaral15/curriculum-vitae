@@ -23,10 +23,9 @@ export function ScrollReveal({ children, className = "", delay = 0 }: ScrollReve
     if (!target) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
-      setVisible(true);
-      return;
-    }
+    // CSS exposes the content without transitions for reduced motion, so no
+    // state update or observer is needed in that mode.
+    if (reducedMotion) return;
 
     const observer = new IntersectionObserver(([entry]) => {
       setVisible(entry.isIntersecting);

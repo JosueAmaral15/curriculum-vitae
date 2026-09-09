@@ -93,3 +93,57 @@ physical-device animation release.
 The remaining physical-device check is tracked as task #7. Browser emulation
 does not establish battery, GPU, thermal, or frame-rate behavior on actual
 Android and tablet hardware.
+
+## 2026-09-09 — Camera audit (not a corrected release)
+
+- Production was fetched in fresh Firefox sessions at the Vercel default
+  domain. The narrow layout applies `clip-path: inset(64% 0 0)` at 390px and
+  680px; actual mesh vertices also leave the right side of the view. The same
+  CSS crop was absent at 1440px in this run.
+- Local and production GLBs have the same recorded SHA-256 and 28 meshes.
+- A snapshot of the dirty local source was exported with Webpack in an isolated
+  temporary directory; the build exited successfully without reusing the active
+  development build. The application files were not modified for the audit.
+- Firefox 153.0 (Playwright/Linux) completed desktop, phone, short Portuguese
+  phone, 680px and tablet captures at four scroll positions. At 390×844 all
+  vertices were inside the local canvas in the sampled frames; at 834×1194
+  some parts still left the frame. The short Portuguese layout overlaps copy.
+- Chromium completed the local phone, short-phone and 680px series. Desktop
+  and tablet screenshot timeouts in the initial run are recorded as incomplete,
+  not passed. These are diagnostic samples, not a full rotation sweep.
+  The desktop retry completed four captures and found vertices of
+  `housing003_9` outside the canvas at two sampled angles; tablet Chromium
+  remains incomplete in this audit.
+- Physical Firefox Android on the user's Motorola G17 was not controlled by
+  this session. The user's production observations on Motorola and Dell are
+  recorded separately from automated evidence.
+- Earlier browser checks (11 passed, 1 skipped in a 12-case suite) tested
+  headings, links and reduced motion. They did not assert all pieces in frame;
+  earlier completion claims for the camera were too broad.
+
+Evidence, screenshots, reproduction commands and the action plan:
+[Camera audit — 2026-09-09](audits/2026-09-09-camera/README.md).
+
+## 2026-09-09 — Corrective implementation validation
+
+- The responsive `clip-path` was removed. Copy and camera now occupy separate
+  layout areas, with a sticky camera stage that remains inside the viewport.
+- Camera distance is calculated from a pivot-centred sphere containing every
+  transformed mesh bound. The frame expands immediately while pieces separate
+  and approaches the smaller assembled frame smoothly.
+- The actual GLB integrity test confirmed its recorded SHA-256, 28 meshes and
+  projected more than one million vertices across six aspect ratios and 16
+  rotation angles. Unit result: 3 files and 5 tests passed.
+- An isolated Next.js production export completed successfully with Webpack.
+- Firefox 153 completed 11 viewport cases, four assembly phases per case and a
+  16-angle sweep per phase. All cases passed with 28 meshes, no projected
+  vertex outside the camera, `clip-path: none`, no copy/canvas overlap and no
+  canvas edge outside the viewport.
+- Playwright ran desktop Chromium, mobile Chromium, mobile Firefox and tablet
+  Chromium against that export: 16 passed and 4 project-specific checks were
+  skipped. The dedicated narrow-Firefox crop/overlap regression passed.
+- `npm run lint`, `npx tsc --noEmit` and `git diff --check` passed. ESLint now
+  ignores interrupted dependency/build directories so generated vendor code is
+  not treated as application source.
+- These results validate the source and exported artifact. The corrected Vercel
+  deployment and physical Motorola G17/tablet remain separate release checks.
