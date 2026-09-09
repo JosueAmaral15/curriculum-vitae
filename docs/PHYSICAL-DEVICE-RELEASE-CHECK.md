@@ -22,8 +22,9 @@ real Android phone and tablet.
 1. Start at the hero and wait through at least two video loops. The backdrop
    should remain smooth enough that text and navigation stay stable.
 2. Scroll through the camera section slowly in both directions. Its supplied
-   camera parts must assemble and reverse without covering the copy, links or
-   floating WhatsApp control.
+   camera parts must assemble and reverse as a background behind the copy. The
+   copy must remain readable on its higher layer, and the camera must not cover
+   the floating WhatsApp control.
 3. Continue through experience, resources and projects, then reverse-scroll.
    Content blocks should fade in on entry and return to their resting state
    when they leave the viewport, ready to play again on re-entry.

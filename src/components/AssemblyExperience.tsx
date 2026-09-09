@@ -57,18 +57,13 @@ const isAssemblyPart = (name: string) => /^(camera\.00\d|cameraBrackets|cameraSm
 export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; modelUrl: string }) {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const copyRef = useRef<HTMLDivElement>(null);
   const [sceneReady, setSceneReady] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
     const canvas = canvasRef.current;
-    const track = trackRef.current;
-    const stage = stageRef.current;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!section || !canvas || !track || !stage || reduceMotion) return;
+    if (!section || !canvas || reduceMotion) return;
 
     let renderer: THREE.WebGLRenderer;
     try {
@@ -106,7 +101,7 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
     scene.add(edgeLight);
 
     const resize = () => {
-      const { width, height } = canvas.getBoundingClientRect();
+      const { width, height } = section.getBoundingClientRect();
       if (!width || !height) return;
       const isPhone = width < 640;
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, isPhone ? 1.25 : 1.5));
@@ -124,9 +119,7 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
         animation?.scrollTrigger?.refresh();
       });
     });
-    resizeObserver.observe(stage);
-    resizeObserver.observe(track);
-    if (copyRef.current) resizeObserver.observe(copyRef.current);
+    resizeObserver.observe(section);
 
     const pose = (value: number) => {
       for (const part of parts) {
@@ -164,23 +157,27 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
       });
 
       pose(state.progress);
+      // Frame the largest, exploded state once. Keeping this distance fixed
+      // preserves the original background emphasis while every part remains
+      // inside the viewport throughout assembly and rotation.
       framingRadius = assemblyRadius(assembly);
       resize();
       animation = gsap.to(state, {
         progress: 1,
         ease: "none",
         scrollTrigger: {
-          trigger: track,
-          start: () => `top top+=${parseFloat(getComputedStyle(stage).top) || 0}`,
-          end: () => `+=${Math.max(1, track.clientHeight - stage.clientHeight)}`,
+          trigger: section,
+          start: "top top",
+          end: () => {
+            const width = section.getBoundingClientRect().width;
+            return `+=${width < 640 ? 1100 : width < 1024 ? 1300 : 1600}`;
+          },
           scrub: 1,
+          pin: true,
           invalidateOnRefresh: true,
         },
       });
       setSceneReady(true);
-      // The track is hidden until the model is ready. Measure and refresh only
-      // after React has revealed it, so production builds cannot retain the
-      // zero-sized geometry captured during initialisation.
       resizeFrame = requestAnimationFrame(() => {
         resize();
         animation?.scrollTrigger?.refresh();
@@ -191,7 +188,7 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
 
     if ("IntersectionObserver" in window) {
       observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0 });
-      observer.observe(stage);
+      observer.observe(section);
     }
 
     const render = () => {
@@ -199,13 +196,6 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
       pose(state.progress);
       timer.update();
       assembly.rotation.y = 0.15 + timer.getElapsed() * 0.18;
-      if (model) {
-        const radius = assemblyRadius(assembly);
-        // Expand immediately to retain every part; approach smoothly as they
-        // assemble. A pivot-centred bound remains valid through the full turn.
-        framingRadius = radius > framingRadius ? radius : THREE.MathUtils.damp(framingRadius, radius, 5, timer.getDelta());
-        fitAssemblyCamera(camera, framingRadius, aspect);
-      }
       renderer.render(scene, camera);
     };
     renderer.setAnimationLoop(render);
@@ -229,21 +219,15 @@ export function AssemblyExperience({ copy, modelUrl }: { copy: AssemblyCopy; mod
   }, [modelUrl]);
 
   return (
-    <section ref={sectionRef} className={`${styles.section} ${sceneReady ? styles.ready : ""}`} aria-labelledby="assembly-title">
+    <section ref={sectionRef} className={`${styles.section} ${sceneReady ? styles.ready : ""}`} aria-labelledby="assembly-title" data-assembly-overlay="true">
+      <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
       <div className={styles.fallback} aria-hidden="true" />
-      <div className={styles.layout}>
-        <div ref={copyRef} className={styles.copy}>
-          <p className={styles.eyebrow}>02 / {copy.eyebrow}</p>
-          <h2 id="assembly-title">{copy.title}</h2>
-          <p>{copy.description}</p>
-          <span className={styles.status}><i /> {copy.status}</span>
-          <p className={styles.credit}>{copy.creditPrefix}: <a href={sourceUrl} target="_blank" rel="noreferrer">AXIS-Q6010-E Surveillance Camera — ArtOfSylr, CC BY 4.0</a></p>
-        </div>
-        <div ref={trackRef} className={styles.track} data-assembly-track>
-          <div ref={stageRef} className={styles.stage} data-assembly-stage>
-            <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
-          </div>
-        </div>
+      <div className={styles.copy}>
+        <p className={styles.eyebrow}>02 / {copy.eyebrow}</p>
+        <h2 id="assembly-title">{copy.title}</h2>
+        <p>{copy.description}</p>
+        <span className={styles.status}><i /> {copy.status}</span>
+        <p className={styles.credit}>{copy.creditPrefix}: <a href={sourceUrl} target="_blank" rel="noreferrer">AXIS-Q6010-E Surveillance Camera — ArtOfSylr, CC BY 4.0</a></p>
       </div>
     </section>
   );

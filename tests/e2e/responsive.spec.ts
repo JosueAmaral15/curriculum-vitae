@@ -28,7 +28,7 @@ test("uses the static assembly fallback when reduced motion is requested", async
   await expect(page.getByRole("heading", { name: /signals searching for meaning/i })).toBeVisible();
 });
 
-test("does not crop or overlap the 3D camera in narrow Firefox", async ({ page }, testInfo) => {
+test("keeps the complete 3D camera behind readable copy in narrow Firefox", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "mobile-firefox", "Firefox mobile regression only.");
 
   await page.goto("/");
@@ -49,5 +49,17 @@ test("does not crop or overlap the 3D camera in narrow Firefox", async ({ page }
     || canvasBox!.y + canvasBox!.height <= copyBox!.y
     || copyBox!.y + copyBox!.height <= canvasBox!.y
   );
-  expect(overlap).toBe(false);
+  expect(overlap).toBe(true);
+
+  const layers = await section.evaluate((element) => {
+    const canvasElement = element.querySelector("canvas")!;
+    const copyElement = element.querySelector<HTMLElement>('[class*="copy"]')!;
+    return {
+      canvasPosition: getComputedStyle(canvasElement).position,
+      canvasZ: Number(getComputedStyle(canvasElement).zIndex),
+      copyZ: Number(getComputedStyle(copyElement).zIndex),
+    };
+  });
+  expect(layers.canvasPosition).toBe("absolute");
+  expect(layers.copyZ).toBeGreaterThan(layers.canvasZ);
 });

@@ -55,10 +55,13 @@ WhatsApp action, and the optional WebGL camera assembly.
 
 **Superseded visual claim:** the 64% canvas crop described below hid real
 camera parts. The 2026-09-09 audit reproduced it on production in Firefox.
-The corrective implementation removes that crop, separates the copy from a
-sticky visual stage and fits all source meshes from their transformed bounds.
-Its isolated production export passed the full Firefox viewport/rotation
-matrix and the cross-browser E2E suite. See
+The corrective implementation removes that crop and fits all source meshes
+from their transformed bounds. A later scope clarification restores the camera
+as a centred, restrained full-section background behind the copy; the copy
+remains above it in the stacking order. Camera distance stays fixed from the
+largest exploded state, so assembly does not create a zoom-in. Its isolated
+production export passed the full Firefox viewport/rotation matrix and the
+cross-browser E2E suite. See
 [the audit and action plan](audits/2026-09-09-camera/README.md).
 
 - Phone rendering is capped at device-pixel ratio 1.25 and tablet/desktop

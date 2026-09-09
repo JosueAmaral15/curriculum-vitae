@@ -170,3 +170,27 @@ Evidence, screenshots, reproduction commands and the action plan:
   are retried.
 - The real Motorola G17 Android and tablet performance check remains open under
   task #7 and `docs/PHYSICAL-DEVICE-RELEASE-CHECK.md`.
+
+## 2026-09-09 — Overlay composition scope correction (local)
+
+- The user clarified that the original desktop composition was correct: the
+  camera should remain a restrained background behind the copy. Moving it into
+  a separate visual area and dynamically zooming the assembled state were
+  outside the requested scope.
+- The local revision restores a full-section absolute canvas with the copy on
+  the higher layer, centres the assembly without removing any mesh, and keeps
+  one camera distance calculated from the largest exploded state.
+- The audit now distinguishes an intentional overlay from an accidental
+  collision. It requires the copy layer above the canvas and checks projected
+  vertices against both the WebGL frame and the visible browser viewport.
+- An isolated Next.js Webpack export passed. The full Firefox matrix passed 11
+  viewports, four scroll phases and 16 rotation angles per phase with all 28
+  meshes present and no projected vertex outside the visible screen.
+- The responsive E2E suite passed 16 checks with 4 intentional project skips.
+  The dedicated Firefox test confirmed the camera behind the copy, no CSS crop
+  and the copy's stacking order above the canvas.
+- Visual checks covered desktop, 390×844 phone, 390×650 Portuguese, 320×650 and
+  844×390 Portuguese landscape. Short-height spacing prevents the pinned
+  section from growing beyond the viewport.
+- This follow-up is not yet committed or deployed. The Vercel result documented
+  above belongs to the preceding composition.

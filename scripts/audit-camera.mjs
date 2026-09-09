@@ -98,6 +98,7 @@ try {
               const canvas = section.querySelector('canvas');
               const copy = section.querySelector('h2').parentElement;
               const box = e => e.getBoundingClientRect().toJSON();
+              const canvasBounds = canvas.getBoundingClientRect();
               if (!scene || !camera) return { frames, sceneMissing: true, section: box(section), canvas: box(canvas) };
               const meshes = [];
               scene.traverse(o => {
@@ -105,6 +106,7 @@ try {
                 const a = o.geometry.attributes.position;
                 const min = [Infinity, Infinity, Infinity], max = [-Infinity, -Infinity, -Infinity];
                 const outside = { left: 0, right: 0, top: 0, bottom: 0, depth: 0 };
+                const screenOutside = { left: 0, right: 0, top: 0, bottom: 0 };
                 const v = o.position.clone();
                 for (let i = 0; i < a.count; i++) {
                   v.fromBufferAttribute(a, i).applyMatrix4(o.matrixWorld).project(camera);
@@ -112,8 +114,12 @@ try {
                   if (v.x < -1) outside.left++; if (v.x > 1) outside.right++;
                   if (v.y > 1) outside.top++; if (v.y < -1) outside.bottom++;
                   if (v.z < -1 || v.z > 1) outside.depth++;
+                  const screenX = canvasBounds.left + (v.x + 1) * canvasBounds.width / 2;
+                  const screenY = canvasBounds.top + (1 - v.y) * canvasBounds.height / 2;
+                  if (screenX < 0) screenOutside.left++; if (screenX > innerWidth) screenOutside.right++;
+                  if (screenY < 0) screenOutside.top++; if (screenY > innerHeight) screenOutside.bottom++;
                 }
-                meshes.push({ name: o.name, parent: o.parent.name, visible: o.visible, vertices: a.count, min, max, outside });
+                meshes.push({ name: o.name, parent: o.parent.name, visible: o.visible, vertices: a.count, min, max, outside, screenOutside });
               });
               const model = scene.children.find(c => c.isGroup);
               const sweepFailures = [];
@@ -129,7 +135,10 @@ try {
                     const a = o.geometry.attributes.position, v = o.position.clone();
                     for (let i = 0; i < a.count; i++) {
                       v.fromBufferAttribute(a, i).applyMatrix4(o.matrixWorld).project(camera);
-                      if (Math.max(Math.abs(v.x), Math.abs(v.y), Math.abs(v.z)) > 1) {
+                      const screenX = canvasBounds.left + (v.x + 1) * canvasBounds.width / 2;
+                      const screenY = canvasBounds.top + (1 - v.y) * canvasBounds.height / 2;
+                      if (Math.max(Math.abs(v.x), Math.abs(v.y), Math.abs(v.z)) > 1
+                        || screenX < 0 || screenX > innerWidth || screenY < 0 || screenY > innerHeight) {
                         sweepFailures.push({ angle: step, part: o.parent.name }); break;
                       }
                     }
@@ -141,9 +150,11 @@ try {
               }
               const a = box(canvas), b = box(copy);
               const overlap = Math.min(a.right, b.right) > Math.max(a.left, b.left) && Math.min(a.bottom, b.bottom) > Math.max(a.top, b.top);
+              const intentionalOverlay = section.dataset.assemblyOverlay === 'true';
               return { frames, scrollY, section: box(section), canvas: box(canvas), copy: box(copy),
-                overlap, sweepFailures, canvasInViewport: a.top >= -1 && a.bottom <= innerHeight + 1 && a.left >= -1 && a.right <= innerWidth + 1,
-                css: { clipPath: getComputedStyle(canvas).clipPath, canvasHeight: getComputedStyle(canvas).height, sectionOverflow: getComputedStyle(section).overflow },
+                overlap, intentionalOverlay, sweepFailures, canvasInViewport: a.top >= -1 && a.bottom <= innerHeight + 1 && a.left >= -1 && a.right <= innerWidth + 1,
+                css: { clipPath: getComputedStyle(canvas).clipPath, canvasHeight: getComputedStyle(canvas).height, sectionOverflow: getComputedStyle(section).overflow,
+                  canvasZ: Number(getComputedStyle(canvas).zIndex), copyZ: Number(getComputedStyle(copy).zIndex) },
                 camera: { aspect: camera.aspect, fov: camera.fov, position: camera.position.toArray() },
                 model: model && { position: model.position.toArray(), scale: model.scale.toArray(), rotation: model.rotation.toArray() },
                 drawingBuffer: [canvas.width, canvas.height], draw: { ...renderer.info.render }, contextLost: renderer.getContext().isContextLost(), meshes };
@@ -163,8 +174,11 @@ try {
 } finally { if (server) await new Promise(r => server.close(r)); }
 if (args.verify === 'true') {
   const failures = report.cases.filter(c => c.failure || c.errors.length || c.phases.length !== 4 || c.phases.some(p =>
-    p.meshes?.length !== 28 || p.contextLost || p.css?.clipPath !== 'none' || p.overlap || !p.canvasInViewport ||
-    p.sweepFailures?.length || p.meshes.some(m => !m.visible || Object.values(m.outside).some(Boolean))));
+    p.meshes?.length !== 28 || p.contextLost || p.css?.clipPath !== 'none' ||
+    (p.intentionalOverlay && (!p.overlap || p.css.copyZ <= p.css.canvasZ)) ||
+    (p.overlap && !p.intentionalOverlay) || (!p.intentionalOverlay && !p.canvasInViewport) ||
+    p.sweepFailures?.length || p.meshes.some(m => !m.visible || Object.values(m.outside).some(Boolean)
+      || Object.values(m.screenOutside).some(Boolean))));
   console.log(JSON.stringify({ checked: report.cases.length, failed: failures.map(c => c.viewport.name) }));
   if (failures.length) process.exitCode = 1;
 }
