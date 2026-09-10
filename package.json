@@ -36,12 +36,12 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@types/three": "^0.183.0",
-    "eslint": "10.10.0",
+    "eslint": "9.39.5",
     "eslint-config-next": "16.3.3",
-    "jsdom": "30.0.1",
+    "jsdom": "29.0.1",
     "playwright": "latest",
     "serve": "^14.2.6",
-    "typescript": "7.0.2",
+    "typescript": "6.0.3",
     "vitest": "^5.0.0"
   },
   "engines": {
