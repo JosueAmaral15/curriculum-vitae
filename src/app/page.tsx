@@ -105,8 +105,9 @@ export default function Home() {
       <section className={`${styles.section} ${styles.projectsSection}`} id="projetos" aria-labelledby="projects-title">
         <ScrollReveal className={styles.sectionIntro}><Eyebrow>05 / {text.projects}</Eyebrow><h2 id="projects-title">{text.projectsTitle}</h2></ScrollReveal>
         <div className={styles.projects}>{text.projectItems.map((project, index) => {
-          const content = <><span>{text.projectPrefix} / 0{index + 1}</span><div><h3>{project.name}</h3><p>{project.label}</p></div><p>{project.description}</p>{project.href ? <Icon name="external" /> : <span className={styles.privateMark}>Private</span>}</>;
-          return <ScrollReveal key={project.name} delay={index * 110}>{project.href ? <a className={styles.project} href={project.href} target="_blank" rel="noreferrer">{content}</a> : <article className={`${styles.project} ${styles.privateProject}`}>{content}</article>}</ScrollReveal>;
+          const projectNumber = String(index + 1).padStart(2, "0");
+          const content = <><span>{text.projectPrefix} / {projectNumber}</span><div><h3>{project.name}</h3><p>{project.label}</p></div><p>{project.description}</p>{project.href ? <Icon name="external" /> : <span className={styles.projectStatus}>{project.status}</span>}</>;
+          return <ScrollReveal key={project.name} delay={(index % 3) * 80}>{project.href ? <a className={styles.project} href={project.href} target="_blank" rel="noreferrer">{content}</a> : <article className={`${styles.project} ${styles.staticProject}`}>{content}</article>}</ScrollReveal>;
         })}</div>
       </section>
 

@@ -10,6 +10,7 @@ export default defineConfig({
   webServer: { command: `npx serve ${staticOutputDirectory} --listen 3001`, url: "http://127.0.0.1:3001", reuseExistingServer: true },
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    { name: "firefox", use: { ...devices["Desktop Firefox"] } },
     { name: "mobile", use: { ...devices["iPhone 13"], browserName: "chromium" } },
     { name: "mobile-firefox", use: { browserName: "firefox", viewport: { width: 390, height: 844 } } },
     { name: "tablet", use: { ...devices["iPad Pro 11"], browserName: "chromium" } },
