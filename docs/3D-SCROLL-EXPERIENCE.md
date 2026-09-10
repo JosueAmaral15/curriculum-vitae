@@ -95,8 +95,9 @@ the asset review.
 4. Load the GLB in a client-only Three.js component. Use the supplied animation
    when present; otherwise animate only the existing mesh transforms in a
    staged order.
-5. Bind progress to GSAP ScrollTrigger with `scrub` and `pin`: scrolling down
-   assembles; scrolling up reverses it.
+5. Keep a full-viewport child in place with native CSS `position: sticky` and
+   derive progress from the section's natural scroll geometry: scrolling down
+   assembles; scrolling up reverses it without JavaScript pinning the document.
 6. Keep the static CAD/SVG treatment for reduced motion, failed WebGL and
    small/low-capability devices.
 7. Run unit, type, production, GitHub Pages-export and browser checks before
@@ -134,6 +135,16 @@ overlay, centres the sourced assembly and fixes camera distance from the
 largest exploded bound. It does not use the later two-column/sticky-stage
 composition or zoom in as the camera assembles. Vercel deployed commit
 `68d56c8`; its full 11-case Firefox production audit passed.
+
+Cross-browser correction (2026-09-10): the full-section background composition
+is preserved, but GSAP `pin: true` is removed. The section now owns the natural
+scroll distance and its full-viewport overlay is sticky, so Firefox does not
+have to reconcile an asynchronously scrolled page with JavaScript switching the
+section into and out of `position: fixed`. Rendering uses adaptive drawing-buffer
+and frame budgets, exposes the scene after one warm-up frame, pauses outside
+the viewport, and returns to the static fallback after WebGL context loss. The
+installed graphical Firefox 155.0.1 completed 16 upward wheel steps through the
+whole camera interval without a reverse or stalled `scrollY` sample.
 
 - A recognisable sourced object, never primitive stand-ins, appears in the
   3D section.

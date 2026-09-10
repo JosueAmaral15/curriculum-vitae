@@ -218,3 +218,106 @@ Evidence, screenshots, reproduction commands and the action plan:
 - GitHub's Pages, Quality and CodeQL jobs again ended without starting any
   steps or assigning a runner. This external account restriction still blocks
   the Pages mirror. Vercel deployed the same `main` tree successfully.
+
+## 2026-09-10 — Selected-project catalogue from the English curriculum
+
+- Both pages of the August 2026 English curriculum were extracted and visually
+  reviewed. Its 14 selected AI, research and engineering projects are present
+  in English and Portuguese; the existing Unitary Binary Trees publication is
+  retained as item 15.
+- Current GitHub visibility was checked before linking. Ethnic AI Framework,
+  Simplicity Protocols and AI Presence Monitor use their public repositories;
+  Unitary Binary Trees retains its public DOI. No private repository URL is
+  emitted by the project catalogue.
+- Protected entries retain the curriculum's disclosure boundary through
+  explicit private, conceptual, non-confidential, public-overview or
+  public-existence labels. Clarify remains unlinked.
+- Project numbering now supports two-digit values through 15. Reveal delays
+  repeat in short groups so later entries do not inherit multi-second waits.
+- A clean `npm ci` reported zero vulnerabilities. ESLint, TypeScript checking,
+  5 Vitest tests, `git diff --check`, and the Next.js 16.3.3 Webpack static
+  export passed. The exported English page contains all 14 curriculum project
+  names and reaches `Project / 15`.
+
+## 2026-09-10 — Cross-browser camera-scroll correction
+
+- Root cause: the overlay restoration had also replaced the natural sticky
+  track with full-section GSAP `pin: true`. Re-entering its fixed pin interval
+  while reverse-scrolling could look like a downward jump in Firefox, and the
+  full-viewport continuous WebGL draw amplified main-thread pressure.
+- The approved visual scope remains intact: the camera is centred behind the
+  higher copy layer, all 28 licensed meshes remain in the assembly, and the
+  full exploded-to-assembled sequence plus subtle rotation is retained.
+- The interaction now uses a native CSS sticky stage and a passive geometry
+  reader. Application JavaScript changes only the Three.js progress target and
+  never intercepts wheel events, calls `preventDefault()` on input, creates a
+  `.pin-spacer`, or writes `scrollY`. GSAP became unused and was removed.
+- WebGL exposes the dynamic scene only after a deterministic warm-up frame.
+  Chromium-class hardware rendering is bounded to 30 frames per second and
+  1.2 million drawing-buffer pixels. Firefox uses lighter standard-material
+  shaders, a 450,000-pixel budget and a 12-frame-per-second baseline; its idle
+  interval adapts to measured draw cost. Detected software renderers use a
+  150,000-pixel budget and low cadence. Rendering pauses outside the
+  viewport/hidden document, and context loss exposes the static fallback.
+- The focused Firefox 153 desktop audit completed four assembly phases and the
+  rotation sweep with 28 meshes, no projected vertex outside the view, and no
+  failed case. Visual review confirmed the background composition.
+- The isolated Next.js 16.3.3 Webpack static export passed. The complete
+  Playwright matrix now includes desktop Chromium, desktop Firefox, mobile
+  Chromium, mobile Firefox and tablet Chromium: 22 checks passed and 13
+  project-specific checks were intentionally skipped.
+- The new desktop regression sent 12 upward wheel events across the complete
+  camera interval in both engines. Every observed delta was negative; it also
+  confirmed native `position: sticky` and the absence of `.pin-spacer`.
+- The installed `/usr/bin/firefox` 155.0.1 was then tested in an isolated
+  graphical profile with Selenium 4.49 and geckodriver 0.37.1. The 1,280 by 600
+  viewport reported a 2,200-pixel camera section, a 600-pixel native sticky
+  stage and no `.pin-spacer`. Sixteen W3C upward wheel inputs moved `scrollY`
+  from 4094 to 1214 in exact 180-pixel decreases, with zero increases, zero
+  stalled steps, and a final position above the section start at 1654. The raw
+  JSON and screenshots are temporary test evidence under
+  `/tmp/curriculum-firefox155.m9v4QE/` and are not repository artifacts.
+- After the installed-browser follow-up, `npm run lint`, 5 Vitest tests, the
+  focused desktop-Firefox scroll regression, and the four-phase Firefox camera
+  audit passed again. The latter retained all 28 meshes with no projected
+  vertex outside the viewport, and visual review confirmed the camera remains
+  centred behind the copy in the middle and assembled states.
+- The isolated Next.js 16.3.3 Webpack static export passed, including its
+  TypeScript phase. The complete production-artifact Playwright matrix passed
+  again with 22 checks and 13 project-specific skips across desktop Chromium,
+  desktop Firefox, mobile Chromium, mobile Firefox and tablet Chromium.
+  `npm audit --audit-level=low` reported zero vulnerabilities and
+  `git diff --check` passed. Physical mobile/tablet, production deployment and
+  WebKit/Safari remain separate, unclaimed gates.
+- An initial browser check was not counted: it mistakenly served the existing
+  `out/` directory instead of the export written to the configured custom
+  `NEXT_DIST_DIR`, so it loaded an older bundle. That `out/` was preserved
+  under `/tmp`; the accepted run served only
+  `.next-validation-cross-browser-webpack` from the isolated Webpack build.
+
+## 2026-09-10 — Full non-main branch integration through develop
+
+- `git fetch --prune` removed eight stale remote-tracking Dependabot refs that
+  had already been deleted on GitHub. The surviving set was the active content
+  branch, one legacy feature branch already contained by `develop`, and three
+  active dependency-update branches.
+- Merge `47e6239` incorporated `content/selected-projects`. Merges `ff3a39d`,
+  `ac60b40` and `709b1ca` incorporated the surviving ESLint, jsdom and
+  TypeScript Dependabot heads. Ancestry checks confirmed all five non-main
+  targets are now ancestors of `develop`.
+- npm reported concrete incompatibilities in the proposed major versions:
+  ESLint 10 exceeds the Next.js plugin peer ranges, jsdom 30 requires Node
+  22.22.2 while validation uses Node 22.21.1, and the TypeScript ESLint stack
+  requires TypeScript below 6.1. Commit `18b59b7` therefore retains all merge
+  ancestry while restoring ESLint 9.39.5, jsdom 29.0.1 and TypeScript 6.0.3 and
+  regenerating `package-lock.json` with npm 11.6.2.
+- A real `npm ci --ignore-scripts --no-audit` completed with 518 packages.
+  `npm run lint` passed, and Vitest passed all 5 tests in 3 files.
+- The isolated Next.js 16.3.3 Webpack export passed compilation, TypeScript,
+  page-data collection and generation of all static routes. The complete E2E
+  matrix against that export passed 22 checks with 13 intentional
+  project-specific skips across desktop Chromium, desktop Firefox, mobile
+  Chromium, mobile Firefox and tablet Chromium.
+- `npm audit --audit-level=low` reported zero vulnerabilities and
+  `git diff --check` passed. The local source curriculum PDF remains untracked
+  and was not included in any commit.

@@ -145,3 +145,158 @@ not compatible with the current toolchain and Node 22 target.
 - `npm run build`
 - `npm run test:e2e`
 - `git diff --check`
+
+## Cross-browser camera-scroll correction session — 2026-09-10
+
+### Problem statement
+
+The full-section camera overlay currently uses GSAP `pin: true` for a
+1,100–1,600-pixel scroll interval. Re-entering that interval while scrolling
+upward makes GSAP switch the section back into a fixed pin state while the
+one-second scrub reverses the assembly. Firefox's asynchronous compositor can
+make that transition look like the page moved in the opposite direction. The
+same revision also enlarged the continuously rendered WebGL canvas from a
+contained stage to the whole viewport, increasing the cost of the transition
+on older GPUs.
+
+### Constraints
+
+1. Keep the camera centred behind the text; do not restore a separate camera
+   column or give the asset more visual emphasis.
+2. Preserve all 28 source meshes, attribution, exploded/assembled states and
+   the subtle idle rotation.
+3. Do not intercept wheel/touch input, call `preventDefault()`, or programmatically
+   correct `scrollY`. Browser-native scrolling remains the source of truth.
+4. Preserve reduced-motion and no-WebGL fallbacks.
+5. Do not mix or discard the existing selected-project, translation or PDF
+   work already present in the working tree.
+
+### Execution sequence
+
+1. **Stabilize layout:** make the section provide the scroll distance and keep
+   one full-viewport child in place with native CSS `position: sticky`.
+2. **Decouple animation:** calculate a normalized assembly target from the
+   section's native geometry. Interpolate only the Three.js state; never pin or
+   move the document from JavaScript.
+3. **Bound rendering cost:** choose drawing-buffer scale from a pixel budget,
+   cap rendering frequency, and pause outside the viewport or while the page is
+   hidden. Preserve the static gradient fallback on failure/context loss.
+4. **Extend regression coverage:** add desktop Firefox and verify upward wheel
+   monotonicity across the section in both desktop engines. Keep the existing
+   narrow-Firefox composition assertion.
+5. **Validate and review:** run focused checks first, then the complete build
+   and browser matrix. Record results in `docs/TESTING-STATUS.md`; keep the
+   physical mobile/tablet and WebKit/Safari gates explicit.
+
+### Acceptance criteria
+
+- Upward wheel input produces only decreasing `scrollY` samples before,
+  during and after the camera section in desktop Chromium and Firefox.
+- The sticky stage occupies one viewport without a GSAP `.pin-spacer`.
+- The camera remains behind the copy and every source mesh remains available at
+  desktop, mobile, short-height and tablet representative viewports.
+- Reduced-motion and WebGL failure modes expose readable static content without
+  adding an artificial scroll interval.
+- Automated success is reported separately from physical-device and Safari
+  validation; neither is inferred from Playwright emulation.
+
+### Implementation result
+
+The implementation now uses a full-viewport sticky child inside the natural
+scroll-height section. A passive scroll listener reads geometry once per
+animation frame and updates only the Three.js target; it never intercepts wheel
+input or writes the document position. GSAP was removed because it no longer
+has another consumer in the application.
+
+The WebGL path exposes the scene only after one deterministic warm-up frame.
+Chromium-class hardware rendering is bounded to 30 frames per second and 1.2
+million drawing-buffer pixels; Firefox uses a lighter material path, a
+450,000-pixel budget and a 12-frame-per-second baseline. Software rendering
+uses a deliberately low-cost cadence and 150,000-pixel budget. Firefox and
+software intervals also adapt to measured draw cost. Rendering pauses outside
+the viewport or while the document is hidden, and context loss returns the
+section to its static fallback.
+
+The isolated Webpack export and the five-project Playwright matrix passed. The
+new desktop Chromium/Firefox regression crossed the entire section upward with
+12 strictly negative scroll deltas and confirmed that no `.pin-spacer` exists.
+The installed graphical Firefox 155.0.1 then crossed the complete interval in
+16 upward wheel steps from `scrollY=4094` to `1214`; all steps decreased by 180
+pixels, none stalled or reversed, and the final position was above the camera
+section. Physical mobile/tablet and WebKit/Safari remain distinct release
+gates.
+
+## Branch-integration and publication plan — 2026-09-10
+
+### Objective
+
+Preserve `develop` and `main` as the long-lived integration and production
+branches, incorporate every surviving non-main branch into `develop`, validate
+the resulting tree, and then promote that exact validated tree to `main` and
+the remote repository.
+
+### Audited branch set
+
+- `content/selected-projects`: active local work containing the selected-project
+  catalogue follow-up, layout alignment and cross-browser camera correction.
+- `origin/feature/curriculum-react-340fe9d9-74e5-47b5-9d84-99ffcb7c79c3`:
+  already an ancestor of `develop`; no new merge commit is required.
+- `origin/dependabot/npm_and_yarn/eslint-10.8.1`,
+  `origin/dependabot/npm_and_yarn/jsdom-30.0.1`, and
+  `origin/dependabot/npm_and_yarn/typescript-7.0.2`: surviving dependency
+  branches that share an older release base and modify the same lockfile.
+- Eight obsolete Dependabot refs were already deleted upstream and disappeared
+  through `git fetch --prune`; deleted remote refs are not merge targets.
+
+### Execution and conflict policy
+
+1. Commit the reviewed site, test and documentation changes on
+   `content/selected-projects`. Keep the untracked local curriculum PDF out of
+   Git because reading a source document did not authorize publishing that
+   binary.
+2. Merge the active content branch into `develop`, then merge each surviving
+   remote dependency branch with explicit merge commits. The already-contained
+   feature branch is recorded as satisfied by ancestry.
+3. Resolve package-manifest and lockfile conflicts by combining the requested
+   dependency updates, regenerating the lockfile with the repository's npm
+   version, and validating the actual resolved dependency tree. If a proposed
+   major version is incompatible, retain the merge ancestry but add a reviewed
+   compatibility correction rather than leaving `develop` broken.
+4. Run clean dependency installation, lint, unit tests, TypeScript/build,
+   static-export E2E coverage, dependency audit and whitespace checks on the
+   integrated `develop` tree.
+5. Merge validated `develop` into `main`, verify the production commit and push
+   the active content branch, `develop`, and `main`. Never force-push.
+6. Confirm remote hashes and inspect the publication workflows when GitHub CLI
+   access is available. Production is not claimed until the remote workflow or
+   deployment reports success.
+
+### Acceptance criteria
+
+- Every surviving non-main branch is either an ancestor of `develop` or has an
+  explicit merge commit in `develop`.
+- `develop` and `main` resolve to the same tested content after promotion.
+- `npm ci`, lint, unit tests, production build, the browser matrix, dependency
+  audit and `git diff --check` pass on the integrated dependency set.
+- The local-only PDF remains untracked, and no force-push or branch deletion is
+  performed.
+
+### Develop integration result
+
+The content branch entered `develop` through merge `47e6239`. The surviving
+ESLint, jsdom and TypeScript Dependabot heads entered through `ff3a39d`,
+`ac60b40` and `709b1ca`; the legacy feature branch was already an ancestor.
+This makes every surviving non-main ref an ancestor of `develop`.
+
+The merged update proposals exposed three upstream compatibility constraints:
+ESLint 10 is outside the peer ranges used by `eslint-config-next@16.3.3`, jsdom
+30 requires a newer Node 22 patch than the current environment, and the
+TypeScript ESLint stack requires TypeScript below 6.1. Commit `18b59b7` retains
+the branch ancestry while restoring the validated ESLint 9.39.5, jsdom 29.0.1
+and TypeScript 6.0.3 toolchain and regenerating the npm 11 lockfile.
+
+The integrated `develop` tree passed `npm ci`, lint, 5 unit tests, the isolated
+Webpack static export including TypeScript, the complete five-project browser
+matrix (22 passed and 13 intentional skips), the dependency audit with zero
+vulnerabilities, and `git diff --check`. It is eligible for promotion to
+`main`; remote publication remains the final step.
