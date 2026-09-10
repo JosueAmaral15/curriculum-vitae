@@ -86,7 +86,7 @@ export const copy = {
     openNavigation: "Abrir navegação",
     closeNavigation: "Fechar navegação",
     availability: "Disponível para oportunidades em engenharia de software",
-    assembly: { eyebrow: "Engenharia interativa", title: "Todo grande sistema começa como sinais procurando sentido.", description: "Como em um produto de software, cada componente ganha sentido ao encontrar a interface certa. Suportes, óptica, carcaça e módulos panorâmicos transformam sinais dispersos em um só campo de visão.", status: "Role para montar", creditPrefix: "Ativo 3D" },
+    assembly: { eyebrow: "Engenharia interativa", title: "Todo grande sistema começa como sinais procurando sentido.", description: "Como em um produto de software, cada componente ganha sentido ao encontrar a interface certa. Componentes, métodos, arquiteturas e módulos transformam sinais dispersos em um só campo de visão.", status: "Role para montar", creditPrefix: "Ativo 3D" },
     heroTitle: { lead: "Sistemas claros", emphasis: "Entrega confiável" },
     summary: "Profissional de tecnologia que une engenharia de software, automação de infraestrutura e pesquisa em algoritmos para construir produtos confiáveis, claros e sustentáveis.",
     email: "Enviar e-mail",

@@ -2,6 +2,48 @@
 
 ## In progress
 
+- [ ] #11 Integrate every surviving non-main branch through `develop`, promote
+  the validated result to `main`, and publish both long-lived branches.
+  - [x] Fetch and prune remote refs; classify the active content branch, the
+    already-contained legacy feature branch, and the three surviving
+    Dependabot branches.
+  - [x] Record the merge order, lockfile-conflict policy, validation gates and
+    publication acceptance criteria in `docs/PLAN.md`.
+  - [ ] Commit the reviewed work on `content/selected-projects`, excluding the
+    untracked local curriculum PDF.
+  - [ ] Merge the content and surviving dependency branches into `develop`,
+    resolving the shared lockfile deliberately.
+  - [ ] Validate the integrated `develop` tree and promote it to `main`.
+  - [ ] Push the content branch, `develop`, and `main`; verify remote hashes and
+    inspect publication workflow status without claiming success prematurely.
+- [ ] #10 Correct the 3D camera scroll interaction across browser engines.
+  - [x] Identify the regression introduced when the natural sticky camera track
+    was replaced by full-section GSAP `pin: true`: reverse scrolling re-enters
+    a fixed `pin-spacer` interval and can look like a downward jump in Firefox.
+  - [x] Confirm the current coverage gap: the normal Playwright matrix checks
+    the camera composition only in mobile Firefox and does not exercise
+    mouse-wheel direction in desktop Firefox.
+  - [x] Preserve the approved composition: all 28 licensed camera parts remain
+    centred behind the readable text, with the existing assembly sequence and
+    continuous subtle rotation.
+  - [x] Replace full-section JavaScript pinning with a native CSS sticky stage
+    and scroll-progress calculation that never writes to the document scroll
+    position.
+  - [x] Apply a browser-independent WebGL render budget: adaptive drawing-buffer
+    resolution, bounded frame rate, viewport/document visibility pausing, and
+    a static fallback when WebGL 2 cannot be created or its context is lost.
+  - [x] Add desktop Firefox to the routine Playwright matrix and add a regression
+    that scrolls upward across the complete camera interval, asserting that
+    every observed `scrollY` delta remains negative. Retain Chromium, mobile
+    Firefox, mobile Chromium and tablet coverage.
+  - [x] Validate lint, unit tests, TypeScript, isolated static production build,
+    the full browser suite and `git diff --check`.
+  - [x] Exercise the installed Mozilla Firefox 155.0.1 on the Dell in an
+    isolated graphical profile: 16 native WebDriver wheel steps crossed the
+    whole camera interval upward with strictly decreasing `scrollY`, no
+    increase, no stalled step and no `.pin-spacer`.
+  - [ ] Track WebKit/Safari validation separately until the Playwright WebKit
+    runtime is installed; do not describe Safari as verified before that gate.
 - [ ] #7 Expand the public professional profile and make motion release-ready for mobile and tablet.
   - Add the professional portrait, the two Google Drive curriculum links, Lattes,
     YouTube, GitHub, LinkedIn, Uiclap, GeoGebra, Instagram, and the portfolio

@@ -21,10 +21,11 @@ WhatsApp action, and the optional WebGL camera assembly.
    reveal must be reversible: it enters when at least 12% is visible and fades
    back to its resting state after it leaves the viewport, so a return scroll
    replays the same short transition rather than showing a one-time effect.
-3. **Tune the 3D scene for touch hardware.** Cap device pixel ratio at 1.25 on
-   phones and 1.5 on tablets; pause rendering outside the viewport; use a
-   shorter scroll range on narrow screens; and verify that the camera never
-   overlays the title, curriculum links, or floating WhatsApp control.
+3. **Tune the 3D scene for touch hardware.** Derive pixel ratio from a bounded
+   drawing-buffer budget, pause rendering outside the viewport, reduce cadence
+   for software renderers, use a shorter scroll range on narrow screens, and
+   verify that the camera never obscures the title, curriculum links, or
+   floating WhatsApp control.
 4. **Respect touch interaction.** Ensure every external link and CV button has
    a 44-by-44 CSS-pixel minimum hit area, clear keyboard focus, no hover-only
    information, and adequate spacing when the on-screen keyboard is open.
@@ -64,8 +65,13 @@ production export passed the full Firefox viewport/rotation matrix and the
 cross-browser E2E suite. See
 [the audit and action plan](audits/2026-09-09-camera/README.md).
 
-- Phone rendering is capped at device-pixel ratio 1.25 and tablet/desktop
-  rendering at 1.5. The WebGL renderer remains paused outside the viewport.
+- Chromium-class hardware rendering is capped at 1.2 million drawing-buffer
+  pixels and 30 frames per second. Firefox uses a 450,000-pixel budget, lighter
+  standard-material shaders and a 12-frame-per-second baseline; software
+  rendering uses a 150,000-pixel budget and low cadence. Firefox/software idle
+  intervals adapt to measured frame cost. Device pixel ratio remains capped at
+  1.15 on phones and 1.25 elsewhere, and rendering pauses outside the viewport
+  or while the document is hidden.
 - The camera assembly uses a 1,100-pixel touch scroll range on phones, a
   1,300-pixel range on tablets, and retains the 1,600-pixel desktop sequence.
 - On phone-width screens the superseded deployment cropped the canvas to its
@@ -76,3 +82,15 @@ cross-browser E2E suite. See
   professional-resource visibility, and the reduced-motion camera fallback.
 - This is browser-emulated evidence, not a substitute for the remaining
   physical Android and tablet performance check.
+
+## Cross-browser scroll correction — 2026-09-10
+
+The approved full-section camera remains behind the copy, but the interaction
+no longer uses JavaScript pinning. Native CSS sticky positioning supplies the
+stationary stage while a passive scroll observer updates only assembly
+progress. Desktop Firefox is now part of the routine Playwright matrix, and a
+Chromium/Firefox regression verifies monotonic upward scrolling before, during
+and after the camera interval. The installed graphical Firefox 155.0.1 also
+crossed the full interval in 16 strictly decreasing W3C wheel steps, with no
+reverse or stalled sample. Motorola and tablet checks remain manual release
+gates.
