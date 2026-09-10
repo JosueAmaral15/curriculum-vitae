@@ -4,21 +4,25 @@ The portfolio is a static Next.js export and supports both Vercel and GitHub Pag
 
 ## Required repository settings
 
-1. Keep `main` as the reviewed production branch.
-2. In GitHub, open **Settings → Pages** and select **GitHub Actions** as the publishing source.
-3. Merge a reviewed pull request into `main`. The `Deploy GitHub Pages` workflow publishes the static artifact.
+1. Keep `develop` as the long-lived integration branch and `main` as the
+   reviewed production branch.
+2. Merge validated work branches into `develop`, push `develop`, then promote
+   `develop` into `main`. Do not delete either long-lived branch.
+3. In GitHub, open **Settings → Pages** and select **GitHub Actions** as the publishing source.
+4. Merge the reviewed release into `main`. The `Deploy GitHub Pages` workflow publishes the static artifact.
 
 The default Pages address is `https://josueamaral15.github.io/curriculum-vitae/`.
 
-### Current external status (2026-08-16)
+### Current external status (2026-09-09)
 
-The repository contains the Pages workflow, its static Pages build passes
-locally, and **GitHub Actions** is selected as the Pages source (confirmed in
-the repository settings). The public Pages address currently returns HTTP 404
-because the latest Pages workflow build failed before deployment. The remaining
-account-side task is to open that failed run, resolve its reported cause and
-rerun it. This cannot be fixed by committing a manual `index.html` or by adding
-the generic `nextjs.yml` workflow suggested by the GitHub interface.
+Vercel successfully deployed production merge `68d56c8` to
+<https://curriculum-vitae-virid.vercel.app/>. Its Firefox production audit
+passed all 11 viewport cases. The repository contains a locally validated
+Pages workflow using `actions/deploy-pages@v5`, but GitHub's Pages, Quality and
+CodeQL jobs failed before executing any steps or receiving a runner. This is
+the existing GitHub account restriction, so the Pages mirror remains blocked
+until the account issue is resolved and the workflows are rerun. It cannot be
+fixed by committing a manual `index.html` or adding another generic workflow.
 
 ## Vercel (primary site)
 

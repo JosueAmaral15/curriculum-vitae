@@ -171,7 +171,7 @@ Evidence, screenshots, reproduction commands and the action plan:
 - The real Motorola G17 Android and tablet performance check remains open under
   task #7 and `docs/PHYSICAL-DEVICE-RELEASE-CHECK.md`.
 
-## 2026-09-09 — Overlay composition scope correction (local)
+## 2026-09-09 — Overlay composition scope correction
 
 - The user clarified that the original desktop composition was correct: the
   camera should remain a restrained background behind the copy. Moving it into
@@ -192,5 +192,29 @@ Evidence, screenshots, reproduction commands and the action plan:
 - Visual checks covered desktop, 390×844 phone, 390×650 Portuguese, 320×650 and
   844×390 Portuguese landscape. Short-height spacing prevents the pinned
   section from growing beyond the viewport.
-- This follow-up is not yet committed or deployed. The Vercel result documented
-  above belongs to the preceding composition.
+- The follow-up was committed through a work branch, merged into `develop`,
+  then promoted to `main` in commit `68d56c8`. Vercel reported that the
+  production deployment was successful.
+- The full Firefox audit was repeated against
+  <https://curriculum-vitae-virid.vercel.app/>: all 11 viewports, four phases
+  and 16-angle sweeps passed with 28 meshes and no projected vertex outside
+  the visible screen.
+
+## 2026-09-09 — Dependency and branch release validation
+
+- `fix/camera-overlay-scope` and `chore/integrate-dependabot-updates` were
+  integrated into long-lived `develop`; `develop` was then merged into `main`.
+  Both long-lived branches were pushed and retained.
+- A clean `npm ci` installed 519 packages. `npm audit --audit-level=low`
+  reported zero vulnerabilities.
+- ESLint, TypeScript checking, all 5 Vitest tests and the Webpack static
+  production export passed. Playwright passed 16 checks with 4 intentional
+  project skips.
+- Next.js 16.3.3, GSAP 3.15.0, Three.js 0.185.1, Vitest 5.0.0,
+  `actions/deploy-pages` v5 and the current patched transitive dependencies
+  were retained. ESLint 10 and TypeScript 7 were rejected after the lint run
+  demonstrated upstream incompatibility; jsdom 30 was rejected because its
+  engine range excludes the project's current Node 22 runtime.
+- GitHub's Pages, Quality and CodeQL jobs again ended without starting any
+  steps or assigning a runner. This external account restriction still blocks
+  the Pages mirror. Vercel deployed the same `main` tree successfully.

@@ -2,8 +2,8 @@
 
 Este plano decorre dos fatos em [README.md](README.md). As etapas 1–6 registram
 a primeira correção; a separação proposta na etapa 2 foi posteriormente
-rejeitada pelo usuário. A etapa 8 restaura a composição aprovada; publicação e
-conferência física permanecem pendentes.
+rejeitada pelo usuário. A etapa 8 restaura a composição aprovada; a publicação
+foi concluída e apenas a conferência física permanece pendente.
 
 ## Ordem proposta
 
@@ -40,12 +40,12 @@ conferência física permanecem pendentes.
    Registrar orientação, idioma, tamanho disponível, versão do navegador e
    evidência visual. Só então fechar #7, junto das verificações físicas de
    desempenho previstas no plano mobile.
-8. **Concluído localmente — restaurar a composição aprovada.** Manter a câmera
+8. **Concluído — restaurar a composição aprovada.** Manter a câmera
    centralizada como fundo atrás do texto, sem coluna exclusiva nem zoom de
    montagem. Preservar todas as peças e a camada do texto acima do canvas.
-9. **Pendente — publicar a correção de escopo.** Após autorização, fazer commit
-   e push, aguardar o Vercel e repetir a auditoria no domínio público antes do
-   teste físico.
+9. **Concluído — publicar a correção de escopo.** O conteúdo passou pela branch
+   de trabalho, por `develop` e por `main`. O Vercel implantou `68d56c8` e os
+   11 casos da matriz Firefox passaram no domínio público antes do teste físico.
 
 ## Matriz mínima de aprovação
 
@@ -77,7 +77,7 @@ conferência física permanecem pendentes.
 ## Responsabilidades
 
 O agente pode implementar os ajustes, medir a cena, testar exportações,
-documentar e preparar o commit. A publicação segue a autorização do usuário.
+documentar e preparar o commit. A publicação foi autorizada e concluída.
 Josué pode acompanhar a reprodução com o Console descrito na auditoria e
 fornecer a conferência física do Motorola. Nenhum novo download de câmera ou
 edição das peças no Blender é necessário para corrigir os fatos encontrados.

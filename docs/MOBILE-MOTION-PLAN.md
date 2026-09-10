@@ -68,9 +68,9 @@ cross-browser E2E suite. See
   rendering at 1.5. The WebGL renderer remains paused outside the viewport.
 - The camera assembly uses a 1,100-pixel touch scroll range on phones, a
   1,300-pixel range on tablets, and retains the 1,600-pixel desktop sequence.
-- On phone-width screens the published canvas is cropped to its lower 36%.
-  This was an inadequate workaround: it also hides camera parts and is not
-  part of the corrected implementation.
+- On phone-width screens the superseded deployment cropped the canvas to its
+  lower 36%. This was an inadequate workaround that hid camera parts and is
+  absent from commit `68d56c8` and the current Vercel production deployment.
 - Playwright emulates iPhone 13 and iPad Pro 11 dimensions in Chromium. It
   verifies the collapsed mobile-language menu, 44-pixel curriculum/link targets,
   professional-resource visibility, and the reduced-motion camera fallback.
