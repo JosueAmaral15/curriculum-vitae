@@ -48,6 +48,10 @@
   `develop`, and `main`, retaining both long-lived branches. `npm audit`
   reports zero vulnerabilities locally; unsupported ESLint 10, TypeScript 7
   and jsdom 30 upgrades were not promoted.
+- [x] #9 Add every selected project from the August 2026 English curriculum to
+  the bilingual featured-projects section. Public repositories use verified
+  destinations; private, conceptual and non-confidential work exposes only the
+  description approved by the curriculum.
 
 ## Done
 

@@ -218,3 +218,23 @@ Evidence, screenshots, reproduction commands and the action plan:
 - GitHub's Pages, Quality and CodeQL jobs again ended without starting any
   steps or assigning a runner. This external account restriction still blocks
   the Pages mirror. Vercel deployed the same `main` tree successfully.
+
+## 2026-09-10 — Selected-project catalogue from the English curriculum
+
+- Both pages of the August 2026 English curriculum were extracted and visually
+  reviewed. Its 14 selected AI, research and engineering projects are present
+  in English and Portuguese; the existing Unitary Binary Trees publication is
+  retained as item 15.
+- Current GitHub visibility was checked before linking. Ethnic AI Framework,
+  Simplicity Protocols and AI Presence Monitor use their public repositories;
+  Unitary Binary Trees retains its public DOI. No private repository URL is
+  emitted by the project catalogue.
+- Protected entries retain the curriculum's disclosure boundary through
+  explicit private, conceptual, non-confidential, public-overview or
+  public-existence labels. Clarify remains unlinked.
+- Project numbering now supports two-digit values through 15. Reveal delays
+  repeat in short groups so later entries do not inherit multi-second waits.
+- A clean `npm ci` reported zero vulnerabilities. ESLint, TypeScript checking,
+  5 Vitest tests, `git diff --check`, and the Next.js 16.3.3 Webpack static
+  export passed. The exported English page contains all 14 curriculum project
+  names and reaches `Project / 15`.
