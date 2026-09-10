@@ -280,3 +280,23 @@ the remote repository.
   audit and `git diff --check` pass on the integrated dependency set.
 - The local-only PDF remains untracked, and no force-push or branch deletion is
   performed.
+
+### Develop integration result
+
+The content branch entered `develop` through merge `47e6239`. The surviving
+ESLint, jsdom and TypeScript Dependabot heads entered through `ff3a39d`,
+`ac60b40` and `709b1ca`; the legacy feature branch was already an ancestor.
+This makes every surviving non-main ref an ancestor of `develop`.
+
+The merged update proposals exposed three upstream compatibility constraints:
+ESLint 10 is outside the peer ranges used by `eslint-config-next@16.3.3`, jsdom
+30 requires a newer Node 22 patch than the current environment, and the
+TypeScript ESLint stack requires TypeScript below 6.1. Commit `18b59b7` retains
+the branch ancestry while restoring the validated ESLint 9.39.5, jsdom 29.0.1
+and TypeScript 6.0.3 toolchain and regenerating the npm 11 lockfile.
+
+The integrated `develop` tree passed `npm ci`, lint, 5 unit tests, the isolated
+Webpack static export including TypeScript, the complete five-project browser
+matrix (22 passed and 13 intentional skips), the dependency audit with zero
+vulnerabilities, and `git diff --check`. It is eligible for promotion to
+`main`; remote publication remains the final step.

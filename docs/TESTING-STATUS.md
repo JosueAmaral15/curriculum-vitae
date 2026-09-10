@@ -294,3 +294,30 @@ Evidence, screenshots, reproduction commands and the action plan:
   `NEXT_DIST_DIR`, so it loaded an older bundle. That `out/` was preserved
   under `/tmp`; the accepted run served only
   `.next-validation-cross-browser-webpack` from the isolated Webpack build.
+
+## 2026-09-10 — Full non-main branch integration through develop
+
+- `git fetch --prune` removed eight stale remote-tracking Dependabot refs that
+  had already been deleted on GitHub. The surviving set was the active content
+  branch, one legacy feature branch already contained by `develop`, and three
+  active dependency-update branches.
+- Merge `47e6239` incorporated `content/selected-projects`. Merges `ff3a39d`,
+  `ac60b40` and `709b1ca` incorporated the surviving ESLint, jsdom and
+  TypeScript Dependabot heads. Ancestry checks confirmed all five non-main
+  targets are now ancestors of `develop`.
+- npm reported concrete incompatibilities in the proposed major versions:
+  ESLint 10 exceeds the Next.js plugin peer ranges, jsdom 30 requires Node
+  22.22.2 while validation uses Node 22.21.1, and the TypeScript ESLint stack
+  requires TypeScript below 6.1. Commit `18b59b7` therefore retains all merge
+  ancestry while restoring ESLint 9.39.5, jsdom 29.0.1 and TypeScript 6.0.3 and
+  regenerating `package-lock.json` with npm 11.6.2.
+- A real `npm ci --ignore-scripts --no-audit` completed with 518 packages.
+  `npm run lint` passed, and Vitest passed all 5 tests in 3 files.
+- The isolated Next.js 16.3.3 Webpack export passed compilation, TypeScript,
+  page-data collection and generation of all static routes. The complete E2E
+  matrix against that export passed 22 checks with 13 intentional
+  project-specific skips across desktop Chromium, desktop Firefox, mobile
+  Chromium, mobile Firefox and tablet Chromium.
+- `npm audit --audit-level=low` reported zero vulnerabilities and
+  `git diff --check` passed. The local source curriculum PDF remains untracked
+  and was not included in any commit.

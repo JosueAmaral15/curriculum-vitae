@@ -9,11 +9,13 @@
     Dependabot branches.
   - [x] Record the merge order, lockfile-conflict policy, validation gates and
     publication acceptance criteria in `docs/PLAN.md`.
-  - [ ] Commit the reviewed work on `content/selected-projects`, excluding the
+  - [x] Commit the reviewed work on `content/selected-projects`, excluding the
     untracked local curriculum PDF.
-  - [ ] Merge the content and surviving dependency branches into `develop`,
+  - [x] Merge the content and surviving dependency branches into `develop`,
     resolving the shared lockfile deliberately.
-  - [ ] Validate the integrated `develop` tree and promote it to `main`.
+  - [x] Validate the integrated `develop` tree with clean install, lint, unit,
+    production build, complete browser matrix, audit and whitespace checks.
+  - [ ] Promote the validated `develop` tree to `main`.
   - [ ] Push the content branch, `develop`, and `main`; verify remote hashes and
     inspect publication workflow status without claiming success prematurely.
 - [ ] #10 Correct the 3D camera scroll interaction across browser engines.
