@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] #11 Integrate every surviving non-main branch through `develop`, promote
+- [x] #11 Integrate every surviving non-main branch through `develop`, promote
   the validated result to `main`, and publish both long-lived branches.
   - [x] Fetch and prune remote refs; classify the active content branch, the
     already-contained legacy feature branch, and the three surviving
@@ -15,9 +15,12 @@
     resolving the shared lockfile deliberately.
   - [x] Validate the integrated `develop` tree with clean install, lint, unit,
     production build, complete browser matrix, audit and whitespace checks.
-  - [ ] Promote the validated `develop` tree to `main`.
-  - [ ] Push the content branch, `develop`, and `main`; verify remote hashes and
+  - [x] Promote the validated `develop` tree to `main`.
+  - [x] Push the content branch, `develop`, and `main`; verify remote hashes and
     inspect publication workflow status without claiming success prematurely.
+    Vercel deployed the `main` commit successfully. GitHub Actions did not
+    start Quality, CodeQL or Pages because GitHub reports an account billing
+    lock; this external Pages blocker is documented in `docs/TESTING-STATUS.md`.
 - [ ] #10 Correct the 3D camera scroll interaction across browser engines.
   - [x] Identify the regression introduced when the natural sticky camera track
     was replaced by full-section GSAP `pin: true`: reverse scrolling re-enters

@@ -300,3 +300,19 @@ Webpack static export including TypeScript, the complete five-project browser
 matrix (22 passed and 13 intentional skips), the dependency audit with zero
 vulnerabilities, and `git diff --check`. It is eligible for promotion to
 `main`; remote publication remains the final step.
+
+### Publication result
+
+The first publication checkpoint placed the active content branch at
+`af68eb1`, `develop` at `58ad46c`, and the promotion merge on `main` at
+`e20e17a`. Direct `ls-remote`
+verification matched all three local hashes. Vercel marked the `main` commit
+successful, and the public portfolio returned HTTP 200 with the newly selected
+project catalogue present.
+
+GitHub created Quality, CodeQL and Pages runs for `e20e17a`, but every job had
+zero executed steps. Their check annotations state that the jobs were not
+started because the GitHub account is locked due to a billing issue. This is
+an external account gate rather than a repository build failure: the same tree
+passed locally and deployed on Vercel. GitHub Pages remains unavailable until
+the account billing lock is cleared and the workflows are rerun.

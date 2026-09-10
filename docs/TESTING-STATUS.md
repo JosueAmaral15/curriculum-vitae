@@ -321,3 +321,14 @@ Evidence, screenshots, reproduction commands and the action plan:
 - `npm audit --audit-level=low` reported zero vulnerabilities and
   `git diff --check` passed. The local source curriculum PDF remains untracked
   and was not included in any commit.
+- The first remote checkpoint matched `content/selected-projects` at
+  `af68eb1`, `develop` at `58ad46c`, and the promoted `main` at `e20e17a`.
+  Vercel reported
+  `Deployment has completed` for `e20e17a`; the public domain returned HTTP 200
+  and exposed the new Ethnic AI Framework, Simplicity Protocols and AI Presence
+  Monitor entries.
+- GitHub Actions runs `34508679115` (Quality), `34508679032` (CodeQL), and
+  `34508679069` (Pages) failed before executing any step. Each check annotation
+  reports: `The job was not started because your account is locked due to a
+  billing issue.` Therefore GitHub Pages is externally blocked; this result is
+  not attributed to the repository code or the locally successful build.
