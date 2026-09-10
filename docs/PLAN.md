@@ -104,10 +104,11 @@ Use only a stock video whose page explicitly permits free reuse and has no visib
 
 The audit found a 64% responsive CSS crop on the then-current production
 deployment, plus local short-screen overlap and tablet framing defects. The
-corrective implementation replaces the overlapping composition with a sticky
-stage and dynamically fits the camera to every transformed source mesh.
-The isolated production export passed the responsive Firefox matrix and the
-cross-browser E2E suite. Follow the evidence in
+first corrective implementation used a separate sticky stage and fitted the
+camera to every transformed source mesh. A later user-approved scope
+correction restored the original overlay composition without restoring any
+crop or lateral offset. The isolated production export passed the responsive
+Firefox matrix and the cross-browser E2E suite. Follow the evidence in
 [the camera audit](audits/2026-09-09-camera/README.md) and its
 [corrective action plan](audits/2026-09-09-camera/PLANO-DE-ACAO.md).
 Vercel deployed commit `2086499`, and the public-domain audit passed in five
@@ -119,12 +120,23 @@ performance.
 
 The user clarified that the original desktop overlay was intentional: the 3D
 camera belongs behind the assembly copy and should not receive its own visual
-column or increased emphasis. The local correction restores the full-section
+column or increased emphasis. The published correction restores the full-section
 background canvas, centres the assembly, keeps all 28 parts, and fixes camera
 distance from the exploded state so the assembled object does not zoom toward
 the visitor. Short-height typography is compacted only enough to keep the
-pinned overlay inside the viewport. Validate before publication; the current
-Vercel deployment still reflects the preceding two-area composition.
+pinned overlay inside the viewport. Commit `68d56c8` was deployed by Vercel;
+the complete 11-case Firefox matrix then passed against the public URL.
+
+### Release branches and dependency maintenance — 2026-09-09
+
+Keep `develop` and `main` as long-lived branches. Integrate a validated work
+branch into `develop`, push it, then merge `develop` into production branch
+`main`. The September dependency release retained versions supported by the
+Next.js toolchain, promoted Next.js 16.3.3 and the compatible GSAP, Three.js,
+Vitest and transitive security updates, and produced a zero-vulnerability
+local `npm audit` result. ESLint 10, TypeScript 7 and jsdom 30 were excluded
+after peer/engine checks and an actual lint failure demonstrated that they were
+not compatible with the current toolchain and Node 22 target.
 
 ### General checks
 

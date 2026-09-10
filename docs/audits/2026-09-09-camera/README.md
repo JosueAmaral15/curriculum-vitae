@@ -4,15 +4,15 @@
 
 O usuário esclareceu que a composição original do desktop — câmera como fundo
 atrás do texto — estava correta. A separação posterior em duas áreas e o zoom
-da câmera montada ultrapassaram o escopo. A revisão local atual restaura o
+da câmera montada ultrapassaram o escopo. A revisão publicada restaura o
 canvas sobre toda a seção, mantém o texto em uma camada superior, centraliza o
 conjunto e fixa a distância calculada no maior estado desmontado. A nova matriz
 também mede os vértices contra a tela visível, não somente contra o canvas.
 
-Essa revisão local passou em 11 dimensões, quatro fases e 16 ângulos por fase no
-Firefox, sempre com 28 meshes e nenhum vértice fora da tela. A suíte E2E teve
-16 aprovações e 4 skips intencionais. O Vercel ainda representa a composição
-anterior até haver autorização explícita para commit e push.
+Essa revisão passou localmente e no Vercel em 11 dimensões, quatro fases e 16
+ângulos por fase no Firefox, sempre com 28 meshes e nenhum vértice fora da
+tela. A suíte E2E teve 16 aprovações e 4 skips intencionais. O Vercel implantou
+o merge de produção `68d56c8`.
 
 ## Atualização corretiva
 
@@ -33,9 +33,11 @@ do domínio público passou em desktop, telefone, telefone baixo em português,
 sobreposição e 16 ângulos aprovados por fase. A seção **Conclusão** abaixo
 preserva o diagnóstico da produção anterior ao conserto.
 
-## Conclusão
+## Conclusão histórica da primeira reprodução
 
-**O site publicado ainda esconde a parte superior da câmera por CSS.** Em uma
+**Este defeito pertencia à implantação anterior e não está presente na versão
+`68d56c8`.** Na primeira reprodução, o site publicado escondia a parte superior
+da câmera por CSS. Em uma
 sessão nova do Firefox, a página do Vercel aplicou ao canvas
 `clip-path: inset(64% 0 0)`. Isso recorta os 64% superiores da imagem já
 renderizada. Em uma janela de 390 × 844 pixels CSS, são aproximadamente
@@ -98,10 +100,10 @@ essa regra. Reproduzimos o recorte em 680 × 900 e não o encontramos em
 | Verificação | Evidência | Consequência |
 | --- | --- | --- |
 | GLB íntegro | Local e Vercel: 1.422.588 bytes, 28 meshes, mesmo SHA-256 | Não houve remoção de geometria do arquivo |
-| Recorte na produção | CSS calculado no Firefox: `inset(64% 0px 0px)` em 390px e 680px | A parte superior é escondida mesmo quando renderiza corretamente |
+| Recorte na produção anterior | CSS calculado no Firefox: `inset(64% 0px 0px)` em 390px e 680px | Explicou a parte superior escondida na implantação substituída |
 | Deslocamento em produção | Posição X do modelo ≈ 0,899 em 390px; vértices fora da borda direita | Remover apenas o recorte não garante enquadramento completo |
 | Produção larga | Firefox 1440 × 900: `clip-path: none`; sem vértices fora da imagem nos quatro instantes amostrados | A janela larga não reproduziu o mesmo corte |
-| Local em 390 × 844 | Firefox e Chromium: `clip-path: none`; 28 meshes, sem vértices fora do canvas nos quatro instantes | As alterações locais melhoraram esse caso, mas não estão no Vercel |
+| Versão corretiva em 390 × 844 | Firefox e Chromium: `clip-path: none`; 28 meshes, sem vértices fora do canvas nos quatro instantes | O resultado foi posteriormente publicado no Vercel |
 | Local em 390 × 650, PT | Firefox: seção/canvas chegam a ≈699px numa janela de 650px; sobreposição visível com texto/crédito | Fixar a altura em 43% não reserva uma área exclusiva em todas as telas |
 | Local em 834 × 1194 | Firefox: 7 meshes com vértices fora do canvas no primeiro instante e 6 no retorno | O tablet continua precisando de enquadramento adequado |
 | Local em 1440 × 900 | No retry do Chromium, `housing003_9` teve vértices fora do canvas em dois instantes | Um ângulo aprovado no desktop não garante a rotação completa |

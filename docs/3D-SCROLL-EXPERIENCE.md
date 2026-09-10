@@ -129,11 +129,11 @@ remains open.
 
 Scope clarification (2026-09-09): the user confirmed that the camera is meant
 to remain a restrained background layer behind the section copy, as in the
-original desktop composition. The local follow-up restores the full-section
+original desktop composition. The follow-up restores the full-section
 overlay, centres the sourced assembly and fixes camera distance from the
 largest exploded bound. It does not use the later two-column/sticky-stage
-composition or zoom in as the camera assembles. Publication of this follow-up
-is pending explicit commit/push authorization.
+composition or zoom in as the camera assembles. Vercel deployed commit
+`68d56c8`; its full 11-case Firefox production audit passed.
 
 - A recognisable sourced object, never primitive stand-ins, appears in the
   3D section.
