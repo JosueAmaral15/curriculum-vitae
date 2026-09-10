@@ -17,7 +17,7 @@
     record the result in `docs/TESTING-STATUS.md`.
   - [x] Resolve short Portuguese and tablet clipping with a centred background
     overlay, compact short-height copy and mesh-bound framing.
-- [ ] #6 Add a licensed, externally sourced scroll-controlled 3D assembly experience.
+- [x] #6 Add a licensed, externally sourced scroll-controlled 3D assembly experience.
   - The camera is a CC BY 4.0 asset by ArtOfSylr, with public attribution,
     source and checksums recorded in `docs/assets.md`.
   - The release criteria and implementation evidence are in
@@ -33,8 +33,9 @@
     remains under task #7.
   - [x] Restore the intended overlay composition locally: centred camera behind
     readable copy, fixed exploded-state framing, all 28 parts preserved.
-  - [ ] Commit, publish and re-audit the restored overlay on Vercel after
-    explicit authorization. The public site still uses the preceding layout.
+  - [x] Commit, publish and re-audit the restored overlay on Vercel. Commit
+    `68d56c8` reached production and all 11 Firefox matrix cases passed against
+    the public URL with all 28 meshes present.
 - [x] #5 Prepare dual static publication for Vercel and GitHub Pages, including social metadata and responsive release checks.
   - Static export, Pages workflow, Vercel headers, social metadata and release checks are recorded in `docs/DEPLOYMENT.md` and `docs/TESTING-STATUS.md`.
 - [x] #4 Add a licensed local programming video, English-default Portuguese i18n, and high-end scroll motion.
@@ -43,6 +44,10 @@
 - [x] #2 Implement the recruiter-focused portfolio UI using the supplied curriculum as the source of truth.
 - [x] #3 Add automated validation, security records and deployment/rollback documentation.
   - `npm run lint`, `npm run test`, `npm run build` and `npm run test:e2e` pass locally; evidence is in `docs/TESTING-STATUS.md`.
+- [x] #8 Integrate the compatible dependency updates through a work branch,
+  `develop`, and `main`, retaining both long-lived branches. `npm audit`
+  reports zero vulnerabilities locally; unsupported ESLint 10, TypeScript 7
+  and jsdom 30 upgrades were not promoted.
 
 ## Done
 
@@ -52,8 +57,8 @@
 - [x] Add email, LinkedIn and WhatsApp as primary contact paths, including an accessible floating WhatsApp action.
 - [x] Extract the public links from the current three-page professional curriculum PDF and define the public destination set.
 - [x] Integrate the licensed camera asset and reduced-motion fallback.
-  The restored overlay is locally validated; renewed public acceptance remains
-  open under #6 and physical performance remains open under #7.
+  The restored overlay is validated locally and on Vercel; only physical
+  performance remains open under #7.
 
 ## Deferred
 
