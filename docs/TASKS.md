@@ -2,6 +2,17 @@
 
 ## In progress
 
+- [x] #12 Present Vita Ethos as a responsible long-term entrepreneurial
+  direction in the public portfolio.
+  - [x] Add a dedicated English/Portuguese section after selected projects,
+    without changing the external CNPq Lattes curriculum.
+  - [x] Describe the initiative as being in concept development and validation;
+    do not present forecasts, customers, funding, medical diagnoses, or future
+    impact as achieved results.
+  - [x] Preserve health professionals at the centre of care and require a
+    focused MVP plus real-world evidence before public impact claims.
+  - [x] Validate the content with lint, unit tests, a static production build,
+    cross-browser smoke coverage, mobile Firefox rerun, and visual inspection.
 - [x] #11 Integrate every surviving non-main branch through `develop`, promote
   the validated result to `main`, and publish both long-lived branches.
   - [x] Fetch and prune remote refs; classify the active content branch, the
@@ -102,6 +113,9 @@
 
 ## Done
 
+- [x] Add the bilingual Vita Ethos entrepreneurial-vision section without
+  exposing financial projections or presenting the concept as a validated
+  operating company.
 - [x] Read the supplied professional curriculum PDF.
 - [x] Inspect the complete legacy source and Git history.
 - [x] Define the architecture and execution plan in `docs/PLAN.md`.

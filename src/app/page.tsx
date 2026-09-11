@@ -111,8 +111,27 @@ export default function Home() {
         })}</div>
       </section>
 
+      <section className={`${styles.section} ${styles.ventureSection}`} id="visao" aria-labelledby="venture-title">
+        <div className={styles.ventureGlow} aria-hidden="true" />
+        <div className={styles.ventureLayout}>
+          <ScrollReveal className={styles.ventureCopy}>
+            <Eyebrow>06 / {text.venture.eyebrow}</Eyebrow>
+            <h2 id="venture-title">{text.venture.title}</h2>
+            <p className={styles.ventureDescription}>{text.venture.description}</p>
+          </ScrollReveal>
+          <ScrollReveal delay={120}>
+            <aside className={styles.ventureCard} aria-label={text.venture.name}>
+              <span className={styles.ventureStageLabel}>{text.venture.stageLabel}</span>
+              <h3>{text.venture.name}</h3>
+              <p className={styles.ventureStage}>{text.venture.stage}</p>
+              <ul>{text.venture.principles.map((principle) => <li key={principle}>{principle}</li>)}</ul>
+            </aside>
+          </ScrollReveal>
+        </div>
+      </section>
+
       <section className={`${styles.section} ${styles.detailsSection}`} aria-label="Education and technologies"><ScrollReveal className={styles.details}>
-        <div><Eyebrow>06 / {text.education}</Eyebrow>{text.educationItems.map((item) => <p key={item}>{item}</p>)}</div>
+        <div><Eyebrow>07 / {text.education}</Eyebrow>{text.educationItems.map((item) => <p key={item}>{item}</p>)}</div>
         <div><Eyebrow>{text.stack}</Eyebrow><ul className={styles.stack}>{portfolio.stack.map((item) => <li key={item}>{item}</li>)}</ul></div>
       </ScrollReveal></section>
 
