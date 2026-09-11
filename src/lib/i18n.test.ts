@@ -10,6 +10,9 @@ describe("portfolio translations", () => {
     expect(copy.en.projectItems).toHaveLength(15);
     expect(copy.en.assembly.title).toBeTruthy();
     expect(copy["pt-BR"].assembly.title).toBeTruthy();
+    expect(copy.en.venture.name).toBe("Vita Ethos");
+    expect(copy["pt-BR"].venture.stage).toContain("validação");
+    expect(copy.en.venture.principles).toHaveLength(copy["pt-BR"].venture.principles.length);
     expect(copy.en.experiences[0]?.title).toBe("Artificial Intelligence Engineer");
     expect(copy["pt-BR"].experiences[0]?.company).toContain("MindSIM");
     expect(copy.en.resumeEnglish).toBeTruthy();
