@@ -88,6 +88,29 @@ Use only a stock video whose page explicitly permits free reuse and has no visib
 - Execute the viewport and reduced-motion checks in
   `docs/MOBILE-MOTION-PLAN.md` before declaring mobile animation complete.
 
+## Enhancement phase — Responsible entrepreneurial direction
+
+### Scope
+
+1. Add a bilingual section that presents Vita Ethos as Josué Amaral's
+   long-term direction at the intersection of technology, health and
+   well-being.
+2. State the present maturity accurately: concept development and validation,
+   not a validated company, clinical product, or demonstrated business result.
+3. Connect the direction to responsible software and AI while explicitly
+   excluding diagnosis and preserving health professionals at the centre of
+   care.
+4. Keep business-plan financial projections, fundraising targets, private
+   implementation details and unsupported impact claims outside the portfolio.
+
+### Validation
+
+- Verify English and Portuguese render the same meaning and maturity status.
+- Verify the section remains readable at desktop, mobile and tablet widths.
+- Verify reduced-motion users retain the complete static content.
+- Run lint, unit tests, the static production build and cross-browser smoke
+  coverage before promotion.
+
 ## Risks and mitigations
 
 | Risk | Mitigation |
