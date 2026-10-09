@@ -1,5 +1,38 @@
 # Decisions
 
+## 2026-10-07 — Fiverr catalog and launch scope
+
+**Decision:** preserve the complete 20-service inventory in documentation, but
+publish no more than four coherent launch Gigs until the authenticated account's
+actual allowance is known. Treat related services as bounded package scopes,
+custom offers or later expansion rather than presenting one vague “full-stack”
+Gig.
+
+**Why:** Fiverr currently allows a New freelancer at most four Gigs and locks a
+Gig's category after publication. Focused offers make scope, delivery,
+revisions, price and buyer requirements understandable while reducing dispute
+and schedule risk.
+
+**Compliance boundary:** permitted automation and data work must respect the
+target platform's terms and the buyer's authorization. The catalog excludes
+private/personal-data harvesting, access-control bypass, fake engagement,
+malware, deceptive AI, unsupported guarantees and off-platform payment.
+
+**Publication control:** documentation and saved drafts are reversible. Pressing
+**Publish Gig** is a separate external action and requires a final review and
+explicit approval after the exact rendered listing is shown.
+
+**Observed exception (2026-10-09):** Fiverr advanced the Python automation Gig
+from its gallery workflow directly to `ACTIVE` without showing the separate
+`Publish Gig` control seen for the first service. The event is recorded as an
+unintended publication; later Gigs must stop at the earliest verified saved
+draft state, and any pause, edit or further publication still requires an
+explicit account-holder decision.
+
+**Account-holder decision (2026-10-09):** keep the Python automation Gig active.
+This accepts its current public state but does not authorize publishing the
+three remaining drafts or changing their public visibility.
+
 ## 2026-08-14 — Academic information
 
 **Decision:** describe the master's degree only as "Mestrado em Computação, foco em IA aplicada à Saúde · não concluído".

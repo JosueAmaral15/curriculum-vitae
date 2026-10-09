@@ -121,6 +121,41 @@ Use only a stock video whose page explicitly permits free reuse and has no visib
 | Regression after deployment | Vercel creates immutable deployments; revert the offending Git commit and redeploy. |
 | Heavy or inaccessible 3D interaction | Keep the 3D assembly optional, client-only, viewport-paused, and reduced-motion safe; retain the CAD/SVG fallback. |
 
+## Fiverr service-publication phase — 2026-10-07
+
+### Objective
+
+Publish small, fixed-scope software services without turning the professional
+portfolio into a generic list of unsupported claims. The canonical offer text,
+prices, requirements, exclusions, compliance boundaries and publication state
+are recorded in [`FIVERR-SERVICES.md`](FIVERR-SERVICES.md).
+
+### Sequence
+
+1. Verify Fiverr's current platform rules and inspect the authenticated account.
+2. Preserve all 20 candidate services in the repository, but respect the
+   account's actual Gig allowance.
+3. Launch four coherent offers first: Python backend repair, Python automation,
+   API/webhook/AI integration, and Docker/Git/deployment repair.
+4. Create original gallery images and check every field against the documented
+   source before submission.
+5. Require explicit approval immediately before each public submission, record
+   review/public status honestly, and only then promote the audit trail through
+   `develop` to `main`.
+
+### Acceptance criteria
+
+- Every published claim can be traced to the professional profile or the
+  explicitly approved service inventory.
+- Titles, packages, descriptions, requirements, FAQs and gallery assets comply
+  with the current category fields and Fiverr rules.
+- No Gig offers unauthorized access, personal-data scraping, prohibited
+  automation, fake engagement, deceptive AI output or off-platform payment.
+- The repository distinguishes documented draft, saved Fiverr draft, submitted
+  for review and publicly visible states.
+- Remote `develop` and `main` contain the final publication register and point
+  to the verified local commits.
+
 ## Validation checkpoints
 
 ### Camera audit and corrective phase — 2026-09-09
