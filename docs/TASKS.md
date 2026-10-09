@@ -2,7 +2,7 @@
 
 ## In progress
 
-- [ ] #13 Prepare and publish a truthful, fixed-scope Fiverr service catalog.
+- [x] #13 Prepare and publish a truthful, fixed-scope Fiverr service catalog.
   - [x] Record all 20 proposed software services, pricing ranges and delivery
     targets in `docs/FIVERR-SERVICES.md`.
   - [x] Review current official Fiverr Gig limits, required fields, earnings,
@@ -11,8 +11,8 @@
     freelancer limit, while preserving the remaining offers as packages,
     custom offers or future expansion Gigs.
   - [x] Inspect the authenticated Fiverr account and record that it is a New
-    seller profile with a four-Gig launch plan and one active public service as
-    of 2026-10-09.
+    seller profile with a four-Gig launch plan and four active public services
+    as of 2026-10-09.
   - [x] Complete the Fiverr human-verification challenges encountered while
     creating the four launch services; every challenge was completed by the
     account holder.
@@ -24,8 +24,9 @@
     rendered drafts with the Markdown source.
     - [x] Create the Python backend repair service with its three packages,
       description, three FAQs, five required buyer questions and original
-      gallery image. On 2026-10-09 Fiverr displayed the final `Publish Gig`
-      action; it has not been pressed.
+      gallery image. Following the account holder's explicit approval on
+      2026-10-09, it was published and verified at
+      `https://www.fiverr.com/s/L337QAQ`.
     - [x] Create the Python automation service with the documented packages,
       description, FAQs, buyer questions and gallery image. Fiverr unexpectedly
       changed it to `ACTIVE` when the gallery workflow advanced; it is public at
@@ -33,14 +34,16 @@
       to keep this Gig active on 2026-10-09.
     - [x] Create the API, webhook and AI integration service with its three
       packages, description, two FAQs, five buyer questions and original gallery
-      image. It is saved as a draft at the final `Publish Gig` step; that action
-      has not been pressed.
+      image. Following the account holder's explicit approval on 2026-10-09,
+      it was published and verified at `https://www.fiverr.com/s/3AA26jB`.
     - [x] Create the Docker, Git and deployment repair service with three
       packages, live DevOps metadata, description, two FAQs, five buyer
-      questions and original gallery image. It is saved as a draft at the final
-      `Publish Gig` step; that action has not been pressed.
-  - [ ] Obtain explicit approval immediately before each public Gig submission;
-    record submitted, review and public states separately.
+      questions and original gallery image. Following the account holder's
+      explicit approval on 2026-10-09, it was published and verified at
+      `https://www.fiverr.com/s/vbbze4q`.
+  - [x] Obtain explicit approval immediately before each public Gig submission;
+    record submitted, review and public states separately. The final Fiverr
+    panel displayed `ACTIVE 4` after the three authorized submissions.
   - [x] Validate the documentation diff, commit through `develop`, promote it
     to `main`, push both long-lived branches and verify the remote hashes.
 - [x] #12 Present Vita Ethos as a responsible long-term entrepreneurial

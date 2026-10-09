@@ -1,7 +1,7 @@
 # Fiverr Service Catalog and Launch Plan
 
-Status: one active service and three unpublished drafts; see the publication register below.
-Last reviewed: 2026-10-07
+Status: four active public services; see the publication register below.
+Last reviewed: 2026-10-09
 
 ## Purpose
 
@@ -396,8 +396,8 @@ The four images were generated with OpenAI image generation on 2026-10-07,
 cropped to Fiverr's recommended 1280 × 769 size, stripped of metadata and
 visually inspected. They share an original navy, blue and copper engineering
 language and contain only the documented headline. Provenance and hashes are
-recorded in `docs/assets.md`. Their presence in the repository does not mean
-they have been uploaded to Fiverr.
+recorded in `docs/assets.md`. All four were uploaded to their corresponding
+active Fiverr listings by 2026-10-09.
 
 ## Publication workflow
 
@@ -423,10 +423,10 @@ they have been uploaded to Fiverr.
 
 | Gig | Fiverr URL | Local state | Fiverr state | Last checked |
 | --- | --- | --- | --- | --- |
-| Python backend repair | Private edit URL (not published) | Entered and checked against this source | Ready for the explicit `Publish Gig` action; not published | 2026-10-09 |
+| Python backend repair | <https://www.fiverr.com/s/L337QAQ> | Entered and checked against this source | `ACTIVE` and public after the account holder's explicit publication approval | 2026-10-09 |
 | Python automation | <https://www.fiverr.com/s/NeeEjrV> | Entered and checked against this source | `ACTIVE` and public; the account holder explicitly chose to keep it active after reviewing the unexpected publication | 2026-10-09 |
-| API, webhook and AI integration | Private edit URL (not published) | Entered and checked against this source | Saved at the final `Publish Gig` step; not published | 2026-10-09 |
-| Docker, Git and deployment repair | Private edit URL (not published) | Entered and checked against this source | Saved at the final `Publish Gig` step; not published | 2026-10-09 |
+| API, webhook and AI integration | <https://www.fiverr.com/s/3AA26jB> | Entered and checked against this source | `ACTIVE` and public after the account holder's explicit publication approval | 2026-10-09 |
+| Docker, Git and deployment repair | <https://www.fiverr.com/s/vbbze4q> | Entered and checked against this source | `ACTIVE` and public after the account holder's explicit publication approval | 2026-10-09 |
 
 The first service was created through Fiverr's authenticated editor with the
 live category path **Programming & Tech → Software Development → Bug Fixes**,
@@ -434,8 +434,9 @@ Python as the programming language, the documented five search tags and the
 four live backend-framework selections (Django, FastAPI, Flask and Django REST
 framework). Fiverr then stated that the service is not visible to clients until
 the account completes identity verification and the applicable tax onboarding.
-On 2026-10-09 the same private draft instead displayed the final `Publish Gig`
-button, but no public submission was performed.
+On 2026-10-09 the same private draft displayed the final `Publish Gig` button.
+After reviewing it, the account holder explicitly approved publication; Fiverr
+confirmed the service as open for business at the public URL above.
 
 After the account holder completed Fiverr's human challenge, the Python
 automation service was entered using the live category path **Programming &
@@ -449,10 +450,11 @@ chose to keep the service active on 2026-10-09.
 The API, webhook and AI integration service was then entered using **Programming
 & Tech → Software Development → API & Integrations**, Python as the programming
 language, the documented tags, packages, description, FAQs, buyer requirements
-and original gallery image. It was saved at the final `Publish Gig` step and
-left unpublished. The panel then showed `ACTIVE 1` and `DRAFT 2`. Starting the
-fourth service opened a new human-verification challenge, which the account
-holder completed.
+and original gallery image. It was initially saved at the final `Publish Gig`
+step. After the account holder explicitly approved publication on 2026-10-09,
+Fiverr confirmed the service as open for business at the public URL above.
+Starting the fourth service had opened a new human-verification challenge,
+which the account holder completed.
 
 The Docker, Git and deployment repair service was then entered using the live
 category path **Programming & Tech → DevOps Engineering → DevOps
@@ -460,8 +462,14 @@ Containerization**. Its metadata was limited to tools and environments grounded
 in the portfolio: Docker, npm, the `Other` provider suggestion `Vercel GitHub
 Pages`, Bash, JavaScript, Python, Debugging, Development and Configuration. Its
 packages, description, FAQs, five buyer requirements and original image were
-saved at the final `Publish Gig` step and left unpublished. The Gig-management
-panel subsequently showed `ACTIVE 1` and `DRAFT 3`.
+initially saved at the final `Publish Gig` step. After the account holder
+explicitly approved publication on 2026-10-09, Fiverr confirmed the service as
+open for business at the public URL above.
+
+The three final authorized submissions were completed in the order Docker/Git/
+deployment repair, API/webhook/AI integration, and Python backend repair. Each
+publication page displayed `Your Gig is open for business!`; the final
+Gig-management panel displayed `ACTIVE 4`.
 
 ## Commercial safeguards
 

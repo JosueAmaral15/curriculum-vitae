@@ -33,6 +33,12 @@ explicit account-holder decision.
 This accepts its current public state but does not authorize publishing the
 three remaining drafts or changing their public visibility.
 
+**Subsequent account-holder decision (2026-10-09):** after reviewing the three
+remaining launch Gigs at their final publication step, the account holder
+explicitly authorized publishing the Python backend repair, API/webhook/AI
+integration, and Docker/Git/deployment repair Gigs. Fiverr confirmed each as
+open for business, and the final management panel displayed `ACTIVE 4`.
+
 ## 2026-08-14 — Academic information
 
 **Decision:** describe the master's degree only as "Mestrado em Computação, foco em IA aplicada à Saúde · não concluído".
