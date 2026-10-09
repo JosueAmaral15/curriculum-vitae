@@ -2,6 +2,47 @@
 
 ## In progress
 
+- [ ] #13 Prepare and publish a truthful, fixed-scope Fiverr service catalog.
+  - [x] Record all 20 proposed software services, pricing ranges and delivery
+    targets in `docs/FIVERR-SERVICES.md`.
+  - [x] Review current official Fiverr Gig limits, required fields, earnings,
+    media rules and prohibited-service boundaries.
+  - [x] Consolidate the launch into four coherent Gigs for a possible New
+    freelancer limit, while preserving the remaining offers as packages,
+    custom offers or future expansion Gigs.
+  - [x] Inspect the authenticated Fiverr account and record that it is a New
+    seller profile with a four-Gig launch plan and one active public service as
+    of 2026-10-09.
+  - [x] Complete the Fiverr human-verification challenges encountered while
+    creating the four launch services; every challenge was completed by the
+    account holder.
+  - [x] Confirm live category paths and category-specific pricing fields before
+    copying any draft into Fiverr.
+  - [x] Create and review one original 1280 × 769 gallery image for each launch
+    Gig, without contact data, unlicensed logos or misleading badges.
+  - [x] Enter the approved text and packages in Fiverr, then compare the
+    rendered drafts with the Markdown source.
+    - [x] Create the Python backend repair service with its three packages,
+      description, three FAQs, five required buyer questions and original
+      gallery image. On 2026-10-09 Fiverr displayed the final `Publish Gig`
+      action; it has not been pressed.
+    - [x] Create the Python automation service with the documented packages,
+      description, FAQs, buyer questions and gallery image. Fiverr unexpectedly
+      changed it to `ACTIVE` when the gallery workflow advanced; it is public at
+      `https://www.fiverr.com/s/NeeEjrV`. The account holder explicitly chose
+      to keep this Gig active on 2026-10-09.
+    - [x] Create the API, webhook and AI integration service with its three
+      packages, description, two FAQs, five buyer questions and original gallery
+      image. It is saved as a draft at the final `Publish Gig` step; that action
+      has not been pressed.
+    - [x] Create the Docker, Git and deployment repair service with three
+      packages, live DevOps metadata, description, two FAQs, five buyer
+      questions and original gallery image. It is saved as a draft at the final
+      `Publish Gig` step; that action has not been pressed.
+  - [ ] Obtain explicit approval immediately before each public Gig submission;
+    record submitted, review and public states separately.
+  - [ ] Validate the documentation diff, commit through `develop`, promote it
+    to `main`, push both long-lived branches and verify the remote hashes.
 - [x] #12 Present Vita Ethos as a responsible long-term entrepreneurial
   direction in the public portfolio.
   - [x] Add a dedicated English/Portuguese section after selected projects,
@@ -127,5 +168,8 @@
 
 ## Deferred
 
+- [ ] Add expansion Fiverr Gigs for React/Next.js repair, compliant public-data
+  extraction, code review, small dashboards and MVP discovery when the account
+  allowance and completed-order evidence justify them.
 - [ ] Add case-study pages once project-specific evidence and screenshots are selected.
 - [ ] Connect a custom domain after selecting and purchasing one.
