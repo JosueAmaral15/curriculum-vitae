@@ -41,7 +41,7 @@
       `Publish Gig` step; that action has not been pressed.
   - [ ] Obtain explicit approval immediately before each public Gig submission;
     record submitted, review and public states separately.
-  - [ ] Validate the documentation diff, commit through `develop`, promote it
+  - [x] Validate the documentation diff, commit through `develop`, promote it
     to `main`, push both long-lived branches and verify the remote hashes.
 - [x] #12 Present Vita Ethos as a responsible long-term entrepreneurial
   direction in the public portfolio.
