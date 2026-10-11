@@ -8,14 +8,24 @@
     vulnerabilities (1 moderate, 10 high and 1 critical), including advisories
     affecting Next.js 16.3.3 and several development or static-serving
     transitive dependencies.
-  - [ ] Review the applicable Next.js 16.4 migration/release documentation and
-    classify direct, transitive, development-only and production-relevant
-    exposure before editing dependency constraints.
-  - [ ] Apply targeted compatible upgrades on an isolated work branch; do not
+  - [x] Review the applicable Next.js 16 release documentation and classify
+    direct, transitive, development-only and production-relevant exposure
+    before editing dependency constraints.
+  - [x] Apply targeted compatible upgrades on an isolated work branch; do not
     use `npm audit fix --force`, which currently proposes breaking or regressive
-    dependency changes.
-  - [ ] Validate a clean install, audit, lint, unit tests, static production
-    build and the complete six-project Playwright matrix.
+    dependency changes. Next.js and its ESLint configuration now use 16.3.8;
+    affected compatible transitive packages were refreshed and the validation
+    tool versions formerly declared as `latest` were pinned exactly.
+  - [x] Validate a clean install, production audit, lint, unit tests, static
+    production build and the complete six-project Playwright matrix. Production
+    dependencies report zero vulnerabilities; lint passed, all 5 unit tests
+    passed, the static build passed and Playwright passed 26 checks with 16
+    intentional project-specific skips.
+  - [ ] Monitor the upstream `braces` advisory used only through the
+    `eslint-config-next` development chain and update when a compatible release
+    exists. The full audit currently reports five high-severity dependency-path
+    findings; `npm audit fix --force` would regress `eslint-config-next` to
+    14.2.35 and is not accepted.
   - [ ] Integrate the validated result through `develop` and `main`, push both
     long-lived branches and verify their remote hashes.
 - [x] #13 Prepare and publish a truthful, fixed-scope Fiverr service catalog.
@@ -190,6 +200,9 @@
 
 ## Deferred
 
+- [ ] Resolve the GitHub account billing lock and rerun the hosted Quality,
+  CodeQL and Pages workflows. The repository workflows are configured, but the
+  current runs execute zero steps while the account-level lock remains active.
 - [ ] Add expansion Fiverr Gigs for React/Next.js repair, compliant public-data
   extraction, code review, small dashboards and MVP discovery when the account
   allowance and completed-order evidence justify them.
