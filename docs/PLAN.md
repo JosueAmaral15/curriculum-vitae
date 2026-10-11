@@ -214,6 +214,24 @@ announced `ubuntu-latest` migration to Ubuntu 26 changing the Playwright WebKit,
 CodeQL or Pages environment before the billing-locked workflows can be run
 again.
 
+### Reviewed dependency result
+
+The isolated dependency branch upgrades Next.js and `eslint-config-next` from
+16.3.3 to the compatible patched 16.3.8 release. It also refreshes the affected
+`sharp`, `source-map-js`, `brace-expansion` and `fast-uri` resolutions, overrides
+the local static server's `compression` dependency to 1.8.2, and replaces
+unbounded `latest` declarations for validation tools with the exact versions
+used by the accepted test matrix.
+
+`npm audit --omit=dev --audit-level=low` now reports zero vulnerabilities. The
+complete audit retains five high-severity dependency-path findings for
+`braces@3.0.3`, reached only through the development lint chain
+`eslint-config-next` → `@next/eslint-plugin-next` → `fast-glob` → `micromatch`.
+The advisory currently marks every `braces` version as affected, and npm's only
+automatic proposal downgrades `eslint-config-next` to 14.2.35. That incompatible
+forced downgrade is rejected; the upstream development-only advisory remains a
+documented monitoring item rather than weakening the Next.js 16 toolchain.
+
 ## Validation checkpoints
 
 ### Camera audit and corrective phase — 2026-09-09

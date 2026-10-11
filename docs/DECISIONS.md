@@ -1,5 +1,24 @@
 # Decisions
 
+## 2026-10-11 — Dependency security without a forced framework regression
+
+**Decision:** update Next.js and `eslint-config-next` together to 16.3.8, pin
+the formerly unbounded validation-tool versions, apply only compatible
+transitive remediations, and use a narrow `compression` override for the local
+static server. Do not run `npm audit fix --force`.
+
+**Why:** the reviewed set eliminates every production-dependency advisory and
+passes the clean install, lint, unit, static-build and six-project browser
+matrix. The five remaining full-audit findings are the same upstream `braces`
+advisory reached solely through Next.js's lint tooling. npm's proposed “fix”
+would downgrade the matching Next.js ESLint configuration from 16.3.8 to
+14.2.35, creating a framework/toolchain mismatch without removing a deployed
+runtime exposure.
+
+**Follow-up:** monitor the advisory and the compatible Next.js lint dependency
+chain. Replace the affected resolution when upstream publishes a compatible
+fix, then repeat the complete validation and full audit.
+
 ## 2026-10-11 — Website translation and localization positioning
 
 **Decision:** offer technical website translation and localization for any
