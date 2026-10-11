@@ -330,6 +330,23 @@ Evidence, screenshots, reproduction commands and the action plan:
   breaking or regressive changes, so remediation is tracked separately under
   task #15 rather than being applied unreviewed in this test-matrix change.
 
+### First remote publication checkpoint
+
+- `develop=f5c8e36` and `main=6da5aac` were pushed and verified against their
+  remote heads. `develop` is an ancestor of the promoted `main` merge.
+- GitHub Actions runs
+  [Quality 38172644289](https://github.com/JosueAmaral15/curriculum-vitae/actions/runs/38172644289),
+  [CodeQL 38172644290](https://github.com/JosueAmaral15/curriculum-vitae/actions/runs/38172644290)
+  and
+  [Pages 38172644293](https://github.com/JosueAmaral15/curriculum-vitae/actions/runs/38172644293)
+  failed before executing any step. Each job annotation states that the account
+  is locked due to a billing issue; this is an external non-pass, not hosted
+  validation evidence or a repository-code failure.
+- The same annotations warned that `ubuntu-latest` will begin migrating to
+  Ubuntu 26 on 2026-10-19. Quality, CodeQL and Pages are now pinned to
+  `ubuntu-24.04` so WebKit and the static-build environment cannot change
+  silently when hosted execution becomes available again.
+
 ## 2026-09-10 — Full non-main branch integration through develop
 
 - `git fetch --prune` removed eight stale remote-tracking Dependabot refs that

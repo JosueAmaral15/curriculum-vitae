@@ -209,6 +209,11 @@ This requires a separate, evidence-driven dependency change:
 5. Promote only the validated dependency set through `develop` and `main`, and
    record any advisory that remains blocked upstream.
 
+The GitHub-hosted workflows are pinned to `ubuntu-24.04`. This avoids the
+announced `ubuntu-latest` migration to Ubuntu 26 changing the Playwright WebKit,
+CodeQL or Pages environment before the billing-locked workflows can be run
+again.
+
 ## Validation checkpoints
 
 ### Camera audit and corrective phase — 2026-09-09
