@@ -295,6 +295,41 @@ Evidence, screenshots, reproduction commands and the action plan:
   under `/tmp`; the accepted run served only
   `.next-validation-cross-browser-webpack` from the isolated Webpack build.
 
+## 2026-10-11 — Playwright WebKit expansion
+
+- The current Next.js Playwright guide was reviewed before changing the test
+  matrix. Desktop WebKit now uses Playwright's `Desktop Safari` device profile,
+  and the existing upward-scroll regression explicitly covers Chromium,
+  Firefox and WebKit.
+- The quality workflow now installs Chromium, Firefox and WebKit with their CI
+  dependencies. No downloaded browser or workstation library is committed.
+- Linux Mint is not an officially supported host for this Playwright WebKit
+  build. Playwright downloaded its Ubuntu 22.04 fallback; the local run used
+  the missing runtime libraries from the official Ubuntu Jammy packages in the
+  isolated Playwright user cache because no authenticated `sudo` session was
+  available. CI remains responsible for installing its own dependencies with
+  `npx playwright install --with-deps chromium firefox webkit`.
+- The first launch attempts were not counted: WebKit initially reported missing
+  libraries. After the browser could start, the first functional run passed
+  three applicable checks and timed out only at the final Portuguese assertion;
+  its captured page already contained the correct translated heading. The
+  cross-engine language test therefore received a 60-second budget for the
+  slower software-rendered fallback.
+- The accepted focused WebKit run passed all four applicable checks with three
+  intentional project-specific skips. Its camera regression crossed the full
+  sticky interval upward with only decreasing `scrollY` samples and no
+  `.pin-spacer`.
+- The complete six-project production-artifact matrix passed 26 checks with 16
+  intentional skips across desktop Chromium, desktop Firefox, desktop WebKit,
+  mobile Chromium, mobile Firefox and tablet Chromium.
+- `npm run lint`, all 5 Vitest tests and the Next.js 16.3.3 static production
+  build passed. Playwright WebKit evidence must not be presented as a physical
+  Safari test on macOS or iOS.
+- `npm audit --audit-level=low` did not pass: it reported 12 vulnerabilities
+  (1 moderate, 10 high and 1 critical). Automated force-fix suggestions include
+  breaking or regressive changes, so remediation is tracked separately under
+  task #15 rather than being applied unreviewed in this test-matrix change.
+
 ## 2026-09-10 — Full non-main branch integration through develop
 
 - `git fetch --prune` removed eight stale remote-tracking Dependabot refs that

@@ -2,9 +2,26 @@
 
 ## In progress
 
+- [ ] #15 Remediate the dependency advisories reported on 2026-10-11 without
+  accepting automated breaking downgrades.
+  - [x] Run `npm audit --audit-level=low` and record the current result: 12
+    vulnerabilities (1 moderate, 10 high and 1 critical), including advisories
+    affecting Next.js 16.3.3 and several development or static-serving
+    transitive dependencies.
+  - [ ] Review the applicable Next.js 16.4 migration/release documentation and
+    classify direct, transitive, development-only and production-relevant
+    exposure before editing dependency constraints.
+  - [ ] Apply targeted compatible upgrades on an isolated work branch; do not
+    use `npm audit fix --force`, which currently proposes breaking or regressive
+    dependency changes.
+  - [ ] Validate a clean install, audit, lint, unit tests, static production
+    build and the complete six-project Playwright matrix.
+  - [ ] Integrate the validated result through `develop` and `main`, push both
+    long-lived branches and verify their remote hashes.
 - [x] #13 Prepare and publish a truthful, fixed-scope Fiverr service catalog.
-  - [x] Record all 20 proposed software services, pricing ranges and delivery
-    targets in `docs/FIVERR-SERVICES.md`.
+  - [x] Record the original 20 proposed software services, pricing ranges and
+    delivery targets in `docs/FIVERR-SERVICES.md`; later expansion offers are
+    tracked separately.
   - [x] Review current official Fiverr Gig limits, required fields, earnings,
     media rules and prohibited-service boundaries.
   - [x] Consolidate the launch into four coherent Gigs for a possible New
@@ -76,7 +93,7 @@
     Vercel deployed the `main` commit successfully. GitHub Actions did not
     start Quality, CodeQL or Pages because GitHub reports an account billing
     lock; this external Pages blocker is documented in `docs/TESTING-STATUS.md`.
-- [ ] #10 Correct the 3D camera scroll interaction across browser engines.
+- [x] #10 Correct the 3D camera scroll interaction across browser engines.
   - [x] Identify the regression introduced when the natural sticky camera track
     was replaced by full-section GSAP `pin: true`: reverse scrolling re-enters
     a fixed `pin-spacer` interval and can look like a downward jump in Firefox.
@@ -102,8 +119,10 @@
     isolated graphical profile: 16 native WebDriver wheel steps crossed the
     whole camera interval upward with strictly decreasing `scrollY`, no
     increase, no stalled step and no `.pin-spacer`.
-  - [ ] Track WebKit/Safari validation separately until the Playwright WebKit
-    runtime is installed; do not describe Safari as verified before that gate.
+  - [x] Install the Playwright WebKit runtime, add desktop WebKit to the routine
+    matrix and run the upward-scroll regression in that engine. The accepted
+    full matrix passed 26 checks with 16 intentional project-specific skips.
+    This verifies Playwright WebKit, not physical Safari on macOS or iOS.
 - [ ] #7 Expand the public professional profile and make motion release-ready for mobile and tablet.
   - Add the professional portrait, the two Google Drive curriculum links, Lattes,
     YouTube, GitHub, LinkedIn, Uiclap, GeoGebra, Instagram, and the portfolio
@@ -174,5 +193,22 @@
 - [ ] Add expansion Fiverr Gigs for React/Next.js repair, compliant public-data
   extraction, code review, small dashboards and MVP discovery when the account
   allowance and completed-order evidence justify them.
+- [ ] #14 Prepare a website translation and localization Fiverr service that
+  can support any requested language pair without implying unverified native
+  fluency.
+  - [x] Document the proposed title, packages, description, requirements, FAQs,
+    technical scope and linguistic-review boundary in
+    `docs/FIVERR-SERVICES.md`.
+  - [x] Record the truthful positioning decision and the release gates in
+    `docs/DECISIONS.md` and `docs/PLAN.md`.
+  - [ ] When the account has an available Gig slot, verify the live Fiverr
+    category, current minimum price, field limits and permitted metadata before
+    copying the draft into the editor.
+  - [ ] Create and review an original gallery image, then enter the listing as
+    a reversible draft.
+  - [ ] Obtain explicit account-holder approval immediately before any public
+    submission and record the resulting Fiverr state and URL.
 - [ ] Add case-study pages once project-specific evidence and screenshots are selected.
+- [ ] Run an optional physical Safari check on macOS or iOS when suitable
+  hardware is available; do not infer physical Safari from Playwright WebKit.
 - [ ] Connect a custom domain after selecting and purchasing one.

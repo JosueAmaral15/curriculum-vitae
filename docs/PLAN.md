@@ -163,6 +163,52 @@ after their final review. Fiverr confirmed all three as open for business; the
 management panel then displayed `ACTIVE 4`. The public URLs and individual
 states are recorded in [`FIVERR-SERVICES.md`](FIVERR-SERVICES.md).
 
+### Website-localization expansion — 2026-10-11
+
+The next documented service is website translation and localization for any
+requested language pair. Preparation is deliberately separated from external
+publication:
+
+1. Define fixed packages by source-word count, locale count and technical
+   integration scope.
+2. Separate i18n engineering and layout QA from linguistic sign-off. Disclose
+   machine assistance and require client or proficient-reviewer approval where
+   Josué cannot independently validate the language pair.
+3. Exclude certified, sworn, legal, medical and safety-critical translation,
+   as well as unbounded CMS migration or content creation.
+4. Keep the offer documented until the four-Gig account has an available slot;
+   then verify the live category, price minimum and editor fields before
+   creating a reversible draft.
+5. Create original gallery media and request explicit approval only after the
+   rendered draft has been checked against the canonical service document.
+
+The proposed listing copy and packages are maintained in
+[`FIVERR-SERVICES.md`](FIVERR-SERVICES.md). No fifth Gig is implied to exist or
+be publicly available.
+
+### Dependency-security follow-up — 2026-10-11
+
+The current `npm audit --audit-level=low` result contains 12 advisories: one
+moderate, ten high and one critical. The critical group includes Next.js
+16.3.3; other findings affect `brace-expansion`, `braces`, `compression`,
+`fast-uri`, `sharp` and `source-map-js` through direct or transitive paths.
+
+This requires a separate, evidence-driven dependency change:
+
+1. Review the migration and release guidance for the first patched Next.js
+   version compatible with this App Router static export.
+2. Classify which advisories affect runtime output, development tools or the
+   local static server instead of treating the aggregate count as proof of a
+   specific exploit in the deployed site.
+3. Apply compatible direct and override updates on an isolated branch. Do not
+   use `npm audit fix --force`: its current proposal includes breaking or
+   regressive package changes.
+4. Regenerate the lockfile with the repository's supported npm version and
+   validate `npm ci`, audit, lint, unit tests, static build and all six
+   Playwright projects.
+5. Promote only the validated dependency set through `develop` and `main`, and
+   record any advisory that remains blocked upstream.
+
 ## Validation checkpoints
 
 ### Camera audit and corrective phase — 2026-09-09
@@ -282,14 +328,18 @@ software intervals also adapt to measured draw cost. Rendering pauses outside
 the viewport or while the document is hidden, and context loss returns the
 section to its static fallback.
 
-The isolated Webpack export and the five-project Playwright matrix passed. The
-new desktop Chromium/Firefox regression crossed the entire section upward with
-12 strictly negative scroll deltas and confirmed that no `.pin-spacer` exists.
+The isolated Webpack export and the original five-project Playwright matrix
+passed. The desktop Chromium/Firefox regression crossed the entire section
+upward with 12 strictly negative scroll deltas and confirmed that no
+`.pin-spacer` exists.
 The installed graphical Firefox 155.0.1 then crossed the complete interval in
 16 upward wheel steps from `scrollY=4094` to `1214`; all steps decreased by 180
 pixels, none stalled or reversed, and the final position was above the camera
-section. Physical mobile/tablet and WebKit/Safari remain distinct release
-gates.
+section. On 2026-10-11 desktop Playwright WebKit was added to the same matrix;
+its upward-scroll regression passed, and the complete six-project run passed
+26 checks with 16 intentional project-specific skips. This is WebKit engine
+evidence, not a claim that physical Safari on macOS or iOS was tested. Physical
+mobile/tablet and physical Safari remain distinct release gates.
 
 ## Branch-integration and publication plan — 2026-09-10
 

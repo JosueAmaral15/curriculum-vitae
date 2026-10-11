@@ -1,5 +1,26 @@
 # Decisions
 
+## 2026-10-11 — Website translation and localization positioning
+
+**Decision:** offer technical website translation and localization for any
+requested language pair, while distinguishing implementation capability from
+personally verified linguistic fluency. The service may use disclosed
+machine-assisted translation, but language pairs Josué cannot independently
+validate require approval by the client or a proficient human reviewer before
+delivery is treated as linguistically final.
+
+**Why:** i18n architecture, locale routing, translation-resource integration
+and responsive layout correction are engineering work that can support any
+locale. Claiming native-quality command of every language would be misleading.
+This boundary permits a broad, useful service without inventing fluency or
+placing legal, medical, certified or safety-critical translation inside an
+ordinary software Gig.
+
+**Publication control:** this is a documented expansion offer only. The Fiverr
+account already has four active Gigs; a live category, price minimum, current
+field constraints and an available slot must be verified before a draft is
+entered. Publication still requires explicit account-holder approval.
+
 ## 2026-10-07 — Fiverr catalog and launch scope
 
 **Decision:** preserve the complete 20-service inventory in documentation, but
