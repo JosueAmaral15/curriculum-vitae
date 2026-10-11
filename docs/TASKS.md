@@ -26,8 +26,10 @@
     exists. The full audit currently reports five high-severity dependency-path
     findings; `npm audit fix --force` would regress `eslint-config-next` to
     14.2.35 and is not accepted.
-  - [ ] Integrate the validated result through `develop` and `main`, push both
-    long-lived branches and verify their remote hashes.
+  - [x] Integrate the validated result through `develop` and `main`, push both
+    long-lived branches and verify their remote hashes. The dependency release
+    reached `develop` at `8daf093` and `main` at `f8fa5ac`; the documentation
+    closeout is promoted through the same path.
 - [x] #13 Prepare and publish a truthful, fixed-scope Fiverr service catalog.
   - [x] Record the original 20 proposed software services, pricing ranges and
     delivery targets in `docs/FIVERR-SERVICES.md`; later expansion offers are
