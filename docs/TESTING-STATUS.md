@@ -405,3 +405,8 @@ Evidence, screenshots, reproduction commands and the action plan:
   the upstream advisory remains tracked under task #15.
 - No Playwright browser, user-cache library, generated `.next` output or local
   source document is included in the dependency change.
+- Work commit `6aea592` was pushed to
+  `codex/dependency-security-2026-10-11`, merged into `develop` as `8daf093`,
+  and promoted to `main` as `f8fa5ac`. Both long-lived branches were pushed and
+  their first dependency-release remote heads were verified before this
+  documentation closeout.
