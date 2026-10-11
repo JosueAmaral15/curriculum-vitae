@@ -101,7 +101,7 @@ test("keeps the complete 3D camera behind readable copy in narrow Firefox", asyn
 });
 
 test("keeps upward scrolling monotonic across the 3D camera section", async ({ page }, testInfo) => {
-  test.skip(!["chromium", "firefox"].includes(testInfo.project.name), "Desktop wheel regression runs in Chromium and Firefox.");
+  test.skip(!["chromium", "firefox", "webkit"].includes(testInfo.project.name), "Desktop wheel regression runs in Chromium, Firefox and WebKit.");
   test.setTimeout(60_000);
 
   await page.goto("/");

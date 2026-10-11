@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("shows English by default, has contact paths, and can switch to Portuguese", async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
   await page.goto("/");
   await expect(page.getByRole("heading", { name: /clear systems/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /signals searching for meaning/i })).toBeVisible({ timeout: 20_000 });

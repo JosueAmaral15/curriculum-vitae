@@ -1,7 +1,7 @@
 # Fiverr Service Catalog and Launch Plan
 
-Status: four active public services; see the publication register below.
-Last reviewed: 2026-10-09
+Status: four active public services and one documented expansion offer; see the publication register below.
+Last reviewed: 2026-10-11
 
 ## Purpose
 
@@ -75,6 +75,7 @@ not a promise that all services will be published as separate Gigs on day one.
 | S18 | Review a small Python or JavaScript codebase | USD 20–60 | 2–5 working hours | Future Gig or custom offer |
 | S19 | Resolve one Git, GitHub or deployment error | USD 15–50 | 1–4 working hours | Launch Gig D |
 | S20 | Convert a tightly bounded idea into a small MVP | USD 100–300 | 1–3 days | Custom offer only after discovery |
+| S21 | Translate and technically localize an existing website for a requested language pair | USD 35–160 | 3–7 days | Future Gig after an account slot is available |
 
 Working-hour estimates are internal planning aids. Public Fiverr delivery times
 are expressed in days and must include a safety margin. An order must not be
@@ -351,10 +352,87 @@ justify a broader catalog:
 4. **Small dashboard:** “I will build a small React or Next.js dashboard.”
 5. **MVP discovery:** use a consultation or custom offer before promising a
    multi-day build.
+6. **Website translation and localization:** “I will translate and localize
+   your website for any language.”
 
 The scraping Gig must never offer social-media personal-data harvesting,
 credentialed extraction without authorization, paywall/access-control bypass,
 or automation that violates the target platform's terms.
+
+### Future Gig E — website translation and localization
+
+This offer is a documented expansion draft, not a live Fiverr listing. Its
+category, minimum price and live editor fields must be verified when the
+account has an available Gig slot.
+
+**Proposed public title**
+
+> I will translate and localize your website for any language
+
+**Provisional search tags**
+
+`website translation`, `website localization`, `i18n`, `multilingual website`,
+`language translation`
+
+**Proposed packages**
+
+| Package | Price | Delivery | Revisions | Fixed scope |
+| --- | ---: | --- | ---: | --- |
+| Reviewed Content Integration | USD 35 | 3 days | 1 | Integrate client-provided, reviewed translation for one page and one target locale, up to 500 source words |
+| One-Language Launch | USD 80 | 5 days | 2 | Machine-assisted translation draft and technical integration for one target locale, up to 1,000 source words, with glossary and responsive layout QA; linguistic approval is supplied by the client or a proficient reviewer |
+| Multilingual Handoff | USD 160 | 7 days | 2 | Up to two target locales and 2,000 total source words, i18n-resource integration, glossary and responsive layout QA; linguistic approval is supplied by the client or a proficient reviewer |
+
+The word limit applies to source content. New copywriting, marketing research,
+image editing, subtitle work, continuous content updates, large CMS migration
+and paid translation-provider fees are outside these packages. Right-to-left
+layout or a new i18n architecture may require a custom offer after repository
+review.
+
+**Proposed description**
+
+> I will translate and technically localize an existing website for your
+> requested language and locale. The work can include translation-resource
+> files, locale routing, interface text integration, formatting and responsive
+> layout checks.
+>
+> I can support any language pair through a transparent, machine-assisted
+> workflow. When I cannot independently validate the target language, you must
+> provide or approve a proficient human reviewer before the wording is treated
+> as final. I do not claim native fluency in every language.
+>
+> Please send the website or authorized repository, source and target locales,
+> word count, preferred terminology, tone and current i18n setup before
+> ordering. Certified, sworn, legal, medical and safety-critical translation
+> are not included.
+
+**Buyer requirements**
+
+1. Website URL or repository/archive and authorization to modify it.
+2. Source language, target language, locale or regional variant, and source
+   word count.
+3. Approved terminology, product names, tone and any existing glossary or
+   translation memory.
+4. Framework, current i18n library, build command and supported browsers.
+5. Identification of dynamic, CMS-managed, image-based or third-party content
+   that is outside the repository.
+6. The client-provided proficient reviewer or written linguistic approval when
+   Josué cannot independently validate the target language.
+
+**FAQ prompts**
+
+- Can you translate any language? — I can implement any requested locale and
+  prepare a transparent machine-assisted translation. Language pairs I cannot
+  independently validate require review and approval by you or a proficient
+  human reviewer.
+- Is this a certified or sworn translation? — No. Legal, medical, certified,
+  sworn and safety-critical translation is excluded.
+- Will the translated layout still work on mobile? — Responsive layout QA is
+  included within the agreed pages and locales. Major redesigns, new i18n
+  architecture and complex right-to-left conversion require a custom scope.
+
+**Future gallery headline**
+
+> WEBSITE LOCALIZATION
 
 ## Profile positioning
 
