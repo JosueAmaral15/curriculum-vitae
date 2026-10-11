@@ -21,7 +21,7 @@
   "author": "Josue Amaral",
   "license": "MIT",
   "dependencies": {
-    "next": "16.3.3",
+    "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "three": "^0.185.1"
@@ -29,20 +29,23 @@
   "devDependencies": {
     "@emnapi/core": "1.11.3",
     "@emnapi/runtime": "1.11.3",
-    "@playwright/test": "latest",
-    "@testing-library/jest-dom": "latest",
-    "@testing-library/react": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
+    "@playwright/test": "1.62.1",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.2",
+    "@types/node": "26.2.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
     "@types/three": "^0.183.0",
     "eslint": "9.39.5",
-    "eslint-config-next": "16.3.3",
+    "eslint-config-next": "16.3.8",
     "jsdom": "29.0.1",
-    "playwright": "latest",
+    "playwright": "1.62.1",
     "serve": "^14.2.6",
     "typescript": "6.0.3",
     "vitest": "^5.0.0"
+  },
+  "overrides": {
+    "compression": "1.8.2"
   },
   "engines": {
     "node": "22.x"

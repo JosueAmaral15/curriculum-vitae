@@ -384,3 +384,24 @@ Evidence, screenshots, reproduction commands and the action plan:
   reports: `The job was not started because your account is locked due to a
   billing issue.` Therefore GitHub Pages is externally blocked; this result is
   not attributed to the repository code or the locally successful build.
+
+## 2026-10-11 — Dependency-security remediation
+
+- The Next.js 16 upgrade guidance bundled with the installed framework was
+  reviewed before editing the package constraints. Next.js and
+  `eslint-config-next` were updated together from 16.3.3 to 16.3.8.
+- `npm ci` completed with 519 packages. `npm run lint` passed and Vitest passed
+  all 5 tests in 3 files.
+- `npm run build` passed compilation, TypeScript analysis, page-data collection
+  and generation of all three static routes with Next.js 16.3.8.
+- The complete six-project Playwright matrix passed 26 checks with 16
+  intentional project-specific skips across desktop Chromium, Firefox and
+  WebKit, mobile Chromium and Firefox, and tablet Chromium.
+- `npm audit --omit=dev --audit-level=low` reports zero vulnerabilities. The
+  complete audit reports five high-severity dependency-path findings, all from
+  `braces@3.0.3` through the development-only `eslint-config-next` lint chain.
+  No compatible patched resolution is currently offered. The automated force
+  fix would downgrade `eslint-config-next` to 14.2.35, so it was rejected and
+  the upstream advisory remains tracked under task #15.
+- No Playwright browser, user-cache library, generated `.next` output or local
+  source document is included in the dependency change.
