@@ -19,9 +19,11 @@ export const portfolio = {
     books: "https://uiclap.bio/josueaamaral15",
     geogebra: "https://www.geogebra.org/u/josueamaral15",
     instagram: "https://instagram.com/artistajosueamaral",
+    instagramPersonal: "https://instagram.com/josueamaraltech",
     youtube: "https://www.youtube.com/@josueamaral8283",
     resumePortuguese: "https://drive.google.com/file/d/1VoY2UIx88nkXsJkAqSFHyi-lRZgi3NGc/view?usp=sharing",
     resumeEnglish: "https://drive.google.com/file/d/1g8W1cba8fXClofpGLdz0alF3MaVJQgZm/view?usp=sharing",
+    music: "https://suno.com/@josueamaral15?page=songs",
   },
   summary:
     "Profissional de tecnologia que une engenharia de software, automação de infraestrutura e pesquisa em algoritmos para construir produtos confiáveis, claros e sustentáveis.",

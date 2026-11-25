@@ -10,6 +10,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { copy, type Language } from "@/lib/i18n";
 import { portfolio } from "@/lib/portfolio";
 import styles from "./page.module.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const AssemblyExperience = dynamic(() => import("@/components/AssemblyExperience").then((module) => module.AssemblyExperience), { ssr: false });
 
@@ -28,7 +29,9 @@ export default function Home() {
     { href: portfolio.links.books, label: text.resourceLinks.books },
     { href: portfolio.links.geogebra, label: text.resourceLinks.geogebra },
     { href: portfolio.links.instagram, label: text.resourceLinks.instagram },
-    { href: portfolio.links.youtube, label: text.resourceLinks.youtube },
+    {href: portfolio.links.instagramPersonal, label: text.resourceLinks.instagramPersonal},
+    {href: portfolio.links.youtube, label: text.resourceLinks.youtube },
+    {href: portfolio.links.music, label: text.resourceLinks.music},
   ];
 
   useEffect(() => {
@@ -48,6 +51,7 @@ export default function Home() {
   return (
     <main id="inicio">
       <ScrollProgress />
+      <Analytics/>
       <Navigation language={language} labels={text.nav} onLanguageChange={selectLanguage} homeAria={text.homeAria} navigationAria={text.navigationAria} languageAria={text.language} openNavigation={text.openNavigation} closeNavigation={text.closeNavigation} />
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.videoLayer} aria-hidden="true">
@@ -111,8 +115,27 @@ export default function Home() {
         })}</div>
       </section>
 
+      <section className={`${styles.section} ${styles.ventureSection}`} id="visao" aria-labelledby="venture-title">
+        <div className={styles.ventureGlow} aria-hidden="true" />
+        <div className={styles.ventureLayout}>
+          <ScrollReveal className={styles.ventureCopy}>
+            <Eyebrow>06 / {text.venture.eyebrow}</Eyebrow>
+            <h2 id="venture-title">{text.venture.title}</h2>
+            <p className={styles.ventureDescription}>{text.venture.description}</p>
+          </ScrollReveal>
+          <ScrollReveal delay={120}>
+            <aside className={styles.ventureCard} aria-label={text.venture.name}>
+              <span className={styles.ventureStageLabel}>{text.venture.stageLabel}</span>
+              <h3>{text.venture.name}</h3>
+              <p className={styles.ventureStage}>{text.venture.stage}</p>
+              <ul>{text.venture.principles.map((principle) => <li key={principle}>{principle}</li>)}</ul>
+            </aside>
+          </ScrollReveal>
+        </div>
+      </section>
+
       <section className={`${styles.section} ${styles.detailsSection}`} aria-label="Education and technologies"><ScrollReveal className={styles.details}>
-        <div><Eyebrow>06 / {text.education}</Eyebrow>{text.educationItems.map((item) => <p key={item}>{item}</p>)}</div>
+        <div><Eyebrow>07 / {text.education}</Eyebrow>{text.educationItems.map((item) => <p key={item}>{item}</p>)}</div>
         <div><Eyebrow>{text.stack}</Eyebrow><ul className={styles.stack}>{portfolio.stack.map((item) => <li key={item}>{item}</li>)}</ul></div>
       </ScrollReveal></section>
 
