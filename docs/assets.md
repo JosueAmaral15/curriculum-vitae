@@ -27,6 +27,27 @@ Review the source page and applicable Pexels license before any separate redistr
 - Use: Open Graph and Twitter/X social-preview image.
 - Generation: OpenAI image generation, 2026-08-16. It is an abstract visual without text, third-party brands or personal likenesses.
 
+## Fiverr Gig gallery images
+
+The following first-party promotional assets were generated with OpenAI image
+generation on 2026-10-07 for the documented Fiverr launch plan. Each source
+image was mechanically cropped to 1280 × 769 pixels and stripped of metadata.
+The final images were visually inspected for exact headline text, clean
+thumbnail composition, absence of contact details and absence of third-party
+logos or Fiverr badges.
+
+| File | Headline | SHA-256 |
+| --- | --- | --- |
+| `public/fiverr/python-backend-bug-fix.png` | `PYTHON BACKEND BUG FIX` | `d773a2520cb240c0c72145f2805bce067ec967cd4710666dfef806d8e4465874` |
+| `public/fiverr/python-task-automation.png` | `PYTHON TASK AUTOMATION` | `780b1db3068794f9db7ae894dea31549750a34809b63629c0ab233dc2a4f25e0` |
+| `public/fiverr/api-ai-integration.png` | `API AND AI INTEGRATION` | `91861bb15abe7933dfbf88ba9ed9980f6646e825562515c4c33703e7e0aa3940` |
+| `public/fiverr/docker-deployment-fix.png` | `DOCKER AND DEPLOYMENT FIX` | `6be562b3da96b05fab63c04dad1597d84f86265d77539ca2edf033e9da2c2a40` |
+
+Use is limited to the corresponding professional service listings and related
+portfolio documentation. The files do not imply that a Fiverr Gig has already
+been submitted, reviewed or published; those states are tracked separately in
+`docs/FIVERR-SERVICES.md`.
+
 ## AXIS-Q6010-E Surveillance Camera
 
 - Web file: `public/models/axis-q6010-e-surveillance-camera.glb`.
