@@ -88,6 +88,29 @@ Use only a stock video whose page explicitly permits free reuse and has no visib
 - Execute the viewport and reduced-motion checks in
   `docs/MOBILE-MOTION-PLAN.md` before declaring mobile animation complete.
 
+## Enhancement phase — Responsible entrepreneurial direction
+
+### Scope
+
+1. Add a bilingual section that presents Vita Ethos as Josué Amaral's
+   long-term direction at the intersection of technology, health and
+   well-being.
+2. State the present maturity accurately: concept development and validation,
+   not a validated company, clinical product, or demonstrated business result.
+3. Connect the direction to responsible software and AI while explicitly
+   excluding diagnosis and preserving health professionals at the centre of
+   care.
+4. Keep business-plan financial projections, fundraising targets, private
+   implementation details and unsupported impact claims outside the portfolio.
+
+### Validation
+
+- Verify English and Portuguese render the same meaning and maturity status.
+- Verify the section remains readable at desktop, mobile and tablet widths.
+- Verify reduced-motion users retain the complete static content.
+- Run lint, unit tests, the static production build and cross-browser smoke
+  coverage before promotion.
+
 ## Risks and mitigations
 
 | Risk | Mitigation |
@@ -97,6 +120,117 @@ Use only a stock video whose page explicitly permits free reuse and has no visib
 | Framework update failure | Lock dependencies with `package-lock.json`; `npm run build` is a required check. |
 | Regression after deployment | Vercel creates immutable deployments; revert the offending Git commit and redeploy. |
 | Heavy or inaccessible 3D interaction | Keep the 3D assembly optional, client-only, viewport-paused, and reduced-motion safe; retain the CAD/SVG fallback. |
+
+## Fiverr service-publication phase — 2026-10-07
+
+### Objective
+
+Publish small, fixed-scope software services without turning the professional
+portfolio into a generic list of unsupported claims. The canonical offer text,
+prices, requirements, exclusions, compliance boundaries and publication state
+are recorded in [`FIVERR-SERVICES.md`](FIVERR-SERVICES.md).
+
+### Sequence
+
+1. Verify Fiverr's current platform rules and inspect the authenticated account.
+2. Preserve all 20 candidate services in the repository, but respect the
+   account's actual Gig allowance.
+3. Launch four coherent offers first: Python backend repair, Python automation,
+   API/webhook/AI integration, and Docker/Git/deployment repair.
+4. Create original gallery images and check every field against the documented
+   source before submission.
+5. Require explicit approval immediately before each public submission, record
+   review/public status honestly, and only then promote the audit trail through
+   `develop` to `main`.
+
+### Acceptance criteria
+
+- Every published claim can be traced to the professional profile or the
+  explicitly approved service inventory.
+- Titles, packages, descriptions, requirements, FAQs and gallery assets comply
+  with the current category fields and Fiverr rules.
+- No Gig offers unauthorized access, personal-data scraping, prohibited
+  automation, fake engagement, deceptive AI output or off-platform payment.
+- The repository distinguishes documented draft, saved Fiverr draft, submitted
+  for review and publicly visible states.
+- Remote `develop` and `main` contain the final publication register and point
+  to the verified local commits.
+
+### Completion record — 2026-10-09
+
+The account holder explicitly approved the three remaining public submissions
+after their final review. Fiverr confirmed all three as open for business; the
+management panel then displayed `ACTIVE 4`. The public URLs and individual
+states are recorded in [`FIVERR-SERVICES.md`](FIVERR-SERVICES.md).
+
+### Website-localization expansion — 2026-10-11
+
+The next documented service is website translation and localization for any
+requested language pair. Preparation is deliberately separated from external
+publication:
+
+1. Define fixed packages by source-word count, locale count and technical
+   integration scope.
+2. Separate i18n engineering and layout QA from linguistic sign-off. Disclose
+   machine assistance and require client or proficient-reviewer approval where
+   Josué cannot independently validate the language pair.
+3. Exclude certified, sworn, legal, medical and safety-critical translation,
+   as well as unbounded CMS migration or content creation.
+4. Keep the offer documented until the four-Gig account has an available slot;
+   then verify the live category, price minimum and editor fields before
+   creating a reversible draft.
+5. Create original gallery media and request explicit approval only after the
+   rendered draft has been checked against the canonical service document.
+
+The proposed listing copy and packages are maintained in
+[`FIVERR-SERVICES.md`](FIVERR-SERVICES.md). No fifth Gig is implied to exist or
+be publicly available.
+
+### Dependency-security follow-up — 2026-10-11
+
+The current `npm audit --audit-level=low` result contains 12 advisories: one
+moderate, ten high and one critical. The critical group includes Next.js
+16.3.3; other findings affect `brace-expansion`, `braces`, `compression`,
+`fast-uri`, `sharp` and `source-map-js` through direct or transitive paths.
+
+This requires a separate, evidence-driven dependency change:
+
+1. Review the migration and release guidance for the first patched Next.js
+   version compatible with this App Router static export.
+2. Classify which advisories affect runtime output, development tools or the
+   local static server instead of treating the aggregate count as proof of a
+   specific exploit in the deployed site.
+3. Apply compatible direct and override updates on an isolated branch. Do not
+   use `npm audit fix --force`: its current proposal includes breaking or
+   regressive package changes.
+4. Regenerate the lockfile with the repository's supported npm version and
+   validate `npm ci`, audit, lint, unit tests, static build and all six
+   Playwright projects.
+5. Promote only the validated dependency set through `develop` and `main`, and
+   record any advisory that remains blocked upstream.
+
+The GitHub-hosted workflows are pinned to `ubuntu-24.04`. This avoids the
+announced `ubuntu-latest` migration to Ubuntu 26 changing the Playwright WebKit,
+CodeQL or Pages environment before the billing-locked workflows can be run
+again.
+
+### Reviewed dependency result
+
+The isolated dependency branch upgrades Next.js and `eslint-config-next` from
+16.3.3 to the compatible patched 16.3.8 release. It also refreshes the affected
+`sharp`, `source-map-js`, `brace-expansion` and `fast-uri` resolutions, overrides
+the local static server's `compression` dependency to 1.8.2, and replaces
+unbounded `latest` declarations for validation tools with the exact versions
+used by the accepted test matrix.
+
+`npm audit --omit=dev --audit-level=low` now reports zero vulnerabilities. The
+complete audit retains five high-severity dependency-path findings for
+`braces@3.0.3`, reached only through the development lint chain
+`eslint-config-next` → `@next/eslint-plugin-next` → `fast-glob` → `micromatch`.
+The advisory currently marks every `braces` version as affected, and npm's only
+automatic proposal downgrades `eslint-config-next` to 14.2.35. That incompatible
+forced downgrade is rejected; the upstream development-only advisory remains a
+documented monitoring item rather than weakening the Next.js 16 toolchain.
 
 ## Validation checkpoints
 
@@ -217,14 +351,18 @@ software intervals also adapt to measured draw cost. Rendering pauses outside
 the viewport or while the document is hidden, and context loss returns the
 section to its static fallback.
 
-The isolated Webpack export and the five-project Playwright matrix passed. The
-new desktop Chromium/Firefox regression crossed the entire section upward with
-12 strictly negative scroll deltas and confirmed that no `.pin-spacer` exists.
+The isolated Webpack export and the original five-project Playwright matrix
+passed. The desktop Chromium/Firefox regression crossed the entire section
+upward with 12 strictly negative scroll deltas and confirmed that no
+`.pin-spacer` exists.
 The installed graphical Firefox 155.0.1 then crossed the complete interval in
 16 upward wheel steps from `scrollY=4094` to `1214`; all steps decreased by 180
 pixels, none stalled or reversed, and the final position was above the camera
-section. Physical mobile/tablet and WebKit/Safari remain distinct release
-gates.
+section. On 2026-10-11 desktop Playwright WebKit was added to the same matrix;
+its upward-scroll regression passed, and the complete six-project run passed
+26 checks with 16 intentional project-specific skips. This is WebKit engine
+evidence, not a claim that physical Safari on macOS or iOS was tested. Physical
+mobile/tablet and physical Safari remain distinct release gates.
 
 ## Branch-integration and publication plan — 2026-09-10
 

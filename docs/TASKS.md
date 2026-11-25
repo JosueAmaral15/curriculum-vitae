@@ -2,6 +2,90 @@
 
 ## In progress
 
+- [ ] #15 Remediate the dependency advisories reported on 2026-10-11 without
+  accepting automated breaking downgrades.
+  - [x] Run `npm audit --audit-level=low` and record the current result: 12
+    vulnerabilities (1 moderate, 10 high and 1 critical), including advisories
+    affecting Next.js 16.3.3 and several development or static-serving
+    transitive dependencies.
+  - [x] Review the applicable Next.js 16 release documentation and classify
+    direct, transitive, development-only and production-relevant exposure
+    before editing dependency constraints.
+  - [x] Apply targeted compatible upgrades on an isolated work branch; do not
+    use `npm audit fix --force`, which currently proposes breaking or regressive
+    dependency changes. Next.js and its ESLint configuration now use 16.3.8;
+    affected compatible transitive packages were refreshed and the validation
+    tool versions formerly declared as `latest` were pinned exactly.
+  - [x] Validate a clean install, production audit, lint, unit tests, static
+    production build and the complete six-project Playwright matrix. Production
+    dependencies report zero vulnerabilities; lint passed, all 5 unit tests
+    passed, the static build passed and Playwright passed 26 checks with 16
+    intentional project-specific skips.
+  - [ ] Monitor the upstream `braces` advisory used only through the
+    `eslint-config-next` development chain and update when a compatible release
+    exists. The full audit currently reports five high-severity dependency-path
+    findings; `npm audit fix --force` would regress `eslint-config-next` to
+    14.2.35 and is not accepted.
+  - [x] Integrate the validated result through `develop` and `main`, push both
+    long-lived branches and verify their remote hashes. The dependency release
+    reached `develop` at `8daf093` and `main` at `f8fa5ac`; the documentation
+    closeout is promoted through the same path.
+- [x] #13 Prepare and publish a truthful, fixed-scope Fiverr service catalog.
+  - [x] Record the original 20 proposed software services, pricing ranges and
+    delivery targets in `docs/FIVERR-SERVICES.md`; later expansion offers are
+    tracked separately.
+  - [x] Review current official Fiverr Gig limits, required fields, earnings,
+    media rules and prohibited-service boundaries.
+  - [x] Consolidate the launch into four coherent Gigs for a possible New
+    freelancer limit, while preserving the remaining offers as packages,
+    custom offers or future expansion Gigs.
+  - [x] Inspect the authenticated Fiverr account and record that it is a New
+    seller profile with a four-Gig launch plan and four active public services
+    as of 2026-10-09.
+  - [x] Complete the Fiverr human-verification challenges encountered while
+    creating the four launch services; every challenge was completed by the
+    account holder.
+  - [x] Confirm live category paths and category-specific pricing fields before
+    copying any draft into Fiverr.
+  - [x] Create and review one original 1280 × 769 gallery image for each launch
+    Gig, without contact data, unlicensed logos or misleading badges.
+  - [x] Enter the approved text and packages in Fiverr, then compare the
+    rendered drafts with the Markdown source.
+    - [x] Create the Python backend repair service with its three packages,
+      description, three FAQs, five required buyer questions and original
+      gallery image. Following the account holder's explicit approval on
+      2026-10-09, it was published and verified at
+      `https://www.fiverr.com/s/L337QAQ`.
+    - [x] Create the Python automation service with the documented packages,
+      description, FAQs, buyer questions and gallery image. Fiverr unexpectedly
+      changed it to `ACTIVE` when the gallery workflow advanced; it is public at
+      `https://www.fiverr.com/s/NeeEjrV`. The account holder explicitly chose
+      to keep this Gig active on 2026-10-09.
+    - [x] Create the API, webhook and AI integration service with its three
+      packages, description, two FAQs, five buyer questions and original gallery
+      image. Following the account holder's explicit approval on 2026-10-09,
+      it was published and verified at `https://www.fiverr.com/s/3AA26jB`.
+    - [x] Create the Docker, Git and deployment repair service with three
+      packages, live DevOps metadata, description, two FAQs, five buyer
+      questions and original gallery image. Following the account holder's
+      explicit approval on 2026-10-09, it was published and verified at
+      `https://www.fiverr.com/s/vbbze4q`.
+  - [x] Obtain explicit approval immediately before each public Gig submission;
+    record submitted, review and public states separately. The final Fiverr
+    panel displayed `ACTIVE 4` after the three authorized submissions.
+  - [x] Validate the documentation diff, commit through `develop`, promote it
+    to `main`, push both long-lived branches and verify the remote hashes.
+- [x] #12 Present Vita Ethos as a responsible long-term entrepreneurial
+  direction in the public portfolio.
+  - [x] Add a dedicated English/Portuguese section after selected projects,
+    without changing the external CNPq Lattes curriculum.
+  - [x] Describe the initiative as being in concept development and validation;
+    do not present forecasts, customers, funding, medical diagnoses, or future
+    impact as achieved results.
+  - [x] Preserve health professionals at the centre of care and require a
+    focused MVP plus real-world evidence before public impact claims.
+  - [x] Validate the content with lint, unit tests, a static production build,
+    cross-browser smoke coverage, mobile Firefox rerun, and visual inspection.
 - [x] #11 Integrate every surviving non-main branch through `develop`, promote
   the validated result to `main`, and publish both long-lived branches.
   - [x] Fetch and prune remote refs; classify the active content branch, the
@@ -21,7 +105,7 @@
     Vercel deployed the `main` commit successfully. GitHub Actions did not
     start Quality, CodeQL or Pages because GitHub reports an account billing
     lock; this external Pages blocker is documented in `docs/TESTING-STATUS.md`.
-- [ ] #10 Correct the 3D camera scroll interaction across browser engines.
+- [x] #10 Correct the 3D camera scroll interaction across browser engines.
   - [x] Identify the regression introduced when the natural sticky camera track
     was replaced by full-section GSAP `pin: true`: reverse scrolling re-enters
     a fixed `pin-spacer` interval and can look like a downward jump in Firefox.
@@ -47,8 +131,10 @@
     isolated graphical profile: 16 native WebDriver wheel steps crossed the
     whole camera interval upward with strictly decreasing `scrollY`, no
     increase, no stalled step and no `.pin-spacer`.
-  - [ ] Track WebKit/Safari validation separately until the Playwright WebKit
-    runtime is installed; do not describe Safari as verified before that gate.
+  - [x] Install the Playwright WebKit runtime, add desktop WebKit to the routine
+    matrix and run the upward-scroll regression in that engine. The accepted
+    full matrix passed 26 checks with 16 intentional project-specific skips.
+    This verifies Playwright WebKit, not physical Safari on macOS or iOS.
 - [ ] #7 Expand the public professional profile and make motion release-ready for mobile and tablet.
   - Add the professional portrait, the two Google Drive curriculum links, Lattes,
     YouTube, GitHub, LinkedIn, Uiclap, GeoGebra, Instagram, and the portfolio
@@ -102,6 +188,9 @@
 
 ## Done
 
+- [x] Add the bilingual Vita Ethos entrepreneurial-vision section without
+  exposing financial projections or presenting the concept as a validated
+  operating company.
 - [x] Read the supplied professional curriculum PDF.
 - [x] Inspect the complete legacy source and Git history.
 - [x] Define the architecture and execution plan in `docs/PLAN.md`.
@@ -113,5 +202,28 @@
 
 ## Deferred
 
+- [ ] Resolve the GitHub account billing lock and rerun the hosted Quality,
+  CodeQL and Pages workflows. The repository workflows are configured, but the
+  current runs execute zero steps while the account-level lock remains active.
+- [ ] Add expansion Fiverr Gigs for React/Next.js repair, compliant public-data
+  extraction, code review, small dashboards and MVP discovery when the account
+  allowance and completed-order evidence justify them.
+- [ ] #14 Prepare a website translation and localization Fiverr service that
+  can support any requested language pair without implying unverified native
+  fluency.
+  - [x] Document the proposed title, packages, description, requirements, FAQs,
+    technical scope and linguistic-review boundary in
+    `docs/FIVERR-SERVICES.md`.
+  - [x] Record the truthful positioning decision and the release gates in
+    `docs/DECISIONS.md` and `docs/PLAN.md`.
+  - [ ] When the account has an available Gig slot, verify the live Fiverr
+    category, current minimum price, field limits and permitted metadata before
+    copying the draft into the editor.
+  - [ ] Create and review an original gallery image, then enter the listing as
+    a reversible draft.
+  - [ ] Obtain explicit account-holder approval immediately before any public
+    submission and record the resulting Fiverr state and URL.
 - [ ] Add case-study pages once project-specific evidence and screenshots are selected.
+- [ ] Run an optional physical Safari check on macOS or iOS when suitable
+  hardware is available; do not infer physical Safari from Playwright WebKit.
 - [ ] Connect a custom domain after selecting and purchasing one.
