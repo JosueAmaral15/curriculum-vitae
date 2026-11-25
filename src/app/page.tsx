@@ -10,6 +10,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { copy, type Language } from "@/lib/i18n";
 import { portfolio } from "@/lib/portfolio";
 import styles from "./page.module.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const AssemblyExperience = dynamic(() => import("@/components/AssemblyExperience").then((module) => module.AssemblyExperience), { ssr: false });
 
@@ -28,7 +29,9 @@ export default function Home() {
     { href: portfolio.links.books, label: text.resourceLinks.books },
     { href: portfolio.links.geogebra, label: text.resourceLinks.geogebra },
     { href: portfolio.links.instagram, label: text.resourceLinks.instagram },
-    { href: portfolio.links.youtube, label: text.resourceLinks.youtube },
+    {href: portfolio.links.instagramPersonal, label: text.resourceLinks.instagramPersonal},
+    {href: portfolio.links.youtube, label: text.resourceLinks.youtube },
+    {href: portfolio.links.music, label: text.resourceLinks.music},
   ];
 
   useEffect(() => {
@@ -48,6 +51,7 @@ export default function Home() {
   return (
     <main id="inicio">
       <ScrollProgress />
+      <Analytics/>
       <Navigation language={language} labels={text.nav} onLanguageChange={selectLanguage} homeAria={text.homeAria} navigationAria={text.navigationAria} languageAria={text.language} openNavigation={text.openNavigation} closeNavigation={text.closeNavigation} />
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.videoLayer} aria-hidden="true">
