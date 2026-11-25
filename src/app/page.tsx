@@ -10,6 +10,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { copy, type Language } from "@/lib/i18n";
 import { portfolio } from "@/lib/portfolio";
 import styles from "./page.module.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const AssemblyExperience = dynamic(() => import("@/components/AssemblyExperience").then((module) => module.AssemblyExperience), { ssr: false });
 
@@ -50,6 +51,7 @@ export default function Home() {
   return (
     <main id="inicio">
       <ScrollProgress />
+      <Analytics/>
       <Navigation language={language} labels={text.nav} onLanguageChange={selectLanguage} homeAria={text.homeAria} navigationAria={text.navigationAria} languageAria={text.language} openNavigation={text.openNavigation} closeNavigation={text.closeNavigation} />
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.videoLayer} aria-hidden="true">
