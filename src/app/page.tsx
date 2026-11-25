@@ -28,7 +28,9 @@ export default function Home() {
     { href: portfolio.links.books, label: text.resourceLinks.books },
     { href: portfolio.links.geogebra, label: text.resourceLinks.geogebra },
     { href: portfolio.links.instagram, label: text.resourceLinks.instagram },
-    { href: portfolio.links.youtube, label: text.resourceLinks.youtube },
+    {href: portfolio.links.instagramPersonal, label: text.resourceLinks.instagramPersonal},
+    {href: portfolio.links.youtube, label: text.resourceLinks.youtube },
+    {href: portfolio.links.music, label: text.resourceLinks.music},
   ];
 
   useEffect(() => {
