@@ -295,6 +295,58 @@ Evidence, screenshots, reproduction commands and the action plan:
   under `/tmp`; the accepted run served only
   `.next-validation-cross-browser-webpack` from the isolated Webpack build.
 
+## 2026-10-11 — Playwright WebKit expansion
+
+- The current Next.js Playwright guide was reviewed before changing the test
+  matrix. Desktop WebKit now uses Playwright's `Desktop Safari` device profile,
+  and the existing upward-scroll regression explicitly covers Chromium,
+  Firefox and WebKit.
+- The quality workflow now installs Chromium, Firefox and WebKit with their CI
+  dependencies. No downloaded browser or workstation library is committed.
+- Linux Mint is not an officially supported host for this Playwright WebKit
+  build. Playwright downloaded its Ubuntu 22.04 fallback; the local run used
+  the missing runtime libraries from the official Ubuntu Jammy packages in the
+  isolated Playwright user cache because no authenticated `sudo` session was
+  available. CI remains responsible for installing its own dependencies with
+  `npx playwright install --with-deps chromium firefox webkit`.
+- The first launch attempts were not counted: WebKit initially reported missing
+  libraries. After the browser could start, the first functional run passed
+  three applicable checks and timed out only at the final Portuguese assertion;
+  its captured page already contained the correct translated heading. The
+  cross-engine language test therefore received a 60-second budget for the
+  slower software-rendered fallback.
+- The accepted focused WebKit run passed all four applicable checks with three
+  intentional project-specific skips. Its camera regression crossed the full
+  sticky interval upward with only decreasing `scrollY` samples and no
+  `.pin-spacer`.
+- The complete six-project production-artifact matrix passed 26 checks with 16
+  intentional skips across desktop Chromium, desktop Firefox, desktop WebKit,
+  mobile Chromium, mobile Firefox and tablet Chromium.
+- `npm run lint`, all 5 Vitest tests and the Next.js 16.3.3 static production
+  build passed. Playwright WebKit evidence must not be presented as a physical
+  Safari test on macOS or iOS.
+- `npm audit --audit-level=low` did not pass: it reported 12 vulnerabilities
+  (1 moderate, 10 high and 1 critical). Automated force-fix suggestions include
+  breaking or regressive changes, so remediation is tracked separately under
+  task #15 rather than being applied unreviewed in this test-matrix change.
+
+### First remote publication checkpoint
+
+- `develop=f5c8e36` and `main=6da5aac` were pushed and verified against their
+  remote heads. `develop` is an ancestor of the promoted `main` merge.
+- GitHub Actions runs
+  [Quality 38172644289](https://github.com/JosueAmaral15/curriculum-vitae/actions/runs/38172644289),
+  [CodeQL 38172644290](https://github.com/JosueAmaral15/curriculum-vitae/actions/runs/38172644290)
+  and
+  [Pages 38172644293](https://github.com/JosueAmaral15/curriculum-vitae/actions/runs/38172644293)
+  failed before executing any step. Each job annotation states that the account
+  is locked due to a billing issue; this is an external non-pass, not hosted
+  validation evidence or a repository-code failure.
+- The same annotations warned that `ubuntu-latest` will begin migrating to
+  Ubuntu 26 on 2026-10-19. Quality, CodeQL and Pages are now pinned to
+  `ubuntu-24.04` so WebKit and the static-build environment cannot change
+  silently when hosted execution becomes available again.
+
 ## 2026-09-10 — Full non-main branch integration through develop
 
 - `git fetch --prune` removed eight stale remote-tracking Dependabot refs that
@@ -332,3 +384,29 @@ Evidence, screenshots, reproduction commands and the action plan:
   reports: `The job was not started because your account is locked due to a
   billing issue.` Therefore GitHub Pages is externally blocked; this result is
   not attributed to the repository code or the locally successful build.
+
+## 2026-10-11 — Dependency-security remediation
+
+- The Next.js 16 upgrade guidance bundled with the installed framework was
+  reviewed before editing the package constraints. Next.js and
+  `eslint-config-next` were updated together from 16.3.3 to 16.3.8.
+- `npm ci` completed with 519 packages. `npm run lint` passed and Vitest passed
+  all 5 tests in 3 files.
+- `npm run build` passed compilation, TypeScript analysis, page-data collection
+  and generation of all three static routes with Next.js 16.3.8.
+- The complete six-project Playwright matrix passed 26 checks with 16
+  intentional project-specific skips across desktop Chromium, Firefox and
+  WebKit, mobile Chromium and Firefox, and tablet Chromium.
+- `npm audit --omit=dev --audit-level=low` reports zero vulnerabilities. The
+  complete audit reports five high-severity dependency-path findings, all from
+  `braces@3.0.3` through the development-only `eslint-config-next` lint chain.
+  No compatible patched resolution is currently offered. The automated force
+  fix would downgrade `eslint-config-next` to 14.2.35, so it was rejected and
+  the upstream advisory remains tracked under task #15.
+- No Playwright browser, user-cache library, generated `.next` output or local
+  source document is included in the dependency change.
+- Work commit `6aea592` was pushed to
+  `codex/dependency-security-2026-10-11`, merged into `develop` as `8daf093`,
+  and promoted to `main` as `f8fa5ac`. Both long-lived branches were pushed and
+  their first dependency-release remote heads were verified before this
+  documentation closeout.

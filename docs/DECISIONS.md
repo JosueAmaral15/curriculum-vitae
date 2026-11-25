@@ -1,5 +1,84 @@
 # Decisions
 
+## 2026-10-11 — Dependency security without a forced framework regression
+
+**Decision:** update Next.js and `eslint-config-next` together to 16.3.8, pin
+the formerly unbounded validation-tool versions, apply only compatible
+transitive remediations, and use a narrow `compression` override for the local
+static server. Do not run `npm audit fix --force`.
+
+**Why:** the reviewed set eliminates every production-dependency advisory and
+passes the clean install, lint, unit, static-build and six-project browser
+matrix. The five remaining full-audit findings are the same upstream `braces`
+advisory reached solely through Next.js's lint tooling. npm's proposed “fix”
+would downgrade the matching Next.js ESLint configuration from 16.3.8 to
+14.2.35, creating a framework/toolchain mismatch without removing a deployed
+runtime exposure.
+
+**Follow-up:** monitor the advisory and the compatible Next.js lint dependency
+chain. Replace the affected resolution when upstream publishes a compatible
+fix, then repeat the complete validation and full audit.
+
+## 2026-10-11 — Website translation and localization positioning
+
+**Decision:** offer technical website translation and localization for any
+requested language pair, while distinguishing implementation capability from
+personally verified linguistic fluency. The service may use disclosed
+machine-assisted translation, but language pairs Josué cannot independently
+validate require approval by the client or a proficient human reviewer before
+delivery is treated as linguistically final.
+
+**Why:** i18n architecture, locale routing, translation-resource integration
+and responsive layout correction are engineering work that can support any
+locale. Claiming native-quality command of every language would be misleading.
+This boundary permits a broad, useful service without inventing fluency or
+placing legal, medical, certified or safety-critical translation inside an
+ordinary software Gig.
+
+**Publication control:** this is a documented expansion offer only. The Fiverr
+account already has four active Gigs; a live category, price minimum, current
+field constraints and an available slot must be verified before a draft is
+entered. Publication still requires explicit account-holder approval.
+
+## 2026-10-07 — Fiverr catalog and launch scope
+
+**Decision:** preserve the complete 20-service inventory in documentation, but
+publish no more than four coherent launch Gigs until the authenticated account's
+actual allowance is known. Treat related services as bounded package scopes,
+custom offers or later expansion rather than presenting one vague “full-stack”
+Gig.
+
+**Why:** Fiverr currently allows a New freelancer at most four Gigs and locks a
+Gig's category after publication. Focused offers make scope, delivery,
+revisions, price and buyer requirements understandable while reducing dispute
+and schedule risk.
+
+**Compliance boundary:** permitted automation and data work must respect the
+target platform's terms and the buyer's authorization. The catalog excludes
+private/personal-data harvesting, access-control bypass, fake engagement,
+malware, deceptive AI, unsupported guarantees and off-platform payment.
+
+**Publication control:** documentation and saved drafts are reversible. Pressing
+**Publish Gig** is a separate external action and requires a final review and
+explicit approval after the exact rendered listing is shown.
+
+**Observed exception (2026-10-09):** Fiverr advanced the Python automation Gig
+from its gallery workflow directly to `ACTIVE` without showing the separate
+`Publish Gig` control seen for the first service. The event is recorded as an
+unintended publication; later Gigs must stop at the earliest verified saved
+draft state, and any pause, edit or further publication still requires an
+explicit account-holder decision.
+
+**Account-holder decision (2026-10-09):** keep the Python automation Gig active.
+This accepts its current public state but does not authorize publishing the
+three remaining drafts or changing their public visibility.
+
+**Subsequent account-holder decision (2026-10-09):** after reviewing the three
+remaining launch Gigs at their final publication step, the account holder
+explicitly authorized publishing the Python backend repair, API/webhook/AI
+integration, and Docker/Git/deployment repair Gigs. Fiverr confirmed each as
+open for business, and the final management panel displayed `ACTIVE 4`.
+
 ## 2026-08-14 — Academic information
 
 **Decision:** describe the master's degree only as "Mestrado em Computação, foco em IA aplicada à Saúde · não concluído".
